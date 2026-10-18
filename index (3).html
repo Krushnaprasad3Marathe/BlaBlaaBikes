@@ -803,6 +803,14 @@ button.topbar-user { background: none; border: none; font: inherit; color: inher
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>window.HAS_LEAFLET = (typeof L !== "undefined");</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  window.supabaseClient = window.supabase.createClient(
+    "https://lhceutcuxgwtxqmwtwsl.supabase.co",
+    "sb_publishable_uMGgbb3VUo9gc5kCNa7rTw_lH4V9yan"
+  );
+</script>
 </head>
 <body>
 
@@ -1391,12 +1399,12 @@ button.topbar-user { background: none; border: none; font: inherit; color: inher
                 <form id="login-form">
                   <div class="form-group">
                     <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" value="aakash.nashik@blablabikes.in">
+                    <input type="email" class="form-control">
                   </div>
                   <div class="form-group">
                     <label class="form-label">Password</label>
                     <div class="password-input-wrapper">
-                      <input type="password" id="login-password" class="form-control" value="password123">
+                      <input type="password" id="login-password" class="form-control">
                       <button type="button" id="toggle-login-pwd" class="eye-toggle-btn"></button>
                     </div>
                   </div>
@@ -1944,6 +1952,85 @@ button.topbar-user { background: none; border: none; font: inherit; color: inher
   // ── Password toggles ──────────────────────────────────────────────
   setupEye('login-password', 'toggle-login-pwd');
   setupEye('signup-password', 'toggle-signup-pwd');
+
+  // ── Supabase Authentication ───────────────────────────────────────
+  
+  // ── Supabase Authentication ──────────────────────────
+  const sb = window.supabaseClient;
+
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+
+  // Login using a registered account
+  loginForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const email = loginForm.querySelector('input[type="email"]').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    const { data, error } = await sb.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      alert('Login failed: ' + error.message);
+      return;
+    }
+
+    alert('Login successful! Welcome to BlaBlaBikes.');
+    console.log('Logged-in user:', data.user.id);
+
+    // Open the home screen after successful login
+    navigate('home');
+  });
+
+  // Create a new account
+  signupForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const textInputs = signupForm.querySelectorAll('input[type="text"]');
+    const name = textInputs[0].value.trim();
+    const email = signupForm.querySelector('input[type="email"]').value.trim();
+    const password = document.getElementById('signup-password').value;
+    const phone = textInputs[1].value.trim();
+    const localArea = textInputs[2].value.trim();
+
+    if (!name || !email || !password || !phone || !localArea) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    if (password.length < 6) {
+      alert('Password must be at least 6 characters.');
+      return;
+    }
+
+    const { data, error } = await sb.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+          phone: phone,
+          local_area: localArea
+        }
+      }
+    });
+
+    if (error) {
+      alert('Signup failed: ' + error.message);
+      return;
+    }
+
+    if (data.session) {
+      alert('Account created successfully! You can now log in.');
+    } else {
+      alert('Account created! Check your email to confirm your account before logging in.');
+    }
+
+    console.log('Signup response:', data);
+  });
 
   // ── Boot ──────────────────────────────────────────────────────────
   renderHome();
