@@ -838,8 +838,8 @@ button.topbar-user { background: none; border: none; font: inherit; color: inher
     <div class="topbar-right">
       <div class="user-menu-wrap">
         <button type="button" class="topbar-user" id="user-menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="user-menu">
-          <div class="user-avatar">A</div>
-          <span class="topbar-username">Aakash Deshmukh</span>
+          <div class="user-avatar" id="topbar-user-avatar">?</div>
+          <span class="topbar-username" id="topbar-username">Guest</span>
           <svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="user-menu" id="user-menu" role="menu">
@@ -2031,7 +2031,68 @@ button.topbar-user { background: none; border: none; font: inherit; color: inher
 
     console.log('Signup response:', data);
   });
+  // ── Dynamic logged-in user profile ─────────────────────────────
+async function updateTopbarUser(user) {
+  const nameElement = document.getElementById('topbar-username');
+  const avatarElement = document.getElementById('topbar-user-avatar');
 
+  if (!nameElement || !avatarElement) return;
+
+  // Never display a demo user's name when nobody is logged in.
+  if (!user) {
+    nameElement.textContent = 'Guest';
+    avatarElement.textContent = '?';
+    return;
+  }
+
+  let fullName =
+    user.user_metadata?.full_name ||
+    user.user_metadata?.name ||
+    user.email ||
+    'User';
+
+  // Prefer the profile saved in the Supabase profiles table.
+  const client = window.supabaseClient;
+
+  if (client) {
+    const { data, error } = await client
+      .from('profiles')
+      .select('full_name')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (!error && data?.full_name) {
+      fullName = data.full_name;
+    }
+  }
+
+  // Show the current user's name and first initial.
+  nameElement.textContent = fullName;
+  avatarElement.textContent =
+    fullName.trim().charAt(0).toUpperCase() || '?';
+}
+
+// Restore the existing login session after page refresh.
+if (window.supabaseClient) {
+  window.supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      console.error('Could not restore session:', error.message);
+      updateTopbarUser(null);
+      return;
+    }
+
+    updateTopbarUser(data.session?.user || null);
+  });
+
+  // Update the topbar whenever the login state changes.
+  window.supabaseClient.auth.onAuthStateChange(
+    (_event, session) => {
+      updateTopbarUser(session?.user || null);
+    }
+  );
+} else {
+  updateTopbarUser(null);
+}
   // ── Boot ──────────────────────────────────────────────────────────
   renderHome();
   navigate('home');
