@@ -1070,7 +1070,7 @@
       box-shadow: 0 8px 24px rgba(10, 30, 80, 0.25);
     }
 
-    .hero-search > :first-child {
+    .hero-search> :first-child {
       border-top-left-radius: 14px;
       border-bottom-left-radius: 14px;
     }
@@ -1110,6 +1110,7 @@
         opacity: 0;
         transform: translateY(-4px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -1890,7 +1891,8 @@
                   <input type="text" id="hero-src" placeholder="Area or landmark (e.g. CBS)" autocomplete="off">
                 </div>
                 <div class="hs-field autocomplete-wrapper"><span>To</span>
-                  <input type="text" id="hero-dest" placeholder="Area or landmark (e.g. Canada Corner)" autocomplete="off">
+                  <input type="text" id="hero-dest" placeholder="Area or landmark (e.g. Canada Corner)"
+                    autocomplete="off">
                 </div>
                 <div class="hs-field"><span>Date</span>
                   <input type="date" id="hero-date">
@@ -1948,7 +1950,8 @@
                     autocomplete="off">
                 </div>
                 <div class="autocomplete-wrapper">
-                  <input type="text" id="alert-to" class="form-control" placeholder="To (e.g. Canada Corner, Satpur)" autocomplete="off">
+                  <input type="text" id="alert-to" class="form-control" placeholder="To (e.g. Canada Corner, Satpur)"
+                    autocomplete="off">
                 </div>
                 <button type="submit" class="btn btn-primary">Create alert</button>
                 <div class="alert-msg" id="alert-msg" role="status"></div>
@@ -2119,11 +2122,13 @@
             <div class="filter-row">
               <div class="form-group autocomplete-wrapper" style="margin-bottom:0;">
                 <label class="form-label" for="filter-src">Leaving From</label>
-                <input type="text" id="filter-src" class="form-control" placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
+                <input type="text" id="filter-src" class="form-control"
+                  placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
               </div>
               <div class="form-group autocomplete-wrapper" style="margin-bottom:0;">
                 <label class="form-label" for="filter-dest">Going To</label>
-                <input type="text" id="filter-dest" class="form-control" placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
+                <input type="text" id="filter-dest" class="form-control" placeholder="e.g. Nashik Road Station, Satpur"
+                  autocomplete="off">
               </div>
               <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label" for="filter-date">Date</label>
@@ -2224,21 +2229,25 @@
               <div class="form-row">
                 <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Starting Area (Nashik)</label>
-                  <input type="text" id="offer-start-area" class="form-control" placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
+                  <input type="text" id="offer-start-area" class="form-control"
+                    placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
                 </div>
                 <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Destination Area (Nashik)</label>
-                  <input type="text" id="offer-dest-area" class="form-control" placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
+                  <input type="text" id="offer-dest-area" class="form-control"
+                    placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Pickup Landmark</label>
-                  <input type="text" id="offer-pickup-landmark" class="form-control" placeholder="e.g. CBS Terminal Gate 2, BYK Signal" autocomplete="off">
+                  <input type="text" id="offer-pickup-landmark" class="form-control"
+                    placeholder="e.g. CBS Terminal Gate 2, BYK Signal" autocomplete="off">
                 </div>
                 <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Drop-off Landmark</label>
-                  <input type="text" id="offer-drop-landmark" class="form-control" placeholder="e.g. Platform Gate 1, Nashik Road Station" autocomplete="off">
+                  <input type="text" id="offer-drop-landmark" class="form-control"
+                    placeholder="e.g. Platform Gate 1, Nashik Road Station" autocomplete="off">
                 </div>
               </div>
               <div class="form-group" style="margin-top:8px;">
@@ -3710,6 +3719,9 @@
         document.addEventListener('click', function (e) {
           if (!parent.contains(e.target)) {
             closeDropdown();
+          }
+        });
+      }
 
       // ── Attach Autocomplete to Location Inputs ─────────────────────
       setupLocationAutocomplete(document.getElementById('filter-src'), function () {
@@ -3726,7 +3738,6 @@
       setupLocationAutocomplete(document.getElementById('offer-drop-landmark'));
       setupLocationAutocomplete(document.getElementById('alert-from'));
       setupLocationAutocomplete(document.getElementById('alert-to'));
-
 
       // ── Boot ──────────────────────────────────────────────────────────
       renderHome();
