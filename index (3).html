@@ -1064,8 +1064,167 @@
       align-items: stretch;
       background: #fff;
       border-radius: 14px;
-      overflow: hidden;
+      overflow: visible;
+      position: relative;
+      z-index: 30;
       box-shadow: 0 8px 24px rgba(10, 30, 80, 0.25);
+    }
+
+    .hero-search > :first-child {
+      border-top-left-radius: 14px;
+      border-bottom-left-radius: 14px;
+    }
+
+    .hero-search .hs-btn {
+      border-radius: 0 14px 14px 0;
+    }
+
+    /* ── Location Autocomplete Dropdown ────────────────────────────── */
+    .autocomplete-wrapper {
+      position: relative;
+    }
+
+    .autocomplete-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(15, 35, 60, 0.15), 0 4px 12px rgba(15, 35, 60, 0.08);
+      max-height: 275px;
+      overflow-y: auto;
+      z-index: 9999;
+      padding: 6px;
+      display: none;
+    }
+
+    .autocomplete-dropdown.open {
+      display: block;
+      animation: acFadeIn 0.14s ease-out;
+    }
+
+    @keyframes acFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .ac-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      padding: 6px 10px 4px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 4px;
+    }
+
+    .ac-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.12s ease;
+      color: var(--text-main);
+    }
+
+    .ac-item:hover,
+    .ac-item.active {
+      background: var(--light-blue);
+      color: var(--primary-blue);
+    }
+
+    .ac-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .ac-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--primary-blue);
+    }
+
+    .ac-item:hover .ac-icon,
+    .ac-item.active .ac-icon {
+      background: #ffffff;
+    }
+
+    .ac-text-col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .ac-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ac-item:hover .ac-title,
+    .ac-item.active .ac-title {
+      color: var(--primary-blue);
+    }
+
+    .ac-title mark {
+      background: #ffeb99;
+      color: #78350f;
+      font-weight: 700;
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+
+    .ac-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+
+    .ac-badge {
+      font-size: 10px;
+      font-weight: 600;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 2px 7px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ac-empty {
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
     }
 
     .hs-field {
@@ -1727,12 +1886,15 @@
               <h1>Share a bike ride across Nashik. Split the fuel.</h1>
               <p>Find a rider already heading your way, or offer a free seat on your motorcycle.</p>
               <form class="hero-search" id="hero-search">
-                <label class="hs-field"><span>From</span>
-                  <input type="text" id="hero-src" placeholder="Area or landmark" autocomplete="off"></label>
-                <label class="hs-field"><span>To</span>
-                  <input type="text" id="hero-dest" placeholder="Area or landmark" autocomplete="off"></label>
-                <label class="hs-field"><span>Date</span>
-                  <input type="date" id="hero-date"></label>
+                <div class="hs-field autocomplete-wrapper"><span>From</span>
+                  <input type="text" id="hero-src" placeholder="Area or landmark (e.g. CBS)" autocomplete="off">
+                </div>
+                <div class="hs-field autocomplete-wrapper"><span>To</span>
+                  <input type="text" id="hero-dest" placeholder="Area or landmark (e.g. Canada Corner)" autocomplete="off">
+                </div>
+                <div class="hs-field"><span>Date</span>
+                  <input type="date" id="hero-date">
+                </div>
                 <button type="submit" class="btn btn-primary hs-btn">Search</button>
               </form>
             </div>
@@ -1781,9 +1943,13 @@
                   matching ride appears.</p>
               </div>
               <form class="alert-form" id="alert-form">
-                <input type="text" id="alert-from" class="form-control" placeholder="From (e.g. Gangapur Road)"
-                  autocomplete="off">
-                <input type="text" id="alert-to" class="form-control" placeholder="To (e.g. Satpur)" autocomplete="off">
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="alert-from" class="form-control" placeholder="From (e.g. CBS, Gangapur Road)"
+                    autocomplete="off">
+                </div>
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="alert-to" class="form-control" placeholder="To (e.g. Canada Corner, Satpur)" autocomplete="off">
+                </div>
                 <button type="submit" class="btn btn-primary">Create alert</button>
                 <div class="alert-msg" id="alert-msg" role="status"></div>
               </form>
@@ -1951,13 +2117,13 @@
 
           <div class="container-box">
             <div class="filter-row">
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Leaving From</label>
-                <input type="text" id="filter-src" class="form-control" placeholder="e.g. College Road, Panchavati">
+              <div class="form-group autocomplete-wrapper" style="margin-bottom:0;">
+                <label class="form-label" for="filter-src">Leaving From</label>
+                <input type="text" id="filter-src" class="form-control" placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
               </div>
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Going To</label>
-                <input type="text" id="filter-dest" class="form-control" placeholder="e.g. Nashik Road Station, Satpur">
+              <div class="form-group autocomplete-wrapper" style="margin-bottom:0;">
+                <label class="form-label" for="filter-dest">Going To</label>
+                <input type="text" id="filter-dest" class="form-control" placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
               </div>
               <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label" for="filter-date">Date</label>
@@ -2056,23 +2222,23 @@
             <form id="offer-ride-form">
               <div class="box-title">Route Details</div>
               <div class="form-row">
-                <div class="form-group">
+                <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Starting Area (Nashik)</label>
-                  <input type="text" class="form-control" placeholder="e.g. College Road, Panchavati">
+                  <input type="text" id="offer-start-area" class="form-control" placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
                 </div>
-                <div class="form-group">
+                <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Destination Area (Nashik)</label>
-                  <input type="text" class="form-control" placeholder="e.g. Nashik Road Station, Satpur">
+                  <input type="text" id="offer-dest-area" class="form-control" placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group">
+                <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Pickup Landmark</label>
-                  <input type="text" class="form-control" placeholder="e.g. Near BYK College Signal">
+                  <input type="text" id="offer-pickup-landmark" class="form-control" placeholder="e.g. CBS Terminal Gate 2, BYK Signal" autocomplete="off">
                 </div>
-                <div class="form-group">
+                <div class="form-group autocomplete-wrapper">
                   <label class="form-label">Drop-off Landmark</label>
-                  <input type="text" class="form-control" placeholder="e.g. Platform Gate 1, Nashik Road Station">
+                  <input type="text" id="offer-drop-landmark" class="form-control" placeholder="e.g. Platform Gate 1, Nashik Road Station" autocomplete="off">
                 </div>
               </div>
               <div class="form-group" style="margin-top:8px;">
@@ -2350,6 +2516,43 @@
   <script>
     (function () {
 
+      // ── Nashik Locality & Landmark Database ──────────────────────────
+      var NASHIK_LOCATIONS = [
+        { name: 'CBS', fullName: 'CBS (Central Bus Stand)', category: 'Transit Hub', area: 'Central Nashik' },
+        { name: 'Canada Corner', fullName: 'Canada Corner', category: 'Commercial Hub', area: 'Sharanpur Road' },
+        { name: 'College Road', fullName: 'College Road', category: 'Student & Cafe Hub', area: 'College Road' },
+        { name: 'City Centre Mall', fullName: 'City Centre Mall (CCM)', category: 'Shopping Mall', area: 'Untwadi' },
+        { name: 'CIDCO', fullName: 'CIDCO', category: 'Residential Hub', area: 'New Nashik' },
+        { name: 'Panchavati', fullName: 'Panchavati', category: 'Heritage & Pilgrimage', area: 'Panchavati' },
+        { name: 'Nashik Road Station', fullName: 'Nashik Road Railway Station', category: 'Transit Hub', area: 'Nashik Road' },
+        { name: 'Satpur MIDC', fullName: 'Satpur MIDC', category: 'Industrial Area', area: 'Satpur' },
+        { name: 'Ambad MIDC', fullName: 'Ambad MIDC', category: 'Industrial Area', area: 'Ambad' },
+        { name: 'Gangapur Road', fullName: 'Gangapur Road', category: 'Commercial & Residential', area: 'Gangapur Road' },
+        { name: 'Jehan Circle', fullName: 'Jehan Circle', category: 'Major Junction', area: 'Gangapur Road' },
+        { name: 'KK Wagh College', fullName: 'K. K. Wagh College', category: 'Campus / College', area: 'Amrutdham' },
+        { name: 'BYK College', fullName: 'BYK College of Commerce', category: 'Campus / College', area: 'College Road' },
+        { name: 'Pathardi Phata', fullName: 'Pathardi Phata', category: 'Major Junction', area: 'Mumbai-Agra Highway' },
+        { name: 'ABB Circle', fullName: 'ABB Circle', category: 'Major Junction', area: 'Mahatma Nagar' },
+        { name: 'Indira Nagar', fullName: 'Indira Nagar', category: 'Residential Hub', area: 'Indira Nagar' },
+        { name: 'Govind Nagar', fullName: 'Govind Nagar', category: 'Residential Area', area: 'Govind Nagar' },
+        { name: 'Mahatma Nagar', fullName: 'Mahatma Nagar', category: 'Residential & Sports', area: 'Mahatma Nagar' },
+        { name: 'Tidke Colony', fullName: 'Tidke Colony', category: 'Residential Area', area: 'Central Nashik' },
+        { name: 'Mumbai Naka', fullName: 'Mumbai Naka', category: 'Transit Hub', area: 'Mumbai Naka' },
+        { name: 'Shalimar', fullName: 'Shalimar Chowk', category: 'Market Area', area: 'Old Nashik' },
+        { name: 'Dwarka Circle', fullName: 'Dwarka Circle', category: 'Major Highway Junction', area: 'Dwarka' },
+        { name: 'Rane Nagar', fullName: 'Rane Nagar', category: 'Residential Area', area: 'New Nashik' },
+        { name: 'Ashok Stambh', fullName: 'Ashok Stambh', category: 'Commercial Junction', area: 'Old Nashik' },
+        { name: 'Ravivar Karanja', fullName: 'Ravivar Karanja (RK)', category: 'Market / Heritage', area: 'Old Nashik' },
+        { name: 'Kalaram Temple', fullName: 'Kalaram Temple', category: 'Heritage Landmark', area: 'Panchavati' },
+        { name: 'Upnagar', fullName: 'Upnagar', category: 'Residential Area', area: 'Nashik Road' },
+        { name: 'Deolali Camp', fullName: 'Deolali Camp', category: 'Cantonment Area', area: 'Deolali' },
+        { name: 'Jail Road', fullName: 'Jail Road', category: 'Residential Area', area: 'Nashik Road' },
+        { name: 'Bytco Point', fullName: 'Bytco Point', category: 'Transit Junction', area: 'Nashik Road' },
+        { name: 'Someshwar', fullName: 'Someshwar Waterfall & Temple', category: 'Tourist Landmark', area: 'Gangapur' },
+        { name: 'Sandip University', fullName: 'Sandip University', category: 'Campus / College', area: 'Trimbak Road' },
+        { name: 'MET Bhujbal Knowledge City', fullName: 'MET Bhujbal Knowledge City', category: 'Campus / College', area: 'Adgaon' }
+      ];
+
       // ── Ride Data ───────────────────────────────────────────────────
       var RIDES = [
         {
@@ -2399,6 +2602,54 @@
           bikeModel: 'TVS Apache RTR 200', bikeNumber: 'MH 15 AP 4400',
           helmetProvided: false,
           notes: 'Morning shift industrial commute. Bring your own helmet.'
+        },
+        {
+          id: 'ride-5',
+          riderName: 'Sameer Joshi', riderInitial: 'S', riderRating: '4.9', riderTrips: 42,
+          source: 'CBS, Nashik', destination: 'Nashik Road Station',
+          pickupLocation: 'CBS Bus Terminal Gate 2',
+          dropLocation: 'Platform 1 Gate, Nashik Road Station',
+          sourceCoords: [19.9975, 73.7898],
+          date: '2026-10-20', time: '09:00', price: 50,
+          bikeModel: 'Yamaha FZ-S V3', bikeNumber: 'MH 15 SJ 7120',
+          helmetProvided: true,
+          notes: 'Direct transit from CBS to Nashik Road Station via Shalimar and Dwarka. Spare helmet available.'
+        },
+        {
+          id: 'ride-6',
+          riderName: 'Neha Deshmukh', riderInitial: 'N', riderRating: '5.0', riderTrips: 15,
+          source: 'Canada Corner, Nashik', destination: 'College Road, Nashik',
+          pickupLocation: 'Opposite Archies Gallery, Canada Corner',
+          dropLocation: 'Near BYK College Signal, College Road',
+          sourceCoords: [20.0031, 73.7745],
+          date: '2026-10-20', time: '11:30', price: 30,
+          bikeModel: 'Honda Activa 6G', bikeNumber: 'MH 15 ND 3319',
+          helmetProvided: true,
+          notes: 'Quick hop from Canada Corner to College Road. Clean ride, helmet provided.'
+        },
+        {
+          id: 'ride-7',
+          riderName: 'Kunal Shinde', riderInitial: 'K', riderRating: '4.8', riderTrips: 27,
+          source: 'CIDCO, Nashik', destination: 'CBS, Nashik',
+          pickupLocation: 'Pawan Nagar Bus Stop, CIDCO',
+          dropLocation: 'CBS Signal, Near Old Municipal Corp',
+          sourceCoords: [19.9650, 73.7540],
+          date: '2026-10-21', time: '08:15', price: 35,
+          bikeModel: 'Bajaj Pulsar NS200', bikeNumber: 'MH 15 KS 9081',
+          helmetProvided: true,
+          notes: 'Daily office commute via Mumbai Naka to CBS. Relaxed riding style.'
+        },
+        {
+          id: 'ride-8',
+          riderName: 'Tanvi Shah', riderInitial: 'T', riderRating: '4.9', riderTrips: 19,
+          source: 'Canada Corner, Nashik', destination: 'Satpur MIDC, Nashik',
+          pickupLocation: 'Near Vasant Market, Canada Corner',
+          dropLocation: 'ABB Circle, Satpur MIDC',
+          sourceCoords: [20.0031, 73.7745],
+          date: '2026-10-21', time: '09:30', price: 45,
+          bikeModel: 'Suzuki Gixxer SF', bikeNumber: 'MH 15 TS 4410',
+          helmetProvided: true,
+          notes: 'Direct route via Trimbak Road to Satpur. Punctual departure.'
         }
       ];
 
@@ -2539,10 +2790,22 @@
         var src = (document.getElementById('filter-src').value || '').toLowerCase().trim();
         var dest = (document.getElementById('filter-dest').value || '').toLowerCase().trim();
         var date = document.getElementById('filter-date').value || '';
+
+        function matchLoc(text, query) {
+          if (!query) return true;
+          if (!text) return false;
+          var t = text.toLowerCase();
+          if (t.indexOf(query) !== -1) return true;
+          // Alias handling for CBS
+          if (query === 'cbs' && (t.indexOf('cbs') !== -1 || t.indexOf('central bus') !== -1)) return true;
+          return false;
+        }
+
         var filtered = RIDES.filter(function (r) {
-          return (!src || r.source.toLowerCase().indexOf(src) !== -1) &&
-            (!dest || r.destination.toLowerCase().indexOf(dest) !== -1) &&
-            (!date || r.date === date);
+          var matchSrc = !src || matchLoc(r.source, src) || matchLoc(r.pickupLocation, src);
+          var matchDest = !dest || matchLoc(r.destination, dest) || matchLoc(r.dropLocation, dest);
+          var matchDate = !date || r.date === date;
+          return matchSrc && matchDest && matchDate;
         });
         renderRideList(filtered);
       }
@@ -3257,6 +3520,214 @@
 
       // Also load it on initial page startup.
       loadMyProfile();
+
+      // ── Autocomplete Engine ───────────────────────────────────────────
+      function setupLocationAutocomplete(input, onSelectCallback) {
+        if (!input) return;
+        var parent = input.parentElement;
+        if (parent) {
+          parent.classList.add('autocomplete-wrapper');
+          if (getComputedStyle(parent).position === 'static') {
+            parent.style.position = 'relative';
+          }
+        }
+
+        var dropdown = document.createElement('div');
+        dropdown.className = 'autocomplete-dropdown';
+        dropdown.setAttribute('role', 'listbox');
+        parent.appendChild(dropdown);
+
+        var activeIndex = -1;
+        var currentItems = [];
+
+        function escapeRegExp(str) {
+          return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function highlightMatch(text, query) {
+          if (!query) return esc(text);
+          var q = escapeRegExp(query);
+          var re = new RegExp('(' + q + ')', 'gi');
+          return esc(text).replace(re, '<mark>$1</mark>');
+        }
+
+        function renderDropdown(items, query, isPopular) {
+          currentItems = items;
+          activeIndex = -1;
+          if (!items || items.length === 0) {
+            dropdown.innerHTML = '<div class="ac-empty">No matching Nashik locations for "' + esc(query) + '"</div>';
+            dropdown.classList.add('open');
+            return;
+          }
+
+          var html = '';
+          if (isPopular) {
+            html += '<div class="ac-header">Popular Nashik Spots</div>';
+          } else {
+            html += '<div class="ac-header">Suggested Locations</div>';
+          }
+
+          items.forEach(function (loc, idx) {
+            var pinSvg = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg>';
+            html += '<div class="ac-item" data-index="' + idx + '" role="option">' +
+              '<div class="ac-left">' +
+              '<div class="ac-icon">' + pinSvg + '</div>' +
+              '<div class="ac-text-col">' +
+              '<div class="ac-title">' + highlightMatch(loc.name, query) + '</div>' +
+              '<div class="ac-sub">' + esc(loc.area) + (loc.fullName && loc.fullName !== loc.name ? ' • ' + esc(loc.fullName) : '') + '</div>' +
+              '</div>' +
+              '</div>' +
+              '<span class="ac-badge">' + esc(loc.category) + '</span>' +
+              '</div>';
+          });
+
+          dropdown.innerHTML = html;
+          dropdown.classList.add('open');
+        }
+
+        function closeDropdown() {
+          dropdown.classList.remove('open');
+          dropdown.innerHTML = '';
+          activeIndex = -1;
+          currentItems = [];
+        }
+
+        function selectItem(index) {
+          if (index >= 0 && index < currentItems.length) {
+            var selected = currentItems[index];
+            input.value = selected.name;
+            closeDropdown();
+            if (typeof onSelectCallback === 'function') {
+              onSelectCallback(selected.name);
+            }
+          }
+        }
+
+        function updateQuery() {
+          var q = input.value.trim().toLowerCase();
+          if (!q) {
+            var popular = NASHIK_LOCATIONS.slice(0, 7);
+            renderDropdown(popular, '', true);
+            return;
+          }
+
+          var scored = [];
+          NASHIK_LOCATIONS.forEach(function (loc) {
+            var nameLower = loc.name.toLowerCase();
+            var fullLower = (loc.fullName || '').toLowerCase();
+            var areaLower = (loc.area || '').toLowerCase();
+
+            var score = 999;
+            if (nameLower.startsWith(q)) {
+              score = 1;
+            } else {
+              var words = nameLower.split(/\s+/);
+              var wordMatch = words.some(function (w) { return w.startsWith(q); });
+              if (wordMatch) {
+                score = 2;
+              } else if (nameLower.indexOf(q) !== -1) {
+                score = 3;
+              } else if (fullLower.indexOf(q) !== -1) {
+                score = 4;
+              } else if (areaLower.indexOf(q) !== -1) {
+                score = 5;
+              }
+            }
+
+            if (score <= 5) {
+              scored.push({ loc: loc, score: score });
+            }
+          });
+
+          scored.sort(function (a, b) {
+            if (a.score !== b.score) return a.score - b.score;
+            return a.loc.name.localeCompare(b.loc.name);
+          });
+
+          var results = scored.slice(0, 8).map(function (s) { return s.loc; });
+          renderDropdown(results, q, false);
+        }
+
+        input.addEventListener('focus', function () {
+          updateQuery();
+        });
+
+        input.addEventListener('input', function () {
+          updateQuery();
+          if (typeof onSelectCallback === 'function') {
+            onSelectCallback(input.value);
+          }
+        });
+
+        input.addEventListener('keydown', function (e) {
+          if (!dropdown.classList.contains('open')) return;
+
+          var itemEls = dropdown.querySelectorAll('.ac-item');
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (itemEls.length === 0) return;
+            activeIndex = (activeIndex + 1) % itemEls.length;
+            updateActiveItem(itemEls);
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (itemEls.length === 0) return;
+            activeIndex = (activeIndex - 1 + itemEls.length) % itemEls.length;
+            updateActiveItem(itemEls);
+          } else if (e.key === 'Enter') {
+            if (activeIndex >= 0) {
+              e.preventDefault();
+              selectItem(activeIndex);
+            } else if (itemEls.length > 0) {
+              e.preventDefault();
+              selectItem(0);
+            }
+          } else if (e.key === 'Escape') {
+            closeDropdown();
+          }
+        });
+
+        function updateActiveItem(itemEls) {
+          itemEls.forEach(function (el, i) {
+            if (i === activeIndex) {
+              el.classList.add('active');
+              el.scrollIntoView({ block: 'nearest' });
+            } else {
+              el.classList.remove('active');
+            }
+          });
+        }
+
+        dropdown.addEventListener('mousedown', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var itemEl = e.target.closest('.ac-item');
+          if (itemEl) {
+            var idx = parseInt(itemEl.dataset.index, 10);
+            selectItem(idx);
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!parent.contains(e.target)) {
+            closeDropdown();
+
+      // ── Attach Autocomplete to Location Inputs ─────────────────────
+      setupLocationAutocomplete(document.getElementById('filter-src'), function () {
+        filterRides();
+      });
+      setupLocationAutocomplete(document.getElementById('filter-dest'), function () {
+        filterRides();
+      });
+      setupLocationAutocomplete(document.getElementById('hero-src'));
+      setupLocationAutocomplete(document.getElementById('hero-dest'));
+      setupLocationAutocomplete(document.getElementById('offer-start-area'));
+      setupLocationAutocomplete(document.getElementById('offer-dest-area'));
+      setupLocationAutocomplete(document.getElementById('offer-pickup-landmark'));
+      setupLocationAutocomplete(document.getElementById('offer-drop-landmark'));
+      setupLocationAutocomplete(document.getElementById('alert-from'));
+      setupLocationAutocomplete(document.getElementById('alert-to'));
+
+
       // ── Boot ──────────────────────────────────────────────────────────
       renderHome();
       navigate('home');
