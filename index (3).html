@@ -1883,6 +1883,33 @@
         <section class="view active" id="view-home">
           <div class="home-wrap">
 
+            <div id="personal-dashboard" style="display:none; margin-bottom:20px;">
+              <div class="container-box">
+                <div class="box-title" id="personal-welcome">
+                  Welcome to BlaBlaBikes!
+                </div>
+                <p id="personal-dashboard-message">
+                  Your rides and travel activity will appear here.
+                </p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+                  <div class="value-card" style="flex:1; min-width:140px;">
+                    <h3 id="personal-offered-count">0</h3>
+                    <p>Rides offered by you</p>
+                  </div>
+
+                  <div class="value-card" style="flex:1; min-width:140px;">
+                    <h3 id="personal-booked-count">0</h3>
+                    <p>Rides you've joined</p>
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-outline btn-sm" data-goto="my-rides" style="margin-top:12px;">
+                  View My Rides
+                </button>
+              </div>
+            </div>
+
             <div class="home-hero">
               <h1>Share a bike ride across Nashik. Split the fuel.</h1>
               <p>Find a rider already heading your way, or offer a free seat on your motorcycle.</p>
@@ -2228,24 +2255,24 @@
               <div class="box-title">Route Details</div>
               <div class="form-row">
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label">Starting Area (Nashik)</label>
+                  <label class="form-label" id="offer-source">Starting Area (Nashik)</label>
                   <input type="text" id="offer-start-area" class="form-control"
                     placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
                 </div>
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label">Destination Area (Nashik)</label>
+                  <label class="form-label" id="offer-destination">Destination Area (Nashik)</label>
                   <input type="text" id="offer-dest-area" class="form-control"
                     placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label">Pickup Landmark</label>
+                  <label class="form-label" id="offer-pickup">Pickup Landmark</label>
                   <input type="text" id="offer-pickup-landmark" class="form-control"
                     placeholder="e.g. CBS Terminal Gate 2, BYK Signal" autocomplete="off">
                 </div>
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label">Drop-off Landmark</label>
+                  <label class="form-label" id="offer-drop">Drop-off Landmark</label>
                   <input type="text" id="offer-drop-landmark" class="form-control"
                     placeholder="e.g. Platform Gate 1, Nashik Road Station" autocomplete="off">
                 </div>
@@ -2262,11 +2289,11 @@
                   <input type="date" id="offer-date" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Departure Time</label>
+                  <label class="form-label" id="offer-time">Departure Time</label>
                   <input type="time" class="form-control" value="08:30">
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Contribution Price (₹)</label>
+                  <label class="form-label" id="offer-price">Contribution Price (₹)</label>
                   <input type="number" class="form-control" placeholder="e.g. 50" value="50">
                 </div>
               </div>
@@ -2274,16 +2301,16 @@
                 Bike &amp; Notes</div>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Motorcycle Model</label>
+                  <label class="form-label" id="offer-bike">Motorcycle Model</label>
                   <input type="text" class="form-control" placeholder="e.g. Royal Enfield Meteor 350">
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Vehicle Plate</label>
+                  <label class="form-label" id="offer-plate">Vehicle Plate</label>
                   <input type="text" class="form-control" placeholder="e.g. MH 15 AB 1234">
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Trip Notes</label>
+                <label class="form-label" id="offer-notes">Trip Notes</label>
                 <textarea class="form-control"
                   placeholder="e.g. Safe riding, helmet provided, light backpack only..."></textarea>
               </div>
@@ -2708,52 +2735,81 @@
       });
 
       // ── Router ───────────────────────────────────────────────────────
-      function navigate(viewId) {
+
+
+      async function navigate(viewId) {
         closeMenu();
         closeUserMenu();
-        // 1. Hide all views
+
+        const protectedViews = [
+          'offer-ride',
+          'my-rides',
+          'profile',
+          'ride-details'
+        ];
+
+        if (protectedViews.includes(viewId)) {
+          const sb = window.supabaseClient;
+
+          if (!sb) {
+            alert('Authentication is unavailable. Please try again.');
+            return;
+          }
+
+          const { data, error } = await sb.auth.getSession();
+
+          if (error || !data.session) {
+            alert('Please log in or create an account to continue.');
+            viewId = 'login';
+          }
+        }
+
         document.querySelectorAll('.view').forEach(function (v) {
           v.classList.remove('active');
         });
 
-        // 2. Remove active from all sidebar items
         document.querySelectorAll('.sidebar-nav-item').forEach(function (i) {
           i.classList.remove('active');
         });
 
-        // 3. Show target view
-        var view = document.getElementById('view-' + viewId);
+        const view = document.getElementById('view-' + viewId);
         if (view) view.classList.add('active');
 
-        // 4. Mark sidebar item active
-        var navItem = document.querySelector('.sidebar-nav-item[data-view="' + viewId + '"]');
+        const navItem = document.querySelector(
+          '.sidebar-nav-item[data-view="' + viewId + '"]'
+        );
         if (navItem) navItem.classList.add('active');
 
-        // 5. View-specific init
         if (viewId === 'search') initSearchView();
         if (viewId === 'offer-ride') initOfferMap();
         if (viewId === 'ride-details') fillRideDetails(currentRideId);
         if (viewId === 'my-rides') renderMyRides('joined');
+
+        if (viewId === 'login') showAuth('login');
       }
 
+
+
       // ── Search View ──────────────────────────────────────────────────
-      function initSearchView() {
-        document.getElementById('filter-src').value = '';
-        document.getElementById('filter-dest').value = '';
-        document.getElementById('filter-date').value = '';
-        renderRideList(RIDES);
-        setTimeout(function () {
-          if (maps['search-map']) { maps['search-map'].invalidateSize(); return; }
-          var m = makeMap('search-map', [19.9975, 73.7898], 12);
-          if (!m) return;
-          RIDES.forEach(function (r) {
-            L.marker(r.sourceCoords)
-              .bindPopup('<strong>' + esc(r.source) + '</strong><br>₹' + r.price)
-              .addTo(m);
-          });
-          maps['search-map'] = m;
-        }, 80);
-      }
+      
+async function initSearchView() {
+  document.getElementById('filter-src').value = '';
+  document.getElementById('filter-dest').value = '';
+  document.getElementById('filter-date').value = '';
+
+  await loadSupabaseRides();
+
+  setTimeout(function () {
+    if (maps['search-map']) {
+      maps['search-map'].invalidateSize();
+      return;
+    }
+
+    var m = makeMap('search-map', [19.9975, 73.7898], 12);
+    if (m) maps['search-map'] = m;
+  }, 80);
+}
+
 
       var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       function fmtDate(iso) {
@@ -2794,6 +2850,71 @@
             '</div>';
         }).join('');
       }
+      
+async function loadSupabaseRides() {
+  const sb = window.supabaseClient;
+
+  if (!sb) {
+    console.error('Supabase client is unavailable.');
+    return;
+  }
+
+  const list = document.getElementById('search-rides-list');
+  if (list) {
+    list.innerHTML = '<div class="empty-state">Loading available rides...</div>';
+  }
+
+  try {
+    const { data, error } = await sb
+      .from('rides')
+      .select('id, driver_id, source, destination, departure_time, price, seats_available, bike_details, notes, status')
+      .eq('status', 'active')
+      .gt('seats_available', 0)
+      .order('departure_time', { ascending: true });
+
+    if (error) throw error;
+
+    const rides = (data || []).map(function (r) {
+      const departure = new Date(r.departure_time);
+
+      return {
+        id: r.id,
+        source: r.source,
+        destination: r.destination,
+        date: r.departure_time.slice(0, 10),
+        time: departure.toLocaleTimeString('en-IN', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
+        price: r.price,
+        pickupLocation: 'Meeting point to be confirmed',
+        dropLocation: 'Destination details to be confirmed',
+        riderInitial: 'R',
+        riderName: 'BlaBlaBikes rider',
+        riderRating: '—',
+        riderTrips: 0,
+        bikeModel: r.bike_details || 'Bike details not provided',
+        helmetProvided: false,
+        seatsAvailable: r.seats_available,
+        sourceCoords: null
+      };
+    });
+
+    renderRideList(rides);
+
+  } catch (err) {
+    console.error('Could not load rides:', err);
+
+    if (list) {
+      list.innerHTML =
+        '<div class="empty-state">' +
+        '<div class="empty-state-title">Unable to load rides</div>' +
+        '<div class="empty-state-desc">Please refresh and try again.</div>' +
+        '</div>';
+    }
+  }
+}
+
 
       function filterRides() {
         var src = (document.getElementById('filter-src').value || '').toLowerCase().trim();
@@ -3032,20 +3153,81 @@
         }
       });
 
-      function renderHome() {
+
+      async function renderHome() {
         var pop = document.getElementById('home-popular');
         var foot = document.getElementById('footer-routes');
-        var short = function (t) { return String(t).split(',')[0]; };
-        if (pop) pop.innerHTML = RIDES.map(function (r) {
-          return '<button type="button" class="route-row" data-route-src="' + esc(short(r.source)) + '" data-route-dest="' + esc(short(r.destination)) + '">' +
-            '<span class="route-name">' + esc(short(r.source)) + ' ➔ ' + esc(short(r.destination)) + '</span>' +
-            '<span class="route-meta">₹' + r.price + ' · ' + esc(r.time) + '</span></button>';
-        }).join('');
-        if (foot) foot.innerHTML = RIDES.map(function (r) {
-          return '<button type="button" class="link-btn" data-route-src="' + esc(short(r.source)) + '" data-route-dest="' + esc(short(r.destination)) + '">' +
-            esc(short(r.source)) + ' ➔ ' + esc(short(r.destination)) + '</button>';
-        }).join('');
+        var personal = document.getElementById('personal-dashboard');
+
+        var short = function (t) {
+          return String(t).split(',')[0];
+        };
+
+        if (pop) {
+          pop.innerHTML = RIDES.map(function (r) {
+            return '<button type="button" class="route-row" data-route-src="' +
+              esc(short(r.source)) + '" data-route-dest="' +
+              esc(short(r.destination)) + '">' +
+              '<span class="route-name">' +
+              esc(short(r.source)) + ' ➔ ' + esc(short(r.destination)) +
+              '</span><span class="route-meta">₹' + r.price + ' · ' +
+              esc(r.time) + '</span></button>';
+          }).join('');
+        }
+
+        if (foot) {
+          foot.innerHTML = RIDES.map(function (r) {
+            return '<button type="button" class="link-btn" data-route-src="' +
+              esc(short(r.source)) + '" data-route-dest="' +
+              esc(short(r.destination)) + '">' +
+              esc(short(r.source)) + ' ➔ ' +
+              esc(short(r.destination)) + '</button>';
+          }).join('');
+        }
+
+        if (!personal) return;
+
+        var sb = window.supabaseClient;
+
+        if (!sb) {
+          personal.style.display = 'none';
+          return;
+        }
+
+        try {
+          var result = await sb.auth.getUser();
+          var user = result.data && result.data.user;
+
+          if (result.error || !user) {
+            personal.style.display = 'none';
+            return;
+          }
+
+          var name =
+            (user.user_metadata && user.user_metadata.full_name) ||
+            (user.email ? user.email.split('@')[0] : 'Rider');
+
+          var welcome = document.getElementById('personal-welcome');
+          var message = document.getElementById('personal-dashboard-message');
+
+          if (welcome) {
+            welcome.textContent = 'Welcome back, ' + name + '!';
+          }
+
+          if (message) {
+            message.textContent =
+              'Your BlaBlaBikes account is ready. Explore rides or check your activity.';
+          }
+
+          // Counts remain at zero until we connect the actual ride tables.
+          personal.style.display = 'block';
+
+        } catch (err) {
+          console.error('Personal dashboard error:', err);
+          personal.style.display = 'none';
+        }
       }
+
 
       document.addEventListener('click', function (e) {
         var t = e.target.closest ? e.target.closest('[data-route-src],[data-area],[data-scroll]') : null;
@@ -3738,6 +3920,118 @@
       setupLocationAutocomplete(document.getElementById('offer-drop-landmark'));
       setupLocationAutocomplete(document.getElementById('alert-from'));
       setupLocationAutocomplete(document.getElementById('alert-to'));
+
+      async function requireLogin() {
+        const sb = window.supabaseClient;
+
+        if (!sb) {
+          alert('Authentication is temporarily unavailable. Please try again.');
+          return false;
+        }
+
+        const { data, error } = await sb.auth.getSession();
+
+        if (error || !data.session) {
+          alert('Please log in or create an account to continue.');
+          // Use your existing login navigation destination here.
+          navigate('login');
+          return false;
+        }
+
+        return true;
+      }
+
+/* ── Publish Ride to Supabase ── */
+const offerForm = document.getElementById('offer-ride-form');
+
+if (offerForm && !offerForm.dataset.supabaseHandler) {
+  offerForm.dataset.supabaseHandler = 'true';
+
+  offerForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const sb = window.supabaseClient;
+    const submitButton = offerForm.querySelector(
+      'button[type="submit"]'
+    );
+
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      // Require a logged-in user
+      const { data: authData, error: authError } =
+        await sb.auth.getUser();
+
+      if (authError || !authData.user) {
+        alert('Please log in before offering a ride.');
+        navigate('login');
+        showAuth('login');
+        return;
+      }
+
+      const source = document.getElementById('offer-source').value.trim();
+      const destination = document.getElementById('offer-destination').value.trim();
+      const pickup = document.getElementById('offer-pickup').value.trim();
+      const drop = document.getElementById('offer-drop').value.trim();
+      const date = document.getElementById('offer-date').value;
+      const time = document.getElementById('offer-time').value;
+      const price = Number(document.getElementById('offer-price').value);
+      const bike = document.getElementById('offer-bike').value.trim();
+      const plate = document.getElementById('offer-plate').value.trim();
+      const notes = document.getElementById('offer-notes').value.trim();
+
+      if (!source || !destination || !date || !time) {
+        alert('Please fill in the starting area, destination, date and time.');
+        return;
+      }
+
+      if (!Number.isFinite(price) || price < 0) {
+        alert('Please enter a valid, non-negative contribution price.');
+        return;
+      }
+
+      const departure = new Date(date + 'T' + time);
+
+      if (Number.isNaN(departure.getTime()) || departure <= new Date()) {
+        alert('Please select a future departure date and time.');
+        return;
+      }
+
+      const { error } = await sb.from('rides').insert({
+        driver_id: authData.user.id,
+        source: source,
+        destination: destination,
+        pickup_location: pickup || null,
+        drop_location: drop || null,
+        departure_time: departure.toISOString(),
+        price: price,
+        seats_available: 1,
+        bike_details: bike || null,
+        vehicle_plate: plate || null,
+        notes: notes || null,
+        status: 'active'
+      });
+
+      if (error) {
+        console.error('Publish ride error:', error);
+        alert('Could not publish ride: ' + error.message);
+        return;
+      }
+
+      alert('Ride published successfully!');
+      offerForm.reset();
+
+      // Refresh the public ride list
+      navigate('search');
+
+    } catch (err) {
+      console.error('Unexpected publish error:', err);
+      alert('Something went wrong. Check the browser console.');
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+}
 
       // ── Boot ──────────────────────────────────────────────────────────
       renderHome();
