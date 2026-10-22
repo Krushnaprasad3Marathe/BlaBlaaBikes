@@ -201,6 +201,18 @@
       font-weight: 600;
     }
 
+    .auth-lock-badge {
+      margin-left: auto;
+      font-size: 11px;
+      opacity: 0.65;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    body.is-logged-in .auth-lock-badge {
+      display: none !important;
+    }
+
     .sidebar-nav-item svg {
       width: 16px;
       height: 16px;
@@ -1817,6 +1829,7 @@
               <rect x="3" y="14" width="7" height="7" />
             </svg>
             Dashboard
+            <span class="auth-lock-badge" title="Login or Sign Up required">🔒</span>
           </li>
           <li class="sidebar-nav-item" data-view="search">
             <svg viewBox="0 0 24 24">
@@ -1835,6 +1848,7 @@
               <circle cx="4" cy="18" r="1" />
             </svg>
             My Rides
+            <span class="auth-lock-badge" title="Login or Sign Up required">🔒</span>
           </li>
         </ul>
 
@@ -1847,12 +1861,14 @@
               <line x1="8" y1="12" x2="16" y2="12" />
             </svg>
             Offer a Ride
+            <span class="auth-lock-badge" title="Login or Sign Up required">🔒</span>
           </li>
           <li class="sidebar-nav-item" data-view="chat">
             <svg viewBox="0 0 24 24">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
             Coordination Chat
+            <span class="auth-lock-badge" title="Login or Sign Up required">🔒</span>
           </li>
           <li class="sidebar-nav-item" data-view="profile">
             <svg viewBox="0 0 24 24">
@@ -1860,6 +1876,7 @@
               <circle cx="12" cy="7" r="4" />
             </svg>
             Profile
+            <span class="auth-lock-badge" title="Login or Sign Up required">🔒</span>
           </li>
         </ul>
 
@@ -2065,75 +2082,98 @@
 
         <!-- VIEW: DASHBOARD -->
         <section class="view" id="view-dashboard">
-          <div class="page-heading">
-            <h1>Dashboard</h1>
-            <p>Welcome back, Aakash. Here's your Nashik ride summary.</p>
-          </div>
-
-          <div class="stat-row">
-            <div class="stat-card">
-              <div class="stat-card-label">Rides Joined</div>
-              <div class="stat-card-value">2</div>
-              <div class="stat-card-sub">Active this month</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card-label">Rides Offered</div>
-              <div class="stat-card-value">1</div>
-              <div class="stat-card-sub">Seat available</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card-label">Rider Rating</div>
-              <div class="stat-card-value">4.9</div>
-              <div class="stat-card-sub">Community score</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card-label">Total Saved</div>
-              <div class="stat-card-value">₹340</div>
-              <div class="stat-card-sub">Fuel contribution</div>
+          <!-- GUEST / NOT LOGGED IN NOTICE -->
+          <div id="dashboard-guest-content" style="display:none;">
+            <div class="container-box" style="text-align:center; padding:48px 24px; max-width:640px; margin:20px auto;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--light-blue); color:var(--primary-blue); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <h2 style="font-size:22px; font-weight:800; margin-bottom:8px; color:var(--text-main);">Sign in to View Dashboard</h2>
+              <p style="color:var(--text-secondary); max-width:480px; margin:0 auto 24px; font-size:14px; line-height:1.6;">
+                Your personal ride summary, statistics, joined trips, and fuel contributions are private. Please log in or sign up to access your dashboard. (Only <strong>Home</strong> and <strong>Find Rides</strong> are available as a guest).
+              </p>
+              <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary" data-goto="login" data-panel="login" style="padding:10px 24px;">Log In to Account</button>
+                <button type="button" class="btn btn-outline" data-goto="login" data-panel="signup" style="padding:10px 24px;">Create New Account</button>
+              </div>
             </div>
           </div>
 
-          <div class="container-box">
-            <div class="box-title">Available Nashik Rides Today</div>
-            <div class="ride-item">
-              <div class="ride-main-info">
-                <div class="ride-route-text">College Road ➔ Nashik Road Station</div>
-                <div class="ride-meta-text">Rahul Sharma &nbsp;•&nbsp; 08:30 AM &nbsp;•&nbsp; Royal Enfield Meteor 350
+          <!-- LOGGED IN DASHBOARD -->
+          <div id="dashboard-logged-in-content">
+            <div class="page-heading">
+              <h1>Dashboard</h1>
+              <p>Welcome back, <span id="dashboard-user-name">Rider</span>. Here's your Nashik ride summary.</p>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-card">
+                <div class="stat-card-label">Rides Joined</div>
+                <div class="stat-card-value">2</div>
+                <div class="stat-card-sub">Active this month</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-label">Rides Offered</div>
+                <div class="stat-card-value">1</div>
+                <div class="stat-card-sub">Seat available</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-label">Rider Rating</div>
+                <div class="stat-card-value">4.9</div>
+                <div class="stat-card-sub">Community score</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-label">Total Saved</div>
+                <div class="stat-card-value">₹340</div>
+                <div class="stat-card-sub">Fuel contribution</div>
+              </div>
+            </div>
+
+            <div class="container-box">
+              <div class="box-title">Available Nashik Rides Today</div>
+              <div class="ride-item">
+                <div class="ride-main-info">
+                  <div class="ride-route-text">College Road ➔ Nashik Road Station</div>
+                  <div class="ride-meta-text">Rahul Sharma &nbsp;•&nbsp; 08:30 AM &nbsp;•&nbsp; Royal Enfield Meteor 350
+                  </div>
+                  <div class="ride-muted-text">Pickup: Near BYK College Signal</div>
                 </div>
-                <div class="ride-muted-text">Pickup: Near BYK College Signal</div>
+                <div class="ride-side-info">
+                  <div class="ride-price-text">₹60</div>
+                  <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-1">View
+                    Details</button>
+                </div>
               </div>
-              <div class="ride-side-info">
-                <div class="ride-price-text">₹60</div>
-                <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-1">View
-                  Details</button>
+              <div class="ride-item">
+                <div class="ride-main-info">
+                  <div class="ride-route-text">Panchavati ➔ City Centre Mall</div>
+                  <div class="ride-meta-text">Vikram Verma &nbsp;•&nbsp; 10:00 AM &nbsp;•&nbsp; KTM Duke 390</div>
+                  <div class="ride-muted-text">Pickup: Kalaram Temple Gate</div>
+                </div>
+                <div class="ride-side-info">
+                  <div class="ride-price-text">₹40</div>
+                  <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-2">View
+                    Details</button>
+                </div>
               </div>
-            </div>
-            <div class="ride-item">
-              <div class="ride-main-info">
-                <div class="ride-route-text">Panchavati ➔ City Centre Mall</div>
-                <div class="ride-meta-text">Vikram Verma &nbsp;•&nbsp; 10:00 AM &nbsp;•&nbsp; KTM Duke 390</div>
-                <div class="ride-muted-text">Pickup: Kalaram Temple Gate</div>
+              <div class="ride-item">
+                <div class="ride-main-info">
+                  <div class="ride-route-text">Gangapur Road ➔ KK Wagh College</div>
+                  <div class="ride-meta-text">Priya Kulkarni &nbsp;•&nbsp; 09:15 AM &nbsp;•&nbsp; Honda CB350</div>
+                  <div class="ride-muted-text">Pickup: Jehan Circle</div>
+                </div>
+                <div class="ride-side-info">
+                  <div class="ride-price-text">₹50</div>
+                  <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-3">View
+                    Details</button>
+                </div>
               </div>
-              <div class="ride-side-info">
-                <div class="ride-price-text">₹40</div>
-                <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-2">View
-                  Details</button>
+              <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-color);">
+                <button class="btn btn-outline btn-sm" data-goto="search">Browse All Nashik Rides</button>
               </div>
-            </div>
-            <div class="ride-item">
-              <div class="ride-main-info">
-                <div class="ride-route-text">Gangapur Road ➔ KK Wagh College</div>
-                <div class="ride-meta-text">Priya Kulkarni &nbsp;•&nbsp; 09:15 AM &nbsp;•&nbsp; Honda CB350</div>
-                <div class="ride-muted-text">Pickup: Jehan Circle</div>
-              </div>
-              <div class="ride-side-info">
-                <div class="ride-price-text">₹50</div>
-                <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-3">View
-                  Details</button>
-              </div>
-            </div>
-            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-color);">
-              <button class="btn btn-outline btn-sm" data-goto="search">Browse All Nashik Rides</button>
             </div>
           </div>
         </section>
@@ -2468,6 +2508,14 @@
         <section class="view" id="view-login">
           <div class="auth-wrapper">
             <div>
+              <!-- Inline Auth Alert (When redirected from protected page) -->
+              <div id="login-auth-alert" style="display:none; background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-md); padding:14px 16px; margin-bottom:16px; color:#1e40af; font-size:13px; font-weight:600; align-items:flex-start; gap:10px;">
+                <span style="font-size:18px; line-height:1;">🔒</span>
+                <div style="flex:1;">
+                  <div id="login-auth-alert-text">You must first log in or sign up to access Dashboard. Only Home and Find Rides are accessible without an account.</div>
+                </div>
+              </div>
+
               <div id="login-panel">
                 <div class="auth-card">
                   <div class="auth-card-title">Account Login</div>
@@ -2737,30 +2785,79 @@
       // ── Router ───────────────────────────────────────────────────────
 
 
+      var currentAuthUser = null;
+      window.pendingRedirectView = null;
+
+      function showAuthAlertForView(viewId) {
+        var alertEl = document.getElementById('login-auth-alert');
+        var textEl = document.getElementById('login-auth-alert-text');
+        var viewNames = {
+          'dashboard': 'Dashboard',
+          'offer-ride': 'Offer a Ride',
+          'my-rides': 'My Rides',
+          'chat': 'Coordination Chat',
+          'profile': 'Profile',
+          'ride-details': 'Ride Details'
+        };
+        var title = viewNames[viewId] || 'this page';
+        if (alertEl && textEl) {
+          textEl.innerHTML = 'You must first <strong>log in</strong> or <strong>sign up</strong> to access the <strong>' + title + '</strong> page. Only <strong>Home</strong> and <strong>Find Rides</strong> are available without logging in.';
+          alertEl.style.display = 'flex';
+        }
+      }
+
+      function updateDashboardUser(user) {
+        var guestBlock = document.getElementById('dashboard-guest-content');
+        var userBlock = document.getElementById('dashboard-logged-in-content');
+        var nameSpan = document.getElementById('dashboard-user-name');
+
+        if (!user) {
+          if (guestBlock) guestBlock.style.display = 'block';
+          if (userBlock) userBlock.style.display = 'none';
+        } else {
+          if (guestBlock) guestBlock.style.display = 'none';
+          if (userBlock) userBlock.style.display = 'block';
+          if (nameSpan) {
+            var name = user.user_metadata?.full_name || user.user_metadata?.name || (user.email ? user.email.split('@')[0] : 'Rider');
+            nameSpan.textContent = name;
+          }
+        }
+      }
+
       async function navigate(viewId) {
         closeMenu();
         closeUserMenu();
 
-        const protectedViews = [
-          'offer-ride',
-          'my-rides',
-          'profile',
-          'ride-details'
-        ];
+        // Allowed without login: ONLY home and search (find rides), plus login view itself
+        const publicViews = ['home', 'search', 'login'];
+        const isProtected = !publicViews.includes(viewId);
 
-        if (protectedViews.includes(viewId)) {
+        if (isProtected) {
+          let user = currentAuthUser;
           const sb = window.supabaseClient;
 
-          if (!sb) {
-            alert('Authentication is unavailable. Please try again.');
-            return;
+          if (sb && !user) {
+            try {
+              const { data } = await sb.auth.getSession();
+              if (data && data.session && data.session.user) {
+                user = data.session.user;
+                currentAuthUser = user;
+              }
+            } catch (e) {
+              console.error('Session check error:', e);
+            }
           }
 
-          const { data, error } = await sb.auth.getSession();
-
-          if (error || !data.session) {
-            alert('Please log in or create an account to continue.');
+          if (!user) {
+            window.pendingRedirectView = viewId;
+            showAuthAlertForView(viewId);
             viewId = 'login';
+          }
+        } else {
+          // If navigating directly to login without a blocked attempt, hide the alert
+          if (viewId === 'login' && !window.pendingRedirectView) {
+            var alertEl = document.getElementById('login-auth-alert');
+            if (alertEl) alertEl.style.display = 'none';
           }
         }
 
@@ -2780,6 +2877,7 @@
         );
         if (navItem) navItem.classList.add('active');
 
+        if (viewId === 'dashboard') updateDashboardUser(currentAuthUser);
         if (viewId === 'search') initSearchView();
         if (viewId === 'offer-ride') initOfferMap();
         if (viewId === 'ride-details') fillRideDetails(currentRideId);
@@ -3301,22 +3399,48 @@ async function loadSupabaseRides() {
 
         const email = loginForm.querySelector('input[type="email"]').value.trim();
         const password = document.getElementById('login-password').value;
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
 
-        const { data, error } = await sb.auth.signInWithPassword({
-          email,
-          password
-        });
-
-        if (error) {
-          alert('Login failed: ' + error.message);
+        if (!email || !password) {
+          alert('Please enter your email and password.');
           return;
         }
 
-        alert('Login successful! Welcome to BlaBlaBikes.');
-        console.log('Logged-in user:', data.user.id);
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Logging in...';
+        }
 
-        // Open the home screen after successful login
-        navigate('home');
+        try {
+          const { data, error } = await sb.auth.signInWithPassword({
+            email,
+            password
+          });
+
+          if (error) {
+            alert('Login failed: ' + error.message);
+            return;
+          }
+
+          alert('Login successful! Welcome to BlaBlaBikes.');
+          currentAuthUser = data.user;
+          await updateTopbarUser(data.user);
+          updateDashboardUser(data.user);
+
+          // Hide redirect alert
+          var alertEl = document.getElementById('login-auth-alert');
+          if (alertEl) alertEl.style.display = 'none';
+
+          // Navigate to the view they were trying to access, or default to Dashboard
+          const nextView = window.pendingRedirectView || 'dashboard';
+          window.pendingRedirectView = null;
+          navigate(nextView);
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Login';
+          }
+        }
       });
 
       // Create a new account
@@ -3362,10 +3486,22 @@ async function loadSupabaseRides() {
 
           console.log('Signup response:', data);
 
-          if (data.session) {
-            alert('Account created successfully! You can now log in.');
+          if (data.session && data.session.user) {
+            currentAuthUser = data.session.user;
+            await updateTopbarUser(data.session.user);
+            updateDashboardUser(data.session.user);
+            alert('Account created and logged in successfully! Welcome to BlaBlaBikes.');
+
+            var alertEl = document.getElementById('login-auth-alert');
+            if (alertEl) alertEl.style.display = 'none';
+
+            const nextView = window.pendingRedirectView || 'dashboard';
+            window.pendingRedirectView = null;
+            navigate(nextView);
+            return;
           } else {
-            alert('Account created! Check your email to confirm your account before logging in.');
+            alert('Account created! You can now log in with your email and password.');
+            showAuth('login');
           }
 
           signupForm.reset();
@@ -3380,6 +3516,10 @@ async function loadSupabaseRides() {
       });
       // ── Dynamic logged-in user profile ─────────────────────────────
       async function updateTopbarUser(user) {
+        currentAuthUser = user;
+        document.body.classList.toggle('is-logged-in', !!user);
+        updateDashboardUser(user);
+
         const loginItem = document.getElementById('login-menu-item');
         const signupItem = document.getElementById('signup-menu-item');
         const logoutItem = document.getElementById('logout-menu-item');
@@ -3470,7 +3610,10 @@ async function loadSupabaseRides() {
             }
 
             // Reset the header and return to the home page.
+            currentAuthUser = null;
+            document.body.classList.remove('is-logged-in');
             await updateTopbarUser(null);
+            updateDashboardUser(null);
             navigate('home');
 
             alert('You have been logged out successfully.');
