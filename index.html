@@ -11,6 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
   <style>
+    /* ==========================================================================
+   BlaBlaBikes — Single Page Web Application Stylesheet
+   Layout: Fixed sidebar nav + scrollable content panel
+   Theme: White & Light Blue, zero hover effects
+   ========================================================================== */
+
     :root {
       --bg-main: #ffffff;
       --bg-secondary: #f5f9fc;
@@ -18,24 +24,29 @@
       --primary-blue: #2d7ff9;
       --light-blue: #eaf3ff;
       --border-color: #e2eaf2;
+
       --text-main: #202b38;
       --text-secondary: #687789;
       --text-muted: #9aa8b7;
       --text-white: #ffffff;
+
       --status-green-bg: #e8f8f0;
       --status-green-text: #0e8345;
       --status-amber-bg: #fff8e6;
       --status-amber-text: #b7791f;
       --status-red-bg: #feefef;
       --status-red-text: #da2929;
+
       --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --radius-sm: 6px;
       --radius-md: 8px;
       --radius-lg: 12px;
+
       --sidebar-width: 220px;
       --topbar-height: 56px;
     }
 
+    /* Reset */
     *,
     *::before,
     *::after {
@@ -77,6 +88,7 @@
       color: var(--text-main);
     }
 
+    /* ── App Shell ─────────────────────────────────────────── */
     .app-shell {
       display: flex;
       flex-direction: column;
@@ -84,6 +96,7 @@
       overflow: hidden;
     }
 
+    /* ── Top Bar ────────────────────────────────────────────── */
     .topbar {
       height: var(--topbar-height);
       background-color: var(--bg-main);
@@ -93,7 +106,7 @@
       justify-content: space-between;
       padding: 0 24px;
       flex-shrink: 0;
-      z-index: 3000;
+      z-index: 10;
     }
 
     .topbar-brand {
@@ -101,7 +114,6 @@
       font-weight: 800;
       color: var(--primary-blue);
       letter-spacing: -0.4px;
-      cursor: pointer;
     }
 
     .topbar-right {
@@ -137,13 +149,14 @@
       color: var(--text-main);
     }
 
+    /* ── Main Body = Sidebar + Content ─────────────────────── */
     .app-body {
       display: flex;
       flex: 1;
       overflow: hidden;
-      position: relative;
     }
 
+    /* ── Sidebar ────────────────────────────────────────────── */
     .sidebar {
       width: var(--sidebar-width);
       background-color: var(--bg-main);
@@ -199,6 +212,7 @@
       stroke-linejoin: round;
     }
 
+    /* ── Content Panel ──────────────────────────────────────── */
     .content-panel {
       flex: 1;
       overflow-y: auto;
@@ -206,6 +220,7 @@
       background-color: var(--bg-secondary);
     }
 
+    /* Page heading */
     .page-heading {
       margin-bottom: 24px;
     }
@@ -222,6 +237,7 @@
       color: var(--text-secondary);
     }
 
+    /* Views (show/hide) */
     .view {
       display: none;
     }
@@ -230,6 +246,7 @@
       display: block;
     }
 
+    /* ── Container Box ──────────────────────────────────────── */
     .container-box {
       background-color: var(--bg-main);
       border: 1px solid var(--border-color);
@@ -245,6 +262,7 @@
       margin-bottom: 16px;
     }
 
+    /* ── Form ───────────────────────────────────────────────── */
     .form-group {
       margin-bottom: 14px;
     }
@@ -288,6 +306,7 @@
       min-height: 80px;
     }
 
+    /* Password toggle */
     .password-input-wrapper {
       position: relative;
       display: flex;
@@ -320,6 +339,7 @@
       stroke-linejoin: round;
     }
 
+    /* ── Buttons ────────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -366,6 +386,7 @@
       font-size: 12px;
     }
 
+    /* ── Badges ─────────────────────────────────────────────── */
     .badge {
       display: inline-block;
       padding: 3px 8px;
@@ -394,6 +415,7 @@
       color: var(--status-red-text);
     }
 
+    /* ── Stat Cards (Dashboard) ─────────────────────────────── */
     .stat-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -427,6 +449,7 @@
       margin-top: 2px;
     }
 
+    /* ── Ride Item ───────────────────────────────────────────── */
     .ride-item {
       display: flex;
       justify-content: space-between;
@@ -480,6 +503,7 @@
       color: var(--primary-blue);
     }
 
+    /* ── Map Frame ───────────────────────────────────────────── */
     .map-frame {
       width: 100%;
       height: 260px;
@@ -488,6 +512,7 @@
       overflow: hidden;
     }
 
+    /* ── Auth Pages (centered narrow card) ──────────────────── */
     .auth-wrapper {
       display: flex;
       align-items: center;
@@ -512,6 +537,7 @@
       margin-bottom: 20px;
     }
 
+    /* ── Chat UI ─────────────────────────────────────────────── */
     .chat-layout {
       display: grid;
       grid-template-columns: 240px 1fr;
@@ -647,6 +673,7 @@
       background-color: var(--bg-main);
     }
 
+    /* ── Profile Card ────────────────────────────────────────── */
     .profile-header {
       display: flex;
       align-items: center;
@@ -680,12 +707,14 @@
       color: var(--text-secondary);
     }
 
+    /* ── Divider ─────────────────────────────────────────────── */
     .divider {
       border: none;
       border-top: 1px solid var(--border-color);
       margin: 20px 0;
     }
 
+    /* ── Tabs ────────────────────────────────────────────────── */
     .tab-bar {
       display: flex;
       border-bottom: 1px solid var(--border-color);
@@ -711,6 +740,7 @@
       font-weight: 600;
     }
 
+    /* ── Ride Detail View Layout ─────────────────────────────── */
     .detail-grid {
       display: grid;
       grid-template-columns: 1fr 300px;
@@ -718,6 +748,7 @@
       align-items: start;
     }
 
+    /* ── Empty State ─────────────────────────────────────────── */
     .empty-state {
       text-align: center;
       padding: 48px 20px;
@@ -735,6 +766,7 @@
       margin-bottom: 16px;
     }
 
+    /* ── Info Row ────────────────────────────────────────────── */
     .info-row {
       display: flex;
       justify-content: space-between;
@@ -758,6 +790,7 @@
       color: var(--text-main);
     }
 
+    /* ── Scrollbar ───────────────────────────────────────────── */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -771,6 +804,7 @@
       border-radius: 3px;
     }
 
+    /* ── Responsive ──────────────────────────────────────────── */
     @media (max-width: 960px) {
       .stat-row {
         grid-template-columns: 1fr 1fr;
@@ -781,6 +815,34 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .content-panel {
+        padding: 16px;
+      }
+
+      .form-row,
+      .form-row-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chat-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-sidebar-panel {
+        display: none;
+      }
+    }
+
+    /* ── Mobile menu (three-bar dropdown) ────────────────────── */
     .topbar-left {
       display: flex;
       align-items: center;
@@ -821,6 +883,10 @@
       display: block;
     }
 
+    .app-body {
+      position: relative;
+    }
+
     @media (max-width: 768px) {
       .menu-toggle {
         display: inline-flex;
@@ -847,82 +913,6 @@
       .sidebar-nav-item {
         padding: 14px 20px;
       }
-
-      .content-panel {
-        padding: 16px;
-      }
-
-      .form-row,
-      .form-row-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .stat-row {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .chat-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .chat-sidebar-panel {
-        display: none;
-      }
-
-      .topbar-links {
-        display: none;
-      }
-
-      .home-hero {
-        padding: 28px 20px;
-      }
-
-      .home-hero h1 {
-        font-size: 26px;
-      }
-
-      .hero-search {
-        grid-template-columns: 1fr;
-      }
-
-      .hs-field {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 12px 16px;
-      }
-
-      .hs-btn {
-        padding: 14px;
-      }
-
-      .split-box,
-      .quote-grid,
-      .filter-row {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-band {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .ride-card {
-        grid-template-columns: 1fr;
-      }
-
-      .rc-price {
-        text-align: left;
-        order: -1;
-      }
-
-      .rc-price small {
-        display: inline;
-        margin-left: 4px;
-      }
-
-      .hf-cols {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 480px) {
@@ -933,6 +923,15 @@
       .topbar-username {
         display: none;
       }
+    }
+
+    /* ══ BlaBlaCar-inspired layer: top links, user menu, hero, ride cards, footer ══ */
+    .topbar {
+      z-index: 3000;
+    }
+
+    .topbar-brand {
+      cursor: pointer;
     }
 
     .topbar-links {
@@ -1080,6 +1079,7 @@
       border-radius: 0 14px 14px 0;
     }
 
+    /* ── Location Autocomplete Dropdown ────────────────────────────── */
     .autocomplete-wrapper {
       position: relative;
     }
@@ -1089,10 +1089,10 @@
       top: calc(100% + 6px);
       left: 0;
       right: 0;
-      background: #fff;
+      background: #ffffff;
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      box-shadow: 0 12px 30px rgba(15, 35, 60, 0.15);
+      box-shadow: 0 12px 30px rgba(15, 35, 60, 0.15), 0 4px 12px rgba(15, 35, 60, 0.08);
       max-height: 275px;
       overflow-y: auto;
       z-index: 9999;
@@ -1137,6 +1137,7 @@
       border-radius: 6px;
       cursor: pointer;
       user-select: none;
+      transition: background 0.12s ease;
       color: var(--text-main);
     }
 
@@ -1168,7 +1169,7 @@
 
     .ac-item:hover .ac-icon,
     .ac-item.active .ac-icon {
-      background: #fff;
+      background: #ffffff;
     }
 
     .ac-text-col {
@@ -1254,7 +1255,6 @@
       padding: 3px 0 0;
       width: 100%;
       min-width: 0;
-      height: 24px;
     }
 
     .hs-field:focus-within {
@@ -1371,6 +1371,7 @@
 
     .alert-msg {
       font-size: 12.5px;
+      color: var(--status-green-text);
       min-height: 18px;
     }
 
@@ -1508,10 +1509,6 @@
       align-items: end;
     }
 
-    .filter-row .form-control {
-      height: 38px;
-    }
-
     .ride-card {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -1527,6 +1524,11 @@
 
     .ride-card:last-child {
       margin-bottom: 0;
+    }
+
+    .ride-card:focus-visible {
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 2px;
     }
 
     .rc-row {
@@ -1646,10 +1648,77 @@
         grid-template-columns: 1fr 1fr;
       }
     }
+
+    @media (max-width: 768px) {
+      .topbar-links {
+        display: none;
+      }
+
+      .home-hero {
+        padding: 28px 20px;
+      }
+
+      .home-hero h1 {
+        font-size: 26px;
+      }
+
+      .hero-search {
+        grid-template-columns: 1fr;
+      }
+
+      .hs-field {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 12px 16px;
+      }
+
+      .hs-btn {
+        padding: 14px;
+      }
+
+      .split-box,
+      .quote-grid,
+      .filter-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-band {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ride-card {
+        grid-template-columns: 1fr;
+      }
+
+      .rc-price {
+        text-align: left;
+        order: -1;
+      }
+
+      .rc-price small {
+        display: inline;
+        margin-left: 4px;
+      }
+
+      .hf-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .filter-row .form-control {
+      height: 38px;
+    }
+
+    .hs-field input {
+      height: 24px;
+    }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>window.HAS_LEAFLET = (typeof L !== "undefined");</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
     window.supabaseClient = window.supabase.createClient(
       "https://lhceutcuxgwtxqmwtwsl.supabase.co",
@@ -1659,7 +1728,10 @@
 </head>
 
 <body>
+
   <div class="app-shell">
+
+    <!-- TOP BAR -->
     <header class="topbar">
       <div class="topbar-left">
         <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-controls="sidebar"
@@ -1708,17 +1780,25 @@
             <button type="button" role="menuitem" data-goto="my-rides">Your rides</button>
             <button type="button" role="menuitem" data-goto="chat">Messages</button>
             <hr>
-            <button type="button" id="login-menu-item" role="menuitem" data-goto="login" data-panel="login">Log
-              in</button>
-            <button type="button" id="signup-menu-item" role="menuitem" data-goto="login" data-panel="signup">Sign
-              up</button>
-            <button type="button" id="logout-menu-item" role="menuitem" hidden>Log out</button>
+            <button type="button" id="login-menu-item" role="menuitem" data-goto="login" data-panel="login">
+              Log in
+            </button>
+
+            <button type="button" id="signup-menu-item" role="menuitem" data-goto="login" data-panel="signup">
+              Sign up
+            </button>
+
+            <button type="button" id="logout-menu-item" role="menuitem" hidden>
+              Log out
+            </button>
           </div>
         </div>
       </div>
     </header>
 
     <div class="app-body">
+
+      <!-- SIDEBAR -->
       <nav class="sidebar" id="sidebar">
         <span class="sidebar-section-label">Main</span>
         <ul class="sidebar-nav">
@@ -1726,7 +1806,8 @@
             <svg viewBox="0 0 24 24">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>Home
+            </svg>
+            Home
           </li>
           <li class="sidebar-nav-item" data-view="dashboard">
             <svg viewBox="0 0 24 24">
@@ -1734,13 +1815,15 @@
               <rect x="14" y="3" width="7" height="7" />
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" />
-            </svg>Dashboard
+            </svg>
+            Dashboard
           </li>
           <li class="sidebar-nav-item" data-view="search">
             <svg viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>Find Rides
+            </svg>
+            Find Rides
           </li>
           <li class="sidebar-nav-item" data-view="my-rides">
             <svg viewBox="0 0 24 24">
@@ -1750,9 +1833,11 @@
               <circle cx="4" cy="6" r="1" />
               <circle cx="4" cy="12" r="1" />
               <circle cx="4" cy="18" r="1" />
-            </svg>My Rides
+            </svg>
+            My Rides
           </li>
         </ul>
+
         <span class="sidebar-section-label" style="margin-top:8px;">Rider</span>
         <ul class="sidebar-nav">
           <li class="sidebar-nav-item" data-view="offer-ride">
@@ -1760,20 +1845,24 @@
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="8" x2="12" y2="16" />
               <line x1="8" y1="12" x2="16" y2="12" />
-            </svg>Offer a Ride
+            </svg>
+            Offer a Ride
           </li>
           <li class="sidebar-nav-item" data-view="chat">
             <svg viewBox="0 0 24 24">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>Coordination Chat
+            </svg>
+            Coordination Chat
           </li>
           <li class="sidebar-nav-item" data-view="profile">
             <svg viewBox="0 0 24 24">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
-            </svg>Profile
+            </svg>
+            Profile
           </li>
         </ul>
+
         <span class="sidebar-section-label" style="margin-top:8px;">Account</span>
         <ul class="sidebar-nav">
           <li class="sidebar-nav-item" data-view="login">
@@ -1781,32 +1870,43 @@
               <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
               <polyline points="10 17 15 12 10 7" />
               <line x1="15" y1="12" x2="3" y2="12" />
-            </svg>Login / Sign Up
+            </svg>
+            Login / Sign Up
           </li>
         </ul>
       </nav>
 
+      <!-- CONTENT PANEL -->
       <main class="content-panel" id="content-panel">
 
-        <!-- HOME -->
+        <!-- VIEW: HOME -->
         <section class="view active" id="view-home">
           <div class="home-wrap">
-            <div id="personal-dashboard" style="display:none;margin-bottom:20px;">
+
+            <div id="personal-dashboard" style="display:none; margin-bottom:20px;">
               <div class="container-box">
-                <div class="box-title" id="personal-welcome">Welcome to BlaBlaBikes!</div>
-                <p id="personal-dashboard-message">Your rides and travel activity will appear here.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
-                  <div class="value-card" style="flex:1;min-width:140px;">
+                <div class="box-title" id="personal-welcome">
+                  Welcome to BlaBlaBikes!
+                </div>
+                <p id="personal-dashboard-message">
+                  Your rides and travel activity will appear here.
+                </p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+                  <div class="value-card" style="flex:1; min-width:140px;">
                     <h3 id="personal-offered-count">0</h3>
                     <p>Rides offered by you</p>
                   </div>
-                  <div class="value-card" style="flex:1;min-width:140px;">
+
+                  <div class="value-card" style="flex:1; min-width:140px;">
                     <h3 id="personal-booked-count">0</h3>
                     <p>Rides you've joined</p>
                   </div>
                 </div>
-                <button type="button" class="btn btn-outline btn-sm" data-goto="my-rides" style="margin-top:12px;">View
-                  My Rides</button>
+
+                <button type="button" class="btn btn-outline btn-sm" data-goto="my-rides" style="margin-top:12px;">
+                  View My Rides
+                </button>
               </div>
             </div>
 
@@ -1814,24 +1914,31 @@
               <h1>Share a bike ride across Nashik. Split the fuel.</h1>
               <p>Find a rider already heading your way, or offer a free seat on your motorcycle.</p>
               <form class="hero-search" id="hero-search">
-                <div class="hs-field autocomplete-wrapper"><span>From</span><input type="text" id="hero-src"
-                    placeholder="Area or landmark (e.g. CBS)" autocomplete="off"></div>
-                <div class="hs-field autocomplete-wrapper"><span>To</span><input type="text" id="hero-dest"
-                    placeholder="Area or landmark (e.g. Canada Corner)" autocomplete="off"></div>
-                <div class="hs-field"><span>Date</span><input type="date" id="hero-date"></div>
+                <div class="hs-field autocomplete-wrapper"><span>From</span>
+                  <input type="text" id="hero-src" placeholder="Area or landmark (e.g. CBS)" autocomplete="off">
+                </div>
+                <div class="hs-field autocomplete-wrapper"><span>To</span>
+                  <input type="text" id="hero-dest" placeholder="Area or landmark (e.g. Canada Corner)"
+                    autocomplete="off">
+                </div>
+                <div class="hs-field"><span>Date</span>
+                  <input type="date" id="hero-date">
+                </div>
                 <button type="submit" class="btn btn-primary hs-btn">Search</button>
               </form>
             </div>
 
             <div class="home-values">
-              <div class="value-card"><svg viewBox="0 0 24 24">
+              <div class="value-card">
+                <svg viewBox="0 0 24 24">
                   <circle cx="12" cy="10" r="3" />
                   <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" />
                 </svg>
                 <h3>Ride across Nashik</h3>
                 <p>Hop between College Road, Panchavati, Satpur and Nashik Road with riders already going that way.</p>
               </div>
-              <div class="value-card"><svg viewBox="0 0 24 24">
+              <div class="value-card">
+                <svg viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M15 8.5H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H9" />
                   <line x1="12" y1="6" x2="12" y2="8.5" />
@@ -1840,7 +1947,8 @@
                 <h3>Fair shared costs</h3>
                 <p>Pay a small fuel contribution set by the rider instead of a full fare.</p>
               </div>
-              <div class="value-card"><svg viewBox="0 0 24 24">
+              <div class="value-card">
+                <svg viewBox="0 0 24 24">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   <polyline points="9 12 11 14 15 10" />
                 </svg>
@@ -1852,8 +1960,9 @@
             <div class="container-box">
               <div class="box-title">Popular rides in Nashik</div>
               <div id="home-popular"></div>
-              <div style="margin-top:14px;"><button type="button" class="btn btn-outline btn-sm" data-goto="search">More
-                  rides</button></div>
+              <div style="margin-top:14px;">
+                <button type="button" class="btn btn-outline btn-sm" data-goto="search">More rides</button>
+              </div>
             </div>
 
             <div class="split-box">
@@ -1863,10 +1972,14 @@
                   matching ride appears.</p>
               </div>
               <form class="alert-form" id="alert-form">
-                <div class="autocomplete-wrapper"><input type="text" id="alert-from" class="form-control"
-                    placeholder="From (e.g. CBS, Gangapur Road)" autocomplete="off"></div>
-                <div class="autocomplete-wrapper"><input type="text" id="alert-to" class="form-control"
-                    placeholder="To (e.g. Canada Corner, Satpur)" autocomplete="off"></div>
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="alert-from" class="form-control" placeholder="From (e.g. CBS, Gangapur Road)"
+                    autocomplete="off">
+                </div>
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="alert-to" class="form-control" placeholder="To (e.g. Canada Corner, Satpur)"
+                    autocomplete="off">
+                </div>
                 <button type="submit" class="btn btn-primary">Create alert</button>
                 <div class="alert-msg" id="alert-msg" role="status"></div>
               </form>
@@ -1884,10 +1997,12 @@
               <div class="box-title">What riders say</div>
               <div class="quote-grid">
                 <blockquote class="quote-card">
-                  <p>Smooth ride from College Road to the Railway Station. Safe speed.</p><cite>Siddharth M.</cite>
+                  <p>Smooth ride from College Road to the Railway Station. Safe speed.</p>
+                  <cite>Siddharth M.</cite>
                 </blockquote>
                 <blockquote class="quote-card">
-                  <p>Clear communication for the Panchavati pickup.</p><cite>Sneha P.</cite>
+                  <p>Clear communication for the Panchavati pickup.</p>
+                  <cite>Sneha P.</cite>
                 </blockquote>
               </div>
             </div>
@@ -1944,63 +2059,102 @@
               </div>
               <div class="hf-copy">© 2026 BlaBlaBikes · Nashik</div>
             </footer>
+
           </div>
         </section>
 
-        <!-- DASHBOARD -->
+        <!-- VIEW: DASHBOARD -->
         <section class="view" id="view-dashboard">
           <div class="page-heading">
             <h1>Dashboard</h1>
-            <p id="dashboard-subtitle">Welcome back. Here's your Nashik ride summary.</p>
+            <p>Welcome back, Aakash. Here's your Nashik ride summary.</p>
           </div>
+
           <div class="stat-row">
             <div class="stat-card">
               <div class="stat-card-label">Rides Joined</div>
-              <div class="stat-card-value" id="dash-stat-joined">—</div>
-              <div class="stat-card-sub">As a passenger</div>
+              <div class="stat-card-value">2</div>
+              <div class="stat-card-sub">Active this month</div>
             </div>
             <div class="stat-card">
               <div class="stat-card-label">Rides Offered</div>
-              <div class="stat-card-value" id="dash-stat-offered">—</div>
-              <div class="stat-card-sub">As a rider</div>
+              <div class="stat-card-value">1</div>
+              <div class="stat-card-sub">Seat available</div>
             </div>
             <div class="stat-card">
               <div class="stat-card-label">Rider Rating</div>
-              <div class="stat-card-value" id="dash-stat-rating">—</div>
+              <div class="stat-card-value">4.9</div>
               <div class="stat-card-sub">Community score</div>
             </div>
             <div class="stat-card">
-              <div class="stat-card-label">Total Trips</div>
-              <div class="stat-card-value" id="dash-stat-trips">—</div>
-              <div class="stat-card-sub">Lifetime count</div>
+              <div class="stat-card-label">Total Saved</div>
+              <div class="stat-card-value">₹340</div>
+              <div class="stat-card-sub">Fuel contribution</div>
             </div>
           </div>
+
           <div class="container-box">
             <div class="box-title">Available Nashik Rides Today</div>
-            <div id="dashboard-rides-list">
-              <div style="font-size:13px;color:var(--text-secondary);">Loading rides...</div>
+            <div class="ride-item">
+              <div class="ride-main-info">
+                <div class="ride-route-text">College Road ➔ Nashik Road Station</div>
+                <div class="ride-meta-text">Rahul Sharma &nbsp;•&nbsp; 08:30 AM &nbsp;•&nbsp; Royal Enfield Meteor 350
+                </div>
+                <div class="ride-muted-text">Pickup: Near BYK College Signal</div>
+              </div>
+              <div class="ride-side-info">
+                <div class="ride-price-text">₹60</div>
+                <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-1">View
+                  Details</button>
+              </div>
             </div>
-            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-color);"><button
-                class="btn btn-outline btn-sm" data-goto="search">Browse All Nashik Rides</button></div>
+            <div class="ride-item">
+              <div class="ride-main-info">
+                <div class="ride-route-text">Panchavati ➔ City Centre Mall</div>
+                <div class="ride-meta-text">Vikram Verma &nbsp;•&nbsp; 10:00 AM &nbsp;•&nbsp; KTM Duke 390</div>
+                <div class="ride-muted-text">Pickup: Kalaram Temple Gate</div>
+              </div>
+              <div class="ride-side-info">
+                <div class="ride-price-text">₹40</div>
+                <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-2">View
+                  Details</button>
+              </div>
+            </div>
+            <div class="ride-item">
+              <div class="ride-main-info">
+                <div class="ride-route-text">Gangapur Road ➔ KK Wagh College</div>
+                <div class="ride-meta-text">Priya Kulkarni &nbsp;•&nbsp; 09:15 AM &nbsp;•&nbsp; Honda CB350</div>
+                <div class="ride-muted-text">Pickup: Jehan Circle</div>
+              </div>
+              <div class="ride-side-info">
+                <div class="ride-price-text">₹50</div>
+                <button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-3">View
+                  Details</button>
+              </div>
+            </div>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-color);">
+              <button class="btn btn-outline btn-sm" data-goto="search">Browse All Nashik Rides</button>
+            </div>
           </div>
         </section>
 
-        <!-- SEARCH -->
+        <!-- VIEW: SEARCH RIDES -->
         <section class="view" id="view-search">
           <div class="page-heading">
             <h1>Find Rides in Nashik</h1>
             <p>Search available motorcycle trips across Nashik localities.</p>
           </div>
+
           <div class="container-box">
             <div class="filter-row">
               <div class="form-group autocomplete-wrapper" style="margin-bottom:0;">
                 <label class="form-label" for="filter-src">Leaving From</label>
-                <input type="text" id="filter-src" class="form-control" placeholder="e.g. CBS, Canada Corner"
-                  autocomplete="off">
+                <input type="text" id="filter-src" class="form-control"
+                  placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
               </div>
               <div class="form-group autocomplete-wrapper" style="margin-bottom:0;">
                 <label class="form-label" for="filter-dest">Going To</label>
-                <input type="text" id="filter-dest" class="form-control" placeholder="e.g. Nashik Road Station"
+                <input type="text" id="filter-dest" class="form-control" placeholder="e.g. Nashik Road Station, Satpur"
                   autocomplete="off">
               </div>
               <div class="form-group" style="margin-bottom:0;">
@@ -2013,21 +2167,25 @@
               </div>
             </div>
           </div>
+
           <div class="container-box" style="padding:16px;">
             <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text-secondary);">Pickup Points —
               Nashik</div>
             <div id="search-map" class="map-frame"></div>
           </div>
+
           <div class="container-box">
             <div class="box-title">Available Rides</div>
             <div id="search-rides-list"></div>
           </div>
         </section>
 
-        <!-- RIDE DETAILS -->
+        <!-- VIEW: RIDE DETAILS -->
         <section class="view" id="view-ride-details">
-          <div style="margin-bottom:16px;"><button class="btn btn-outline btn-sm" data-goto="search">← Back to
-              Search</button></div>
+          <div style="margin-bottom:16px;">
+            <button class="btn btn-outline btn-sm" data-goto="search">← Back to Search</button>
+          </div>
+
           <div class="detail-grid">
             <div>
               <div class="container-box">
@@ -2049,8 +2207,6 @@
                     id="detail-drop"></span></div>
                 <div class="info-row"><span class="info-row-label">Helmet</span><span class="info-row-value"
                     id="detail-helmet"></span></div>
-                <div class="info-row"><span class="info-row-label">Seats Available</span><span class="info-row-value"
-                    id="detail-seats"></span></div>
                 <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-color);">
                   <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">Trip Notes
                   </div>
@@ -2063,6 +2219,7 @@
                 <div id="detail-map" class="map-frame"></div>
               </div>
             </div>
+
             <div>
               <div class="container-box">
                 <div class="box-title">Rider Info</div>
@@ -2079,16 +2236,15 @@
                 <div class="info-row"><span class="info-row-label">Plate</span><span class="info-row-value"
                     id="detail-plate"></span></div>
                 <hr class="divider">
-                <div id="detail-booking-status" style="margin-bottom:10px;"></div>
-                <button class="btn btn-primary btn-full" id="btn-chat-rider" style="margin-bottom:10px;"
-                  data-goto="chat">Chat with Rider</button>
-                <button class="btn btn-outline btn-full" id="btn-request-join">Request to Join</button>
+                <button class="btn btn-primary btn-full" style="margin-bottom:10px;" data-goto="chat">Chat with
+                  Rider</button>
+                <button class="btn btn-outline btn-full" data-goto="my-rides">Request to Join</button>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- OFFER A RIDE -->
+        <!-- VIEW: OFFER A RIDE -->
         <section class="view" id="view-offer-ride">
           <div class="page-heading">
             <h1>Offer a Ride in Nashik</h1>
@@ -2099,24 +2255,24 @@
               <div class="box-title">Route Details</div>
               <div class="form-row">
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label" for="offer-start-area">Starting Area (Nashik)</label>
+                  <label class="form-label" id="offer-source">Starting Area (Nashik)</label>
                   <input type="text" id="offer-start-area" class="form-control"
                     placeholder="e.g. CBS, Canada Corner, College Road" autocomplete="off">
                 </div>
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label" for="offer-dest-area">Destination Area (Nashik)</label>
+                  <label class="form-label" id="offer-destination">Destination Area (Nashik)</label>
                   <input type="text" id="offer-dest-area" class="form-control"
                     placeholder="e.g. Nashik Road Station, Satpur" autocomplete="off">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label" for="offer-pickup-landmark">Pickup Landmark</label>
+                  <label class="form-label" id="offer-pickup">Pickup Landmark</label>
                   <input type="text" id="offer-pickup-landmark" class="form-control"
                     placeholder="e.g. CBS Terminal Gate 2, BYK Signal" autocomplete="off">
                 </div>
                 <div class="form-group autocomplete-wrapper">
-                  <label class="form-label" for="offer-drop-landmark">Drop-off Landmark</label>
+                  <label class="form-label" id="offer-drop">Drop-off Landmark</label>
                   <input type="text" id="offer-drop-landmark" class="form-control"
                     placeholder="e.g. Platform Gate 1, Nashik Road Station" autocomplete="off">
                 </div>
@@ -2128,42 +2284,45 @@
               <div style="border-top:1px solid var(--border-color);padding-top:16px;margin-top:8px;" class="box-title">
                 Schedule &amp; Pricing</div>
               <div class="form-row-3">
-                <div class="form-group"><label class="form-label" for="offer-date">Travel Date</label><input type="date"
-                    id="offer-date" class="form-control"></div>
-                <div class="form-group"><label class="form-label" for="offer-time">Departure Time</label><input
-                    type="time" id="offer-time" class="form-control" value="08:30"></div>
-                <div class="form-group"><label class="form-label" for="offer-price">Contribution Price (₹)</label><input
-                    type="number" id="offer-price" class="form-control" placeholder="e.g. 50" value="50"></div>
+                <div class="form-group">
+                  <label class="form-label">Travel Date</label>
+                  <input type="date" id="offer-date" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" id="offer-time">Departure Time</label>
+                  <input type="time" class="form-control" value="08:30">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" id="offer-price">Contribution Price (₹)</label>
+                  <input type="number" class="form-control" placeholder="e.g. 50" value="50">
+                </div>
               </div>
               <div style="border-top:1px solid var(--border-color);padding-top:16px;margin-top:8px;" class="box-title">
                 Bike &amp; Notes</div>
               <div class="form-row">
-                <div class="form-group"><label class="form-label" for="offer-bike">Motorcycle Model</label><input
-                    type="text" id="offer-bike" class="form-control" placeholder="e.g. Royal Enfield Meteor 350"></div>
-                <div class="form-group"><label class="form-label" for="offer-plate">Vehicle Plate</label><input
-                    type="text" id="offer-plate" class="form-control" placeholder="e.g. MH 15 AB 1234"></div>
+                <div class="form-group">
+                  <label class="form-label" id="offer-bike">Motorcycle Model</label>
+                  <input type="text" class="form-control" placeholder="e.g. Royal Enfield Meteor 350">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" id="offer-plate">Vehicle Plate</label>
+                  <input type="text" class="form-control" placeholder="e.g. MH 15 AB 1234">
+                </div>
               </div>
-              <div class="form-row">
-                <div class="form-group"><label class="form-label" for="offer-seats">Available Seats</label><input
-                    type="number" id="offer-seats" class="form-control" min="1" max="1" value="1"></div>
-                <div class="form-group"><label class="form-label">Spare Helmet Provided?</label><select
-                    id="offer-helmet" class="form-control">
-                    <option value="true">Yes — I have a spare helmet</option>
-                    <option value="false">No — Passenger brings own</option>
-                  </select></div>
+              <div class="form-group">
+                <label class="form-label" id="offer-notes">Trip Notes</label>
+                <textarea class="form-control"
+                  placeholder="e.g. Safe riding, helmet provided, light backpack only..."></textarea>
               </div>
-              <div class="form-group"><label class="form-label" for="offer-notes">Trip Notes</label><textarea
-                  id="offer-notes" class="form-control"
-                  placeholder="e.g. Safe riding, helmet provided, light backpack only..."></textarea></div>
               <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:8px;">
                 <button type="button" class="btn btn-outline" data-goto="dashboard">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="offer-submit-btn">Publish Ride</button>
+                <button type="submit" class="btn btn-primary">Publish Ride</button>
               </div>
             </form>
           </div>
         </section>
 
-        <!-- MY RIDES -->
+        <!-- VIEW: MY RIDES -->
         <section class="view" id="view-my-rides">
           <div class="page-heading">
             <h1>My Rides</h1>
@@ -2178,7 +2337,7 @@
           </div>
         </section>
 
-        <!-- CHAT -->
+        <!-- VIEW: CHAT -->
         <section class="view" id="view-chat">
           <div class="page-heading">
             <h1>Pickup Coordination Chat</h1>
@@ -2187,21 +2346,39 @@
           <div class="chat-layout">
             <div class="chat-sidebar-panel">
               <div class="chat-sidebar-panel-header">Conversations</div>
-              <ul class="conversation-list" id="chat-conversation-list">
-                <li style="padding:20px;font-size:13px;color:var(--text-secondary);">Loading...</li>
+              <ul class="conversation-list">
+                <li class="conversation-item active" id="convo-rahul">
+                  <div class="convo-avatar">R</div>
+                  <div>
+                    <div class="convo-name">Rahul Sharma</div>
+                    <div class="convo-preview">College Road ➔ Nashik Road Stn.</div>
+                  </div>
+                </li>
+                <li class="conversation-item" id="convo-vikram">
+                  <div class="convo-avatar" style="background-color:var(--bg-secondary);color:var(--text-secondary);">V
+                  </div>
+                  <div>
+                    <div class="convo-name">Vikram Verma</div>
+                    <div class="convo-preview">Panchavati ➔ City Centre Mall</div>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="chat-main-panel">
-              <div class="chat-header-bar" id="chat-header-bar">
-                <div class="convo-avatar" id="chat-header-avatar">?</div>
+              <div class="chat-header-bar">
+                <div class="convo-avatar">R</div>
                 <div>
-                  <div class="chat-header-name" id="chat-header-name">Select a conversation</div>
-                  <div class="chat-header-sub" id="chat-header-sub">—</div>
+                  <div class="chat-header-name">Rahul Sharma</div>
+                  <div class="chat-header-sub">Royal Enfield Meteor 350</div>
                 </div>
               </div>
               <div class="chat-messages-area" id="chat-messages-area">
-                <div style="text-align:center;padding:32px;font-size:13px;color:var(--text-secondary);">Select a
-                  conversation to start chatting.</div>
+                <div class="chat-bubble chat-bubble-received">Hi Aakash, I saw your request for the College Road to
+                  Nashik Road Station ride.</div>
+                <div class="chat-bubble chat-bubble-sent">Hey Rahul! Yes, I need to reach by 09:00 AM. Is BYK Signal
+                  pickup fine?</div>
+                <div class="chat-bubble chat-bubble-received">Yes perfectly! Opposite BYK College Signal at 08:30 AM
+                  sharp.</div>
               </div>
               <form class="chat-input-bar" id="chat-form">
                 <input type="text" id="chat-input-msg" class="form-control" placeholder="Type your message..."
@@ -2212,7 +2389,7 @@
           </div>
         </section>
 
-        <!-- PROFILE -->
+        <!-- VIEW: PROFILE -->
         <section class="view" id="view-profile">
           <div class="page-heading">
             <h1>Rider Profile</h1>
@@ -2226,71 +2403,68 @@
                 <p id="profile-heading-details"></p>
               </div>
             </div>
+
             <form id="profile-form">
               <div class="form-row">
-                <div class="form-group"><label class="form-label" for="profile-name">Full Name</label><input
-                    id="profile-name" type="text" class="form-control" required></div>
-                <div class="form-group"><label class="form-label" for="profile-email">Email Address</label><input
-                    id="profile-email" type="email" class="form-control" readonly></div>
+                <div class="form-group">
+                  <label class="form-label" for="profile-name">Full Name</label>
+                  <input id="profile-name" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profile-email">Email Address</label>
+                  <input id="profile-email" type="email" class="form-control" readonly>
+                </div>
               </div>
+
               <div class="form-row">
-                <div class="form-group"><label class="form-label" for="profile-phone">Phone Number</label><input
-                    id="profile-phone" type="text" class="form-control"></div>
-                <div class="form-group"><label class="form-label" for="profile-area">City / Area</label><input
-                    id="profile-area" type="text" class="form-control"></div>
+                <div class="form-group">
+                  <label class="form-label" for="profile-phone">Phone Number</label>
+                  <input id="profile-phone" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="profile-area">City / Area</label>
+                  <input id="profile-area" type="text" class="form-control">
+                </div>
               </div>
+
               <div class="form-row">
-                <div class="form-group"><label class="form-label" for="profile-bike-model">Motorcycle
-                    Model</label><input id="profile-bike-model" type="text" class="form-control"
-                    placeholder="e.g. Yamaha FZ-S V3"></div>
-                <div class="form-group"><label class="form-label" for="profile-bike-plate">Plate Number</label><input
-                    id="profile-bike-plate" type="text" class="form-control" placeholder="e.g. MH 15 AB 1234"></div>
+                <div class="form-group">
+                  <label class="form-label">Motorcycle Model</label>
+                  <input type="text" class="form-control" value="Yamaha FZ-S V3">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Plate Number</label>
+                  <input type="text" class="form-control" value="MH 15 AB 1234">
+                </div>
               </div>
-              <div style="display:flex;justify-content:flex-end;margin-top:4px;"><button type="submit"
-                  class="btn btn-primary">Save Profile</button></div>
+
+              <div class="form-group">
+                <label class="form-label">Emergency Contact Email</label>
+                <input type="email" class="form-control" value="family.emergency@gmail.com">
+              </div>
+
+              <div style="display:flex;justify-content:flex-end;margin-top:4px;">
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+              </div>
             </form>
+
           </div>
           <div class="container-box">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-              <div class="box-title" style="margin-bottom:0;">Community Reviews</div>
-              <button type="button" id="btn-write-review" class="btn btn-outline btn-sm" style="display:none;">+ Write a Review</button>
+            <div class="box-title">Community Reviews</div>
+            <div class="info-row">
+              <span class="info-row-label">Siddharth M.</span>
+              <span style="font-size:12px;color:var(--text-secondary);">Smooth ride from College Road to Railway
+                Station. Safe speed.</span>
             </div>
-            <div id="profile-reviews-list"><div style="font-size:13px;color:var(--text-secondary);padding:8px 0;">Loading reviews...</div></div>
-          </div>
-          <!-- Write Review Modal -->
-          <div id="review-modal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(32,43,56,0.45);align-items:center;justify-content:center;">
-            <div style="background:var(--bg-main);border-radius:var(--radius-lg);border:1px solid var(--border-color);padding:28px;width:100%;max-width:440px;box-shadow:0 12px 40px rgba(32,43,56,0.22);">
-              <div style="font-size:17px;font-weight:800;margin-bottom:4px;">Write a Review</div>
-              <p style="font-size:13px;color:var(--text-secondary);margin-bottom:18px;">Share your experience riding with this person.</p>
-              <div class="form-group">
-                <label class="form-label" for="review-user-select">Review about (Rider/Passenger)</label>
-                <input type="text" id="review-user-email" class="form-control" placeholder="Enter their email address">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Rating</label>
-                <div id="review-stars" style="display:flex;gap:6px;margin-bottom:4px;">
-                  <button type="button" class="star-btn" data-star="1" style="background:none;border:none;font-size:24px;cursor:pointer;color:#d4af37;">&#9733;</button>
-                  <button type="button" class="star-btn" data-star="2" style="background:none;border:none;font-size:24px;cursor:pointer;color:#d4af37;">&#9733;</button>
-                  <button type="button" class="star-btn" data-star="3" style="background:none;border:none;font-size:24px;cursor:pointer;color:#d4af37;">&#9733;</button>
-                  <button type="button" class="star-btn" data-star="4" style="background:none;border:none;font-size:24px;cursor:pointer;color:#d4af37;">&#9733;</button>
-                  <button type="button" class="star-btn" data-star="5" style="background:none;border:none;font-size:24px;cursor:pointer;color:#d4af37;">&#9733;</button>
-                </div>
-                <input type="hidden" id="review-rating" value="5">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="review-text">Comment</label>
-                <textarea id="review-text" class="form-control" placeholder="Safe rider, clear communication..."></textarea>
-              </div>
-              <div id="review-modal-msg" style="font-size:12px;min-height:18px;margin-bottom:8px;"></div>
-              <div style="display:flex;justify-content:flex-end;gap:10px;">
-                <button type="button" id="btn-review-cancel" class="btn btn-outline">Cancel</button>
-                <button type="button" id="btn-review-submit" class="btn btn-primary">Submit Review</button>
-              </div>
+            <div class="info-row">
+              <span class="info-row-label">Sneha P.</span>
+              <span style="font-size:12px;color:var(--text-secondary);">Clear communication for Panchavati
+                pickup.</span>
             </div>
           </div>
         </section>
 
-        <!-- LOGIN / SIGNUP -->
+        <!-- VIEW: LOGIN / SIGNUP -->
         <section class="view" id="view-login">
           <div class="auth-wrapper">
             <div>
@@ -2298,57 +2472,69 @@
                 <div class="auth-card">
                   <div class="auth-card-title">Account Login</div>
                   <form id="login-form">
-                    <div class="form-group"><label class="form-label" for="login-email">Email Address</label><input
-                        id="login-email" type="email" class="form-control"></div>
-                    <div class="form-group"><label class="form-label">Password</label>
-                      <div class="password-input-wrapper"><input type="password" id="login-password"
-                          class="form-control"><button type="button" id="toggle-login-pwd"
-                          class="eye-toggle-btn"></button></div>
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" class="form-control">
                     </div>
-                    <div id="login-error"
-                      style="color:var(--status-red-text);font-size:13px;margin-bottom:8px;display:none;"></div>
-                    <button type="submit" id="login-submit-btn" class="btn btn-primary btn-full"
-                      style="margin-top:10px;">Login</button>
+                    <div class="form-group">
+                      <label class="form-label">Password</label>
+                      <div class="password-input-wrapper">
+                        <input type="password" id="login-password" class="form-control">
+                        <button type="button" id="toggle-login-pwd" class="eye-toggle-btn"></button>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-top:10px;">Login</button>
                   </form>
                   <div
                     style="margin-top:18px;text-align:center;border-top:1px solid var(--border-color);padding-top:14px;">
-                    <span style="font-size:13px;color:var(--text-secondary);">Don't have an account? <button
-                        type="button" id="show-signup-btn"
+                    <span style="font-size:13px;color:var(--text-secondary);">Don't have an account?
+                      <button type="button" id="show-signup-btn"
                         style="background:none;border:none;color:var(--primary-blue);cursor:pointer;font-weight:600;font-size:13px;">Sign
-                        Up</button></span>
+                        Up</button>
+                    </span>
                   </div>
                 </div>
               </div>
+
               <div id="signup-panel" style="display:none;">
                 <div class="auth-card">
                   <div class="auth-card-title">Create Account</div>
                   <form id="signup-form">
-                    <div class="form-group"><label class="form-label" for="signup-name">Full Name</label><input
-                        id="signup-name" type="text" class="form-control" placeholder="e.g. Vikram Sharma"></div>
-                    <div class="form-group"><label class="form-label" for="signup-email">Email Address</label><input
-                        id="signup-email" type="email" class="form-control" placeholder="user@example.com"></div>
-                    <div class="form-row">
-                      <div class="form-group"><label class="form-label">Password</label>
-                        <div class="password-input-wrapper"><input type="password" id="signup-password"
-                            class="form-control" placeholder="Min. 6 characters"><button type="button"
-                            id="toggle-signup-pwd" class="eye-toggle-btn"></button></div>
-                      </div>
-                      <div class="form-group"><label class="form-label" for="signup-phone">Phone Number</label><input
-                          id="signup-phone" type="text" class="form-control" placeholder="+91 98765 43210"></div>
+                    <div class="form-group">
+                      <label class="form-label">Full Name</label>
+                      <input type="text" class="form-control" placeholder="e.g. Vikram Sharma">
                     </div>
-                    <div class="form-group"><label class="form-label" for="signup-area">Local Area in
-                        Nashik</label><input id="signup-area" type="text" class="form-control"
-                        placeholder="e.g. College Road, Panchavati"></div>
-                    <div id="signup-error"
-                      style="color:var(--status-red-text);font-size:13px;margin-bottom:8px;display:none;"></div>
-                    <button type="submit" id="signup-submit-btn" class="btn btn-primary btn-full"
-                      style="margin-top:10px;">Create Account</button>
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" class="form-control" placeholder="user@example.com">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="password-input-wrapper">
+                          <input type="password" id="signup-password" class="form-control"
+                            placeholder="Min. 6 characters">
+                          <button type="button" id="toggle-signup-pwd" class="eye-toggle-btn"></button>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" placeholder="+91 98765 43210">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Local Area in Nashik</label>
+                      <input type="text" class="form-control" placeholder="e.g. College Road, Panchavati">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-top:10px;">Create
+                      Account</button>
                   </form>
                   <div
                     style="margin-top:18px;text-align:center;border-top:1px solid var(--border-color);padding-top:14px;">
-                    <span style="font-size:13px;color:var(--text-secondary);">Already registered? <button type="button"
-                        id="show-login-btn"
-                        style="background:none;border:none;color:var(--primary-blue);cursor:pointer;font-weight:600;font-size:13px;">Login</button></span>
+                    <span style="font-size:13px;color:var(--text-secondary);">Already registered?
+                      <button type="button" id="show-login-btn"
+                        style="background:none;border:none;color:var(--primary-blue);cursor:pointer;font-weight:600;font-size:13px;">Login</button>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -2360,8 +2546,13 @@
     </div>
   </div>
 
+  <!-- ================================================================
+     ALL APPLICATION LOGIC — SELF-CONTAINED, NO IMPORTS
+     ================================================================ -->
   <script>
     (function () {
+
+      // ── Nashik Locality & Landmark Database ──────────────────────────
       var NASHIK_LOCATIONS = [
         { name: 'CBS', fullName: 'CBS (Central Bus Stand)', category: 'Transit Hub', area: 'Central Nashik' },
         { name: 'Canada Corner', fullName: 'Canada Corner', category: 'Commercial Hub', area: 'Sharanpur Road' },
@@ -2398,800 +2589,1329 @@
         { name: 'MET Bhujbal Knowledge City', fullName: 'MET Bhujbal Knowledge City', category: 'Campus / College', area: 'Adgaon' }
       ];
 
-      var currentRideId = null;
-      var currentRideData = null;
-      var maps = {};
-      var activeConversationRideId = null;
-      var chatRealtimeChannel = null;
-      var allLoadedRides = [];
-      var offerMarker = null, offerPickedLat = null, offerPickedLng = null;
+      // ── Ride Data ───────────────────────────────────────────────────
+      var RIDES = [
+        {
+          id: 'ride-1',
+          riderName: 'Rahul Sharma', riderInitial: 'R', riderRating: '4.9', riderTrips: 24,
+          source: 'College Road, Nashik', destination: 'Nashik Road Station',
+          pickupLocation: 'Near BYK College Signal, College Road',
+          dropLocation: 'Platform 1 Gate, Nashik Road Station',
+          sourceCoords: [20.0063, 73.7667],
+          date: '2026-10-20', time: '08:30', price: 60,
+          bikeModel: 'Royal Enfield Meteor 350', bikeNumber: 'MH 15 RS 2049',
+          helmetProvided: true,
+          notes: 'Daily morning college route. Safe riding at 40–50 km/h. Spare helmet provided.'
+        },
+        {
+          id: 'ride-2',
+          riderName: 'Vikram Verma', riderInitial: 'V', riderRating: '4.8', riderTrips: 18,
+          source: 'Panchavati, Nashik', destination: 'City Centre Mall, Nashik',
+          pickupLocation: 'Kalaram Temple Gate, Panchavati',
+          dropLocation: 'Main Entrance, City Centre Mall',
+          sourceCoords: [20.0087, 73.7958],
+          date: '2026-10-20', time: '10:00', price: 40,
+          bikeModel: 'KTM Duke 390', bikeNumber: 'MH 15 VV 8821',
+          helmetProvided: true,
+          notes: 'Quick ride within Nashik. Helmet provided.'
+        },
+        {
+          id: 'ride-3',
+          riderName: 'Priya Kulkarni', riderInitial: 'P', riderRating: '5.0', riderTrips: 12,
+          source: 'Gangapur Road, Nashik', destination: 'KK Wagh College, Nashik',
+          pickupLocation: 'Jehan Circle, Gangapur Road',
+          dropLocation: 'Campus Gate 2, KK Wagh College',
+          sourceCoords: [20.0194, 73.7634],
+          date: '2026-10-21', time: '09:15', price: 50,
+          bikeModel: "Honda H'ness CB350", bikeNumber: 'MH 15 PK 5512',
+          helmetProvided: true,
+          notes: 'Morning college commute. Female passengers welcome.'
+        },
+        {
+          id: 'ride-4',
+          riderName: 'Amit Patel', riderInitial: 'A', riderRating: '4.7', riderTrips: 30,
+          source: 'Pathardi Phata, Nashik', destination: 'Satpur MIDC, Nashik',
+          pickupLocation: 'Pathardi Phata Flyover Corner',
+          dropLocation: 'ABB Circle, Satpur MIDC',
+          sourceCoords: [19.9482, 73.7651],
+          date: '2026-10-21', time: '08:45', price: 45,
+          bikeModel: 'TVS Apache RTR 200', bikeNumber: 'MH 15 AP 4400',
+          helmetProvided: false,
+          notes: 'Morning shift industrial commute. Bring your own helmet.'
+        },
+        {
+          id: 'ride-5',
+          riderName: 'Sameer Joshi', riderInitial: 'S', riderRating: '4.9', riderTrips: 42,
+          source: 'CBS, Nashik', destination: 'Nashik Road Station',
+          pickupLocation: 'CBS Bus Terminal Gate 2',
+          dropLocation: 'Platform 1 Gate, Nashik Road Station',
+          sourceCoords: [19.9975, 73.7898],
+          date: '2026-10-20', time: '09:00', price: 50,
+          bikeModel: 'Yamaha FZ-S V3', bikeNumber: 'MH 15 SJ 7120',
+          helmetProvided: true,
+          notes: 'Direct transit from CBS to Nashik Road Station via Shalimar and Dwarka. Spare helmet available.'
+        },
+        {
+          id: 'ride-6',
+          riderName: 'Neha Deshmukh', riderInitial: 'N', riderRating: '5.0', riderTrips: 15,
+          source: 'Canada Corner, Nashik', destination: 'College Road, Nashik',
+          pickupLocation: 'Opposite Archies Gallery, Canada Corner',
+          dropLocation: 'Near BYK College Signal, College Road',
+          sourceCoords: [20.0031, 73.7745],
+          date: '2026-10-20', time: '11:30', price: 30,
+          bikeModel: 'Honda Activa 6G', bikeNumber: 'MH 15 ND 3319',
+          helmetProvided: true,
+          notes: 'Quick hop from Canada Corner to College Road. Clean ride, helmet provided.'
+        },
+        {
+          id: 'ride-7',
+          riderName: 'Kunal Shinde', riderInitial: 'K', riderRating: '4.8', riderTrips: 27,
+          source: 'CIDCO, Nashik', destination: 'CBS, Nashik',
+          pickupLocation: 'Pawan Nagar Bus Stop, CIDCO',
+          dropLocation: 'CBS Signal, Near Old Municipal Corp',
+          sourceCoords: [19.9650, 73.7540],
+          date: '2026-10-21', time: '08:15', price: 35,
+          bikeModel: 'Bajaj Pulsar NS200', bikeNumber: 'MH 15 KS 9081',
+          helmetProvided: true,
+          notes: 'Daily office commute via Mumbai Naka to CBS. Relaxed riding style.'
+        },
+        {
+          id: 'ride-8',
+          riderName: 'Tanvi Shah', riderInitial: 'T', riderRating: '4.9', riderTrips: 19,
+          source: 'Canada Corner, Nashik', destination: 'Satpur MIDC, Nashik',
+          pickupLocation: 'Near Vasant Market, Canada Corner',
+          dropLocation: 'ABB Circle, Satpur MIDC',
+          sourceCoords: [20.0031, 73.7745],
+          date: '2026-10-21', time: '09:30', price: 45,
+          bikeModel: 'Suzuki Gixxer SF', bikeNumber: 'MH 15 TS 4410',
+          helmetProvided: true,
+          notes: 'Direct route via Trimbak Road to Satpur. Punctual departure.'
+        }
+      ];
 
-      function esc(s) {
-        return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
-      }
-      function setText(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; }
-      function MONTHS() { return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; }
-      function fmtDate(iso) { var p = String(iso).split('-'); return p.length === 3 ? (parseInt(p[2], 10) + ' ' + MONTHS()[parseInt(p[1], 10) - 1]) : iso; }
-      function fmtTime(v) { if (!v) return '—'; try { var d = new Date(v); if (!isNaN(d)) return d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }); } catch (e) { } return v; }
-      function todayIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 
+      // ── Map helper (safe if Leaflet failed to load) ─────────────────
       function makeMap(id, center, zoom) {
         var el = document.getElementById(id);
         if (!el) return null;
-        if (typeof L === 'undefined') { el.innerHTML = '<div style="padding:24px;text-align:center;font-size:13px;color:var(--text-secondary);">Map unavailable — connect to the internet.</div>'; return null; }
-        var m = L.map(id, { preferCanvas: true }).setView(center, zoom);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 19 }).addTo(m);
+        if (typeof L === 'undefined') {
+          el.innerHTML = '<div style="padding:24px;text-align:center;font-size:13px;color:var(--text-secondary);">Map unavailable — connect to the internet to load the map.</div>';
+          return null;
+        }
+        var m = L.map(id).setView(center, zoom);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(m);
         return m;
       }
 
-      // Wait until the container has real dimensions, then call cb.
-      // Leaflet renders blank if the element has height 0 (display:none parent).
-      function initMapWhenReady(containerId, cb) {
-        var attempts = 0, maxAttempts = 30;
-        function check() {
-          attempts++;
-          var el = document.getElementById(containerId);
-          if (el && el.offsetWidth > 0 && el.offsetHeight > 0) {
-            requestAnimationFrame(function () { setTimeout(cb, 0); });
-          } else if (attempts < maxAttempts) {
-            setTimeout(check, 50);
+      // ── State ────────────────────────────────────────────────────────
+      var currentRideId = 'ride-1';
+      var maps = {};
+
+      // ── Mobile menu ────────────────────────────────────────────────
+      var menuBtn = document.getElementById('menu-toggle');
+      var sidebarEl = document.getElementById('sidebar');
+      function setMenu(open) {
+        if (open) closeUserMenu();
+        sidebarEl.classList.toggle('open', open);
+        menuBtn.classList.toggle('open', open);
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      function closeMenu() { setMenu(false); }
+      menuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setMenu(!sidebarEl.classList.contains('open'));
+      });
+      document.addEventListener('click', function (e) {
+        if (!sidebarEl.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) closeMenu();
+      });
+
+      // ── Router ───────────────────────────────────────────────────────
+
+
+      async function navigate(viewId) {
+        closeMenu();
+        closeUserMenu();
+
+        const protectedViews = [
+          'offer-ride',
+          'my-rides',
+          'profile',
+          'ride-details'
+        ];
+
+        if (protectedViews.includes(viewId)) {
+          const sb = window.supabaseClient;
+
+          if (!sb) {
+            alert('Authentication is unavailable. Please try again.');
+            return;
+          }
+
+          const { data, error } = await sb.auth.getSession();
+
+          if (error || !data.session) {
+            alert('Please log in or create an account to continue.');
+            viewId = 'login';
           }
         }
-        setTimeout(check, 120); // initial delay for CSS transition to apply
-      }
 
-      function showToast(msg, type) {
-        var t = document.getElementById('app-toast'); if (t) t.remove();
-        t = document.createElement('div'); t.id = 'app-toast';
-        t.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.18);max-width:360px;';
-        if (type === 'success') { t.style.background = '#0e8345'; t.style.color = '#fff'; }
-        else if (type === 'error') { t.style.background = '#da2929'; t.style.color = '#fff'; }
-        else { t.style.background = '#2d7ff9'; t.style.color = '#fff'; }
-        t.textContent = msg; document.body.appendChild(t);
-        setTimeout(function () { if (t.parentNode) t.remove(); }, 3500);
-      }
+        document.querySelectorAll('.view').forEach(function (v) {
+          v.classList.remove('active');
+        });
 
-      // ── Mobile menu ──
-      var menuBtn = document.getElementById('menu-toggle'), sidebarEl = document.getElementById('sidebar');
-      function setMenu(o) { sidebarEl.classList.toggle('open', o); menuBtn.classList.toggle('open', o); menuBtn.setAttribute('aria-expanded', o ? 'true' : 'false'); }
-      function closeMenu() { setMenu(false); }
-      menuBtn.addEventListener('click', function (e) { e.stopPropagation(); setMenu(!sidebarEl.classList.contains('open')); });
-      document.addEventListener('click', function (e) { if (!sidebarEl.contains(e.target) && !menuBtn.contains(e.target)) closeMenu(); });
-      window.addEventListener('resize', function () { if (window.innerWidth > 768) closeMenu(); });
+        document.querySelectorAll('.sidebar-nav-item').forEach(function (i) {
+          i.classList.remove('active');
+        });
 
-      // ── User menu ──
-      var userBtn = document.getElementById('user-menu-btn'), userMenu = document.getElementById('user-menu');
-      function closeUserMenu() { userMenu.classList.remove('open'); userBtn.setAttribute('aria-expanded', 'false'); }
-      userBtn.addEventListener('click', function (e) { e.stopPropagation(); var w = !userMenu.classList.contains('open'); if (w) closeMenu(); userMenu.classList.toggle('open', w); userBtn.setAttribute('aria-expanded', w ? 'true' : 'false'); });
-      document.addEventListener('click', function (e) { if (!userMenu.contains(e.target) && !userBtn.contains(e.target)) closeUserMenu(); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); closeUserMenu(); } });
+        const view = document.getElementById('view-' + viewId);
+        if (view) view.classList.add('active');
 
-      // ── Auth helpers ──
-      function showAuth(w) { document.getElementById('login-panel').style.display = w === 'signup' ? 'none' : 'block'; document.getElementById('signup-panel').style.display = w === 'signup' ? 'block' : 'none'; }
-      async function getCurrentUser() { var sb = window.supabaseClient; if (!sb) return null; var r = await sb.auth.getUser(); return (r.data && r.data.user) || null; }
+        const navItem = document.querySelector(
+          '.sidebar-nav-item[data-view="' + viewId + '"]'
+        );
+        if (navItem) navItem.classList.add('active');
 
-      // ── Router ──
-      var PROTECTED = ['offer-ride', 'my-rides', 'profile', 'ride-details', 'dashboard', 'chat'];
-      async function navigate(viewId) {
-        closeMenu(); closeUserMenu();
-        if (PROTECTED.includes(viewId)) {
-          var sb = window.supabaseClient;
-          if (sb) { var r = await sb.auth.getSession(); if (!r.data.session) { showToast('Please log in to continue.', 'info'); viewId = 'login'; } }
-        }
-        document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-        document.querySelectorAll('.sidebar-nav-item').forEach(function (i) { i.classList.remove('active'); });
-        var view = document.getElementById('view-' + viewId); if (view) view.classList.add('active');
-        var nav = document.querySelector('.sidebar-nav-item[data-view="' + viewId + '"]'); if (nav) nav.classList.add('active');
-        document.getElementById('content-panel').scrollTop = 0;
         if (viewId === 'search') initSearchView();
         if (viewId === 'offer-ride') initOfferMap();
-        if (viewId === 'ride-details') fillRideDetails();
+        if (viewId === 'ride-details') fillRideDetails(currentRideId);
         if (viewId === 'my-rides') renderMyRides('joined');
-        if (viewId === 'dashboard') loadDashboard();
-        if (viewId === 'chat') loadChatConversations();
+
         if (viewId === 'login') showAuth('login');
-        if (viewId === 'profile') loadMyProfile();
       }
 
-      // ── Search ──
-      async function initSearchView() {
-        document.getElementById('filter-src').value = '';
-        document.getElementById('filter-dest').value = '';
-        document.getElementById('filter-date').value = '';
-        // Destroy stale map instance
-        if (maps['search-map']) { maps['search-map'].remove(); delete maps['search-map']; }
-        // Start map init and data load IN PARALLEL — don't await data before map
-        var mapPromise = new Promise(function(resolve) {
-          initMapWhenReady('search-map', function () {
-            var m = makeMap('search-map', [19.9975, 73.7898], 12);
-            if (m) { maps['search-map'] = m; m.invalidateSize(); }
-            resolve();
-          });
-        });
-        var dataPromise = loadRidesFromSupabase();
-        await Promise.all([mapPromise, dataPromise]);
-        if (maps['search-map']) refreshMapMarkers(maps['search-map'], allLoadedRides);
-      }
 
-      function refreshMapMarkers(m, rides) {
-        if (!m || typeof L === 'undefined') return;
-        m.eachLayer(function (l) { if (l instanceof L.Marker) m.removeLayer(l); });
-        rides.forEach(function (r) { if (r.pickup_lat && r.pickup_lng) L.marker([r.pickup_lat, r.pickup_lng]).addTo(m).bindPopup('<strong>' + esc(r.source) + '</strong><br>' + esc(r.pickup_location || '')); });
-      }
 
-      async function loadRidesFromSupabase() {
-        var sb = window.supabaseClient;
-        var list = document.getElementById('search-rides-list');
-        if (list) list.innerHTML = '<div class="empty-state"><div style="font-size:13px;color:var(--text-secondary);">Loading available rides...</div></div>';
-        if (!sb) { renderRideList([]); return; }
-        try {
-          var res = await sb.from('rides').select('*, profiles(full_name,rating,trip_count,bike_model,bike_plate)').eq('status', 'active').gt('seats_available', 0).gte('departure_time', new Date().toISOString()).order('departure_time', { ascending: true });
-          if (res.error) throw res.error;
-          allLoadedRides = (res.data || []).map(function (r) {
-            var dep = new Date(r.departure_time), p = r.profiles || {}, n = p.full_name || 'BlaBlaBikes Rider';
-            return { id: r.id, driver_id: r.driver_id, source: r.source, destination: r.destination, date: r.departure_time ? r.departure_time.slice(0, 10) : '', time: fmtTime(dep), price: r.price, pickup_location: r.pickup_location || 'To be confirmed', drop_location: r.drop_location || 'To be confirmed', riderInitial: n.charAt(0).toUpperCase(), riderName: n, riderRating: p.rating || '—', riderTrips: p.trip_count || 0, bikeModel: r.bike_details || p.bike_model || 'Bike not specified', bikeNumber: r.vehicle_plate || p.bike_plate || '', helmetProvided: !!r.helmet_provided, seatsAvailable: r.seats_available, pickup_lat: r.pickup_lat, pickup_lng: r.pickup_lng, notes: r.notes || '' };
-          });
-          renderRideList(allLoadedRides);
-          if (maps['search-map']) refreshMapMarkers(maps['search-map'], allLoadedRides);
-        } catch (err) { console.error(err); if (list) list.innerHTML = '<div class="empty-state"><div class="empty-state-title">Unable to load rides</div><div class="empty-state-desc">Please refresh and try again.</div></div>'; }
+      // ── Search View ──────────────────────────────────────────────────
+      
+async function initSearchView() {
+  document.getElementById('filter-src').value = '';
+  document.getElementById('filter-dest').value = '';
+  document.getElementById('filter-date').value = '';
+
+  await loadSupabaseRides();
+
+  setTimeout(function () {
+    if (maps['search-map']) {
+      maps['search-map'].invalidateSize();
+      return;
+    }
+
+    var m = makeMap('search-map', [19.9975, 73.7898], 12);
+    if (m) maps['search-map'] = m;
+  }, 80);
+}
+
+
+      var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      function fmtDate(iso) {
+        var p = String(iso).split('-');
+        return p.length === 3 ? (parseInt(p[2], 10) + ' ' + MONTHS[parseInt(p[1], 10) - 1]) : iso;
       }
 
       function renderRideList(rides) {
-        var el = document.getElementById('search-rides-list'); if (!el) return;
-        if (!rides || !rides.length) { el.innerHTML = '<div class="empty-state"><div class="empty-state-title">No rides found</div><div class="empty-state-desc">Try a different area or date, or reset the filters.</div></div>'; return; }
-        var pinSvg = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg>';
+        var el = document.getElementById('search-rides-list');
+        if (!el) return;
+        if (!rides.length) {
+          el.innerHTML = '<div class="empty-state"><div class="empty-state-title">No rides found</div><div class="empty-state-desc">Try a different area or date, or reset the filters.</div></div>';
+          return;
+        }
         el.innerHTML = rides.map(function (r) {
-          return '<div class="ride-card" data-goto="ride-details" data-ride="' + esc(r.id) + '" role="button" tabindex="0">' +
+          return '<div class="ride-card" data-goto="ride-details" data-ride="' + r.id + '" role="button" tabindex="0">' +
             '<div>' +
-            '<div class="rc-route"><div class="rc-row">' +
+            '<div class="rc-route">' +
+            '<div class="rc-row">' +
             '<div class="rc-when"><strong>' + esc(r.time) + '</strong><span>' + esc(fmtDate(r.date)) + '</span></div>' +
             '<div class="rc-rail"><i class="rc-dot"></i></div>' +
-            '<div class="rc-place"><strong>' + esc(r.source) + '</strong><span>' + esc(r.pickup_location) + '</span></div></div>' +
-            '<div class="rc-row"><div class="rc-when"></div><div class="rc-rail"><i class="rc-dot"></i></div>' +
-            '<div class="rc-place"><strong>' + esc(r.destination) + '</strong><span>' + esc(r.drop_location) + '</span></div></div></div>' +
-            '<div class="rc-foot"><span class="rc-avatar">' + esc(r.riderInitial) + '</span>' +
-            '<span><strong>' + esc(r.riderName) + '</strong> &nbsp;&#9733; ' + esc(String(r.riderRating)) + ' &middot; ' + r.riderTrips + ' trips</span>' +
+            '<div class="rc-place"><strong>' + esc(r.source) + '</strong><span>' + esc(r.pickupLocation) + '</span></div>' +
+            '</div>' +
+            '<div class="rc-row">' +
+            '<div class="rc-when"></div>' +
+            '<div class="rc-rail"><i class="rc-dot"></i></div>' +
+            '<div class="rc-place"><strong>' + esc(r.destination) + '</strong><span>' + esc(r.dropLocation) + '</span></div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="rc-foot">' +
+            '<span class="rc-avatar">' + esc(r.riderInitial) + '</span>' +
+            '<span><strong>' + esc(r.riderName) + '</strong> &nbsp;★ ' + esc(r.riderRating) + ' · ' + r.riderTrips + ' trips</span>' +
             '<span class="rc-bike">' + esc(r.bikeModel) + '</span>' +
             (r.helmetProvided ? '<span class="badge badge-green">Helmet provided</span>' : '<span class="badge badge-amber">Bring your helmet</span>') +
-            '<span class="badge badge-blue">' + r.seatsAvailable + ' seat' + (r.seatsAvailable > 1 ? 's' : '') + '</span>' +
-            '</div></div>' +
-            '<div class="rc-price">&#8377;' + r.price + '<small>per rider</small></div></div>';
+            '</div>' +
+            '</div>' +
+            '<div class="rc-price">₹' + r.price + '<small>per rider</small></div>' +
+            '</div>';
         }).join('');
       }
+      
+async function loadSupabaseRides() {
+  const sb = window.supabaseClient;
+
+  if (!sb) {
+    console.error('Supabase client is unavailable.');
+    return;
+  }
+
+  const list = document.getElementById('search-rides-list');
+  if (list) {
+    list.innerHTML = '<div class="empty-state">Loading available rides...</div>';
+  }
+
+  try {
+    const { data, error } = await sb
+      .from('rides')
+      .select('id, driver_id, source, destination, departure_time, price, seats_available, bike_details, notes, status')
+      .eq('status', 'active')
+      .gt('seats_available', 0)
+      .order('departure_time', { ascending: true });
+
+    if (error) throw error;
+
+    const rides = (data || []).map(function (r) {
+      const departure = new Date(r.departure_time);
+
+      return {
+        id: r.id,
+        source: r.source,
+        destination: r.destination,
+        date: r.departure_time.slice(0, 10),
+        time: departure.toLocaleTimeString('en-IN', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
+        price: r.price,
+        pickupLocation: 'Meeting point to be confirmed',
+        dropLocation: 'Destination details to be confirmed',
+        riderInitial: 'R',
+        riderName: 'BlaBlaBikes rider',
+        riderRating: '—',
+        riderTrips: 0,
+        bikeModel: r.bike_details || 'Bike details not provided',
+        helmetProvided: false,
+        seatsAvailable: r.seats_available,
+        sourceCoords: null
+      };
+    });
+
+    renderRideList(rides);
+
+  } catch (err) {
+    console.error('Could not load rides:', err);
+
+    if (list) {
+      list.innerHTML =
+        '<div class="empty-state">' +
+        '<div class="empty-state-title">Unable to load rides</div>' +
+        '<div class="empty-state-desc">Please refresh and try again.</div>' +
+        '</div>';
+    }
+  }
+}
+
 
       function filterRides() {
         var src = (document.getElementById('filter-src').value || '').toLowerCase().trim();
         var dest = (document.getElementById('filter-dest').value || '').toLowerCase().trim();
         var date = document.getElementById('filter-date').value || '';
-        var f = allLoadedRides.filter(function (r) {
-          var ms = !src || (r.source.toLowerCase().indexOf(src) !== -1) || (r.pickup_location.toLowerCase().indexOf(src) !== -1);
-          var md = !dest || (r.destination.toLowerCase().indexOf(dest) !== -1) || (r.drop_location.toLowerCase().indexOf(dest) !== -1);
-          var mdt = !date || r.date === date;
-          return ms && md && mdt;
-        });
-        renderRideList(f);
-        if (maps['search-map']) refreshMapMarkers(maps['search-map'], f);
-      }
 
-      function runSearch(src, dest, date) {
-        navigate('search').then(function () {
-          setTimeout(function () {
-            document.getElementById('filter-src').value = src || '';
-            document.getElementById('filter-dest').value = dest || '';
-            document.getElementById('filter-date').value = date || '';
-            filterRides();
-          }, 150);
-        });
-      }
-
-      // ── Ride Details ──
-      async function fillRideDetails() {
-        if (!currentRideData && currentRideId) {
-          var sb = window.supabaseClient; if (!sb) return;
-          try {
-            var res = await sb.from('rides').select('*, profiles(full_name,rating,trip_count,bike_model,bike_plate)').eq('id', currentRideId).single();
-            if (res.error || !res.data) return;
-            var r = res.data, p = r.profiles || {}, n = p.full_name || 'BlaBlaBikes Rider', dep = new Date(r.departure_time);
-            currentRideData = { id: r.id, driver_id: r.driver_id, source: r.source, destination: r.destination, date: r.departure_time ? r.departure_time.slice(0, 10) : '', time: fmtTime(dep), price: r.price, pickup_location: r.pickup_location || 'To be confirmed', drop_location: r.drop_location || 'To be confirmed', riderInitial: n.charAt(0).toUpperCase(), riderName: n, riderRating: p.rating || '—', riderTrips: p.trip_count || 0, bikeModel: r.bike_details || p.bike_model || 'Not specified', bikeNumber: r.vehicle_plate || p.bike_plate || 'Not provided', helmetProvided: !!r.helmet_provided, seatsAvailable: r.seats_available, pickup_lat: r.pickup_lat, pickup_lng: r.pickup_lng, notes: r.notes || '' };
-          } catch (e) { console.error(e); return; }
+        function matchLoc(text, query) {
+          if (!query) return true;
+          if (!text) return false;
+          var t = text.toLowerCase();
+          if (t.indexOf(query) !== -1) return true;
+          // Alias handling for CBS
+          if (query === 'cbs' && (t.indexOf('cbs') !== -1 || t.indexOf('central bus') !== -1)) return true;
+          return false;
         }
-        var ride = currentRideData; if (!ride) return;
-        setText('detail-route', ride.source + ' \u27a4 ' + ride.destination);
-        setText('detail-price', '&#8377;' + ride.price);
-        setText('detail-date', fmtDate(ride.date));
+
+        var filtered = RIDES.filter(function (r) {
+          var matchSrc = !src || matchLoc(r.source, src) || matchLoc(r.pickupLocation, src);
+          var matchDest = !dest || matchLoc(r.destination, dest) || matchLoc(r.dropLocation, dest);
+          var matchDate = !date || r.date === date;
+          return matchSrc && matchDest && matchDate;
+        });
+        renderRideList(filtered);
+      }
+
+      // Go to Find Rides with filters applied (used by the hero, popular routes, footer)
+      function runSearch(src, dest, date) {
+        navigate('search');
+        document.getElementById('filter-src').value = src || '';
+        document.getElementById('filter-dest').value = dest || '';
+        document.getElementById('filter-date').value = date || '';
+        filterRides();
+      }
+
+      // ── Ride Details ─────────────────────────────────────────────────
+      function fillRideDetails(rideId) {
+        var ride = RIDES.find(function (r) { return r.id === rideId; }) || RIDES[0];
+        setText('detail-route', ride.source + ' ➔ ' + ride.destination);
+        setText('detail-price', '₹' + ride.price);
+        setText('detail-date', ride.date);
         setText('detail-time', ride.time);
-        setText('detail-pickup', ride.pickup_location);
-        setText('detail-drop', ride.drop_location);
-        setText('detail-helmet', ride.helmetProvided ? 'Yes \u2014 Spare helmet provided' : 'No \u2014 Bring your own');
-        setText('detail-seats', ride.seatsAvailable + ' seat(s) available');
-        setText('detail-notes', ride.notes || '\u2014');
+        setText('detail-pickup', ride.pickupLocation);
+        setText('detail-drop', ride.dropLocation);
+        setText('detail-helmet', ride.helmetProvided ? 'Yes — Spare helmet provided' : 'No — Bring your own');
+        setText('detail-notes', ride.notes);
         setText('detail-rider', ride.riderName);
-        setText('detail-rating', '\u2605 ' + ride.riderRating + ' (' + ride.riderTrips + ' trips)');
+        setText('detail-rating', ride.riderRating + ' stars (' + ride.riderTrips + ' trips)');
         setText('detail-rider-initial', ride.riderInitial);
         setText('detail-bike', ride.bikeModel);
         setText('detail-plate', ride.bikeNumber);
 
-        var user = await getCurrentUser();
-        var statusEl = document.getElementById('detail-booking-status');
-        var reqBtn = document.getElementById('btn-request-join');
-        if (statusEl) statusEl.innerHTML = '';
-
-        if (user && ride.driver_id === user.id) {
-          if (statusEl) statusEl.innerHTML = '<span class="badge badge-blue" style="margin-bottom:8px;">This is your ride</span>';
-          if (reqBtn) reqBtn.style.display = 'none';
-        } else if (user) {
-          var sb = window.supabaseClient;
-          if (sb) {
-            var bRes = await sb.from('bookings').select('status').eq('ride_id', ride.id).eq('passenger_id', user.id).maybeSingle();
-            if (bRes.data) {
-              var bc = bRes.data.status === 'confirmed' ? 'badge-green' : bRes.data.status === 'rejected' ? 'badge-red' : 'badge-amber';
-              if (statusEl) statusEl.innerHTML = '<span class="badge ' + bc + '" style="margin-bottom:8px;">Request: ' + bRes.data.status.charAt(0).toUpperCase() + bRes.data.status.slice(1) + '</span>';
-              if (reqBtn) reqBtn.style.display = 'none';
-            } else { if (reqBtn) reqBtn.style.display = 'block'; }
+        setTimeout(function () {
+          if (maps['detail-map']) {
+            maps['detail-map'].remove();
+            delete maps['detail-map'];
           }
-        } else { if (reqBtn) reqBtn.style.display = 'block'; }
-
-        if (maps['detail-map']) { maps['detail-map'].remove(); delete maps['detail-map']; }
-        initMapWhenReady('detail-map', function () {
-          var center = (ride.pickup_lat && ride.pickup_lng) ? [ride.pickup_lat, ride.pickup_lng] : [19.9975, 73.7898];
-          var m = makeMap('detail-map', center, 14); if (!m) return;
-          L.marker(center).addTo(m).bindPopup('<strong>Pickup</strong><br>' + esc(ride.pickup_location)).openPopup();
+          var m = makeMap('detail-map', ride.sourceCoords, 14);
+          if (!m) return;
+          L.marker(ride.sourceCoords)
+            .addTo(m)
+            .bindPopup('<strong>Pickup</strong><br>' + esc(ride.pickupLocation))
+            .openPopup();
           maps['detail-map'] = m;
-          m.invalidateSize();
+        }, 80);
+      }
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
         });
       }
 
-      // Request to Join
-      document.getElementById('btn-request-join').addEventListener('click', async function () {
-        var user = await getCurrentUser(); if (!user) { navigate('login'); return; }
-        if (!currentRideData) return;
-        var sb = window.supabaseClient, btn = this;
-        btn.disabled = true; btn.textContent = 'Requesting...';
-        try {
-          var res = await sb.from('bookings').insert({ ride_id: currentRideData.id, passenger_id: user.id, status: 'pending' });
-          if (res.error) { if (res.error.code === '23505') { showToast('You have already requested this ride.', 'info'); } else throw res.error; }
-          else {
-            showToast('Request sent! The rider will confirm your spot.', 'success');
-            btn.style.display = 'none';
-            var statusEl = document.getElementById('detail-booking-status');
-            if (statusEl) statusEl.innerHTML = '<span class="badge badge-amber" style="margin-bottom:8px;">Request: Pending</span>';
-          }
-        } catch (err) { showToast('Could not send request: ' + err.message, 'error'); btn.disabled = false; btn.textContent = 'Request to Join'; }
-      });
+      function setText(id, val) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = val;
+      }
 
-      // ── Offer ride map ──
+      // ── Offer Ride Map ────────────────────────────────────────────────
       function initOfferMap() {
-        // Always destroy and re-create so it renders at correct size
-        if (maps['offer-map']) { maps['offer-map'].remove(); delete maps['offer-map']; offerMarker = null; }
-        initMapWhenReady('offer-map', function () {
-          var m = makeMap('offer-map', [19.9975, 73.7898], 13); if (!m) return;
-          offerPickedLat = 19.9975; offerPickedLng = 73.7898;
-          offerMarker = L.marker([19.9975, 73.7898], { draggable: true }).addTo(m);
-          offerMarker.on('dragend', function (e) { var ll = e.target.getLatLng(); offerPickedLat = ll.lat; offerPickedLng = ll.lng; });
-          m.on('click', function (e) { offerMarker.setLatLng(e.latlng); offerPickedLat = e.latlng.lat; offerPickedLng = e.latlng.lng; });
+        setTimeout(function () {
+          if (maps['offer-map']) { maps['offer-map'].invalidateSize(); return; }
+          var m = makeMap('offer-map', [19.9975, 73.7898], 13);
+          if (!m) return;
+          var marker = L.marker([19.9975, 73.7898], { draggable: true }).addTo(m);
+          m.on('click', function (e) { marker.setLatLng(e.latlng); });
           maps['offer-map'] = m;
-          m.invalidateSize();
+        }, 80);
+      }
+
+      // ── My Rides ──────────────────────────────────────────────────────
+      function renderMyRides(tab) {
+        var joinedBtn = document.getElementById('tab-joined');
+        var offeredBtn = document.getElementById('tab-offered');
+        if (joinedBtn) joinedBtn.classList.toggle('active', tab === 'joined');
+        if (offeredBtn) offeredBtn.classList.toggle('active', tab === 'offered');
+
+        var el = document.getElementById('my-rides-list');
+        if (!el) return;
+
+        if (tab === 'joined') {
+          el.innerHTML =
+            '<div class="ride-item">' +
+            '<div class="ride-main-info">' +
+            '<div class="ride-route-text">College Road ➔ Nashik Road Station</div>' +
+            '<div class="ride-meta-text">Rider: Rahul Sharma &nbsp;•&nbsp; 2026-10-20 at 08:30</div>' +
+            '<div class="ride-muted-text">Pickup: BYK College Signal</div>' +
+            '</div>' +
+            '<div class="ride-side-info">' +
+            '<span class="badge badge-green">Confirmed</span>' +
+            '<div class="ride-price-text">₹60</div>' +
+            '<button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-1">View Details</button>' +
+            '</div>' +
+            '</div>' +
+            '<div class="ride-item">' +
+            '<div class="ride-main-info">' +
+            '<div class="ride-route-text">Panchavati ➔ City Centre Mall</div>' +
+            '<div class="ride-meta-text">Rider: Vikram Verma &nbsp;•&nbsp; 2026-10-20 at 10:00</div>' +
+            '<div class="ride-muted-text">Pickup: Kalaram Temple Gate</div>' +
+            '</div>' +
+            '<div class="ride-side-info">' +
+            '<span class="badge badge-green">Confirmed</span>' +
+            '<div class="ride-price-text">₹40</div>' +
+            '<button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-2">View Details</button>' +
+            '</div>' +
+            '</div>';
+        } else {
+          el.innerHTML =
+            '<div class="ride-item">' +
+            '<div class="ride-main-info">' +
+            '<div class="ride-route-text">Gangapur Road ➔ Satpur MIDC</div>' +
+            '<div class="ride-meta-text">My Bike: Yamaha FZ-S V3 &nbsp;•&nbsp; 2026-10-22 at 09:00</div>' +
+            '<div class="ride-muted-text">Pickup: Jehan Circle</div>' +
+            '</div>' +
+            '<div class="ride-side-info">' +
+            '<span class="badge badge-blue">1 Seat Open</span>' +
+            '<div class="ride-price-text">₹45</div>' +
+            '<button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="ride-3">View</button>' +
+            '</div>' +
+            '</div>';
+        }
+      }
+
+      // ── Password Eye Toggle ───────────────────────────────────────────
+      function setupEye(inputId, btnId) {
+        var input = document.getElementById(inputId);
+        var btn = document.getElementById(btnId);
+        if (!input || !btn) return;
+        var eyeOpen = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+        var eyeClosed = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+        btn.innerHTML = eyeOpen;
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (input.type === 'password') { input.type = 'text'; btn.innerHTML = eyeClosed; }
+          else { input.type = 'password'; btn.innerHTML = eyeOpen; }
         });
       }
 
-      // ── Publish Ride ──
-      document.getElementById('offer-ride-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var sb = window.supabaseClient, submitBtn = document.getElementById('offer-submit-btn');
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Publishing...'; }
-        try {
-          var user = await getCurrentUser(); if (!user) { showToast('Please log in before offering a ride.', 'error'); navigate('login'); return; }
-          var source = document.getElementById('offer-start-area').value.trim();
-          var destination = document.getElementById('offer-dest-area').value.trim();
-          var pickup = document.getElementById('offer-pickup-landmark').value.trim();
-          var drop = document.getElementById('offer-drop-landmark').value.trim();
-          var date = document.getElementById('offer-date').value;
-          var time = document.getElementById('offer-time').value;
-          var price = parseFloat(document.getElementById('offer-price').value);
-          var bike = document.getElementById('offer-bike').value.trim();
-          var plate = document.getElementById('offer-plate').value.trim();
-          var seats = parseInt(document.getElementById('offer-seats').value) || 1;
-          var helmet = document.getElementById('offer-helmet').value === 'true';
-          var notes = document.getElementById('offer-notes').value.trim();
-          if (!source || !destination || !date || !time) { showToast('Please fill in starting area, destination, date and time.', 'error'); return; }
-          if (isNaN(price) || price < 0) { showToast('Please enter a valid contribution price.', 'error'); return; }
-          var departure = new Date(date + 'T' + time);
-          if (isNaN(departure.getTime()) || departure <= new Date()) { showToast('Please select a future departure date and time.', 'error'); return; }
-          var res = await sb.from('rides').insert({ driver_id: user.id, source: source, destination: destination, pickup_location: pickup || null, drop_location: drop || null, departure_time: departure.toISOString(), price: price, seats_available: seats, bike_details: bike || null, vehicle_plate: plate || null, helmet_provided: helmet, notes: notes || null, pickup_lat: offerPickedLat || null, pickup_lng: offerPickedLng || null, status: 'active' });
-          if (res.error) throw res.error;
-          showToast('Ride published successfully!', 'success');
-          this.reset();
-          document.getElementById('offer-date').value = todayIso();
-          if (maps['offer-map']) { maps['offer-map'].remove(); delete maps['offer-map']; }
-          offerMarker = null; offerPickedLat = null; offerPickedLng = null;
-          navigate('my-rides');
-        } catch (err) { console.error(err); showToast('Could not publish ride: ' + err.message, 'error'); }
-        finally { if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Publish Ride'; } }
-      });
-
-      // ── My Rides ──
-      async function renderMyRides(tab) {
-        document.getElementById('tab-joined').classList.toggle('active', tab === 'joined');
-        document.getElementById('tab-offered').classList.toggle('active', tab === 'offered');
-        var el = document.getElementById('my-rides-list'); if (!el) return;
-        el.innerHTML = '<div style="padding:20px;font-size:13px;color:var(--text-secondary);">Loading...</div>';
-        var user = await getCurrentUser();
-        if (!user) { el.innerHTML = '<div class="empty-state"><div class="empty-state-title">Not logged in</div><div class="empty-state-desc">Log in to see your rides.</div></div>'; return; }
-        var sb = window.supabaseClient;
-        try {
-          if (tab === 'joined') {
-            var res = await sb.from('bookings').select('status,created_at,rides(id,source,destination,departure_time,price,pickup_location,profiles(full_name))').eq('passenger_id', user.id).order('created_at', { ascending: false });
-            if (res.error) throw res.error;
-            var bks = res.data || [];
-            if (!bks.length) { el.innerHTML = '<div class="empty-state"><div class="empty-state-title">No joined rides yet</div><div class="empty-state-desc">Find a ride and request to join.</div><button class="btn btn-secondary btn-sm" data-goto="search">Find a Ride</button></div>'; return; }
-            el.innerHTML = bks.map(function (b) {
-              var r = b.rides; if (!r) return '';
-              var p = r.profiles || {}, dep = new Date(r.departure_time);
-              var bc = b.status === 'confirmed' ? 'badge-green' : b.status === 'rejected' ? 'badge-red' : 'badge-amber';
-              return '<div class="ride-item"><div class="ride-main-info"><div class="ride-route-text">' + esc(r.source) + ' \u27a4 ' + esc(r.destination) + '</div><div class="ride-meta-text">Rider: ' + esc(p.full_name || 'BlaBlaBikes Rider') + ' &nbsp;&bull;&nbsp; ' + dep.toLocaleDateString('en-IN') + ' at ' + fmtTime(dep) + '</div><div class="ride-muted-text">Pickup: ' + esc(r.pickup_location || 'To be confirmed') + '</div></div><div class="ride-side-info"><span class="badge ' + bc + '">' + b.status.charAt(0).toUpperCase() + b.status.slice(1) + '</span><div class="ride-price-text">&#8377;' + r.price + '</div><button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="' + r.id + '">View Details</button></div></div>';
-            }).join('');
-          } else {
-            var res = await sb.from('rides').select('id,source,destination,departure_time,price,seats_available,status,bookings(id,status)').eq('driver_id', user.id).order('departure_time', { ascending: false });
-            if (res.error) throw res.error;
-            var rides = res.data || [];
-            if (!rides.length) { el.innerHTML = '<div class="empty-state"><div class="empty-state-title">No rides offered yet</div><div class="empty-state-desc">Share your route with the community.</div><button class="btn btn-secondary btn-sm" data-goto="offer-ride">Offer a Ride</button></div>'; return; }
-            el.innerHTML = rides.map(function (r) {
-              var dep = new Date(r.departure_time);
-              var pending = (r.bookings || []).filter(function (b) { return b.status === 'pending'; }).length;
-              var sb_badge = r.status === 'active' ? '<span class="badge badge-green">Active</span>' : '<span class="badge badge-amber">' + r.status + '</span>';
-              var p_badge = pending > 0 ? '<span class="badge badge-amber">' + pending + ' request(s)</span>' : '';
-              return '<div class="ride-item"><div class="ride-main-info"><div class="ride-route-text">' + esc(r.source) + ' \u27a4 ' + esc(r.destination) + '</div><div class="ride-meta-text">' + dep.toLocaleDateString('en-IN') + ' at ' + fmtTime(dep) + '</div></div><div class="ride-side-info">' + sb_badge + '<span class="badge badge-blue">' + r.seats_available + ' seat(s)</span>' + p_badge + '<div class="ride-price-text">&#8377;' + r.price + '</div><button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="' + r.id + '">View</button><button class="btn btn-danger btn-sm" data-cancel-ride="' + r.id + '">Cancel</button></div></div>';
-            }).join('');
-          }
-        } catch (err) { console.error(err); el.innerHTML = '<div class="empty-state"><div class="empty-state-title">Could not load rides</div><div class="empty-state-desc">' + esc(err.message) + '</div></div>'; }
-      }
-
-      // Cancel ride
-      document.addEventListener('click', async function (e) {
-        var btn = e.target.closest('[data-cancel-ride]'); if (!btn) return;
-        var rideId = btn.getAttribute('data-cancel-ride'); if (!rideId) return;
-        if (!confirm('Cancel this ride?')) return;
-        var sb = window.supabaseClient; btn.disabled = true;
-        try {
-          var res = await sb.from('rides').update({ status: 'cancelled' }).eq('id', rideId);
-          if (res.error) throw res.error;
-          showToast('Ride cancelled.', 'success'); renderMyRides('offered');
-        } catch (err) { showToast('Could not cancel: ' + err.message, 'error'); btn.disabled = false; }
-      });
-
-      // ── Dashboard ──
-      async function loadDashboard() {
-        var user = await getCurrentUser(), sb = window.supabaseClient;
-        setText('dashboard-subtitle', user ? "Welcome back. Here's your Nashik ride summary." : 'Log in to see your personal stats.');
-        if (user && sb) {
-          try {
-            var res = await Promise.all([
-              sb.from('rides').select('id', { count: 'exact', head: true }).eq('driver_id', user.id).eq('status', 'active'),
-              sb.from('bookings').select('id', { count: 'exact', head: true }).eq('passenger_id', user.id),
-              sb.from('profiles').select('rating,trip_count').eq('id', user.id).maybeSingle()
-            ]);
-            setText('dash-stat-offered', res[0].count || 0);
-            setText('dash-stat-joined', res[1].count || 0);
-            if (res[2].data) { setText('dash-stat-rating', res[2].data.rating || '—'); setText('dash-stat-trips', res[2].data.trip_count || 0); }
-          } catch (err) { console.error(err); }
-        }
-        if (sb) {
-          try {
-            var today = new Date(); today.setHours(0, 0, 0, 0); var tmrw = new Date(today); tmrw.setDate(tmrw.getDate() + 1);
-            var res = await sb.from('rides').select('id,source,destination,departure_time,price,profiles(full_name),bike_details').eq('status', 'active').gte('departure_time', today.toISOString()).lt('departure_time', tmrw.toISOString()).order('departure_time', { ascending: true }).limit(5);
-            var dl = document.getElementById('dashboard-rides-list');
-            if (dl) {
-              if (!res.data || !res.data.length) { dl.innerHTML = '<div style="font-size:13px;color:var(--text-secondary);padding:8px 0;">No rides scheduled for today. <button class="btn btn-secondary btn-sm" data-goto="search">Browse all rides</button></div>'; }
-              else { dl.innerHTML = res.data.map(function (r) { var dep = new Date(r.departure_time), n = (r.profiles && r.profiles.full_name) ? r.profiles.full_name : 'BlaBlaBikes Rider'; return '<div class="ride-item"><div class="ride-main-info"><div class="ride-route-text">' + esc(r.source) + ' \u27a4 ' + esc(r.destination) + '</div><div class="ride-meta-text">' + esc(n) + ' &nbsp;&bull;&nbsp; ' + fmtTime(dep) + ' &nbsp;&bull;&nbsp; ' + esc(r.bike_details || 'Bike') + '</div></div><div class="ride-side-info"><div class="ride-price-text">&#8377;' + r.price + '</div><button class="btn btn-secondary btn-sm" data-goto="ride-details" data-ride="' + r.id + '">View</button></div></div>'; }).join(''); }
-            }
-          } catch (err) { console.error(err); }
-        }
-      }
-
-      // ── Chat ──
-      async function loadChatConversations() {
-        var user = await getCurrentUser(), listEl = document.getElementById('chat-conversation-list');
-        if (!user) { if (listEl) listEl.innerHTML = '<li style="padding:16px;font-size:13px;color:var(--text-secondary);">Log in to view messages.</li>'; return; }
-        var sb = window.supabaseClient; if (!sb) return;
-        try {
-          var res = await Promise.all([
-            sb.from('rides').select('id,source,destination,profiles(full_name)').eq('driver_id', user.id).eq('status', 'active').limit(20),
-            sb.from('bookings').select('ride_id,rides(id,source,destination,profiles(full_name))').eq('passenger_id', user.id).limit(20)
-          ]);
-          var convos = [];
-          (res[0].data || []).forEach(function (r) { convos.push({ rideId: r.id, label: r.source + ' \u27a4 ' + r.destination, sub: 'Your ride', initial: 'Y' }); });
-          (res[1].data || []).forEach(function (b) { if (b.rides) { var r = b.rides, n = (r.profiles && r.profiles.full_name) ? r.profiles.full_name : 'Rider'; convos.push({ rideId: r.id, label: r.source + ' \u27a4 ' + r.destination, sub: 'Rider: ' + n, initial: n.charAt(0).toUpperCase() }); } });
-          if (!listEl) return;
-          if (!convos.length) { listEl.innerHTML = '<li style="padding:16px;font-size:13px;color:var(--text-secondary);">No active rides to chat about yet.</li>'; return; }
-          listEl.innerHTML = convos.map(function (c, i) { return '<li class="conversation-item' + (i === 0 ? ' active' : '') + '" data-chat-ride-id="' + esc(c.rideId) + '"><div class="convo-avatar">' + esc(c.initial) + '</div><div><div class="convo-name">' + esc(c.label) + '</div><div class="convo-preview">' + esc(c.sub) + '</div></div></li>'; }).join('');
-          listEl.querySelectorAll('.conversation-item').forEach(function (item) {
-            item.addEventListener('click', function () {
-              listEl.querySelectorAll('.conversation-item').forEach(function (i) { i.classList.remove('active'); });
-              item.classList.add('active');
-              var n = item.querySelector('.convo-name'), s = item.querySelector('.convo-preview'), a = item.querySelector('.convo-avatar');
-              openChatForRide(item.getAttribute('data-chat-ride-id'), n ? n.textContent : '', s ? s.textContent : '', a ? a.textContent : '?');
-            });
-          });
-          if (convos.length > 0) openChatForRide(convos[0].rideId, convos[0].label, convos[0].sub, convos[0].initial);
-        } catch (err) { console.error(err); if (listEl) listEl.innerHTML = '<li style="padding:16px;font-size:13px;color:var(--text-secondary);">Could not load conversations.</li>'; }
-      }
-
-      async function openChatForRide(rideId, label, sub, initial) {
-        activeConversationRideId = rideId;
-        setText('chat-header-name', label); setText('chat-header-sub', sub);
-        var av = document.getElementById('chat-header-avatar'); if (av) av.textContent = initial;
-        if (chatRealtimeChannel) { window.supabaseClient.removeChannel(chatRealtimeChannel); chatRealtimeChannel = null; }
-        await loadChatMessages(rideId);
-        var sb = window.supabaseClient;
-        if (sb) {
-          chatRealtimeChannel = sb.channel('chat-' + rideId).on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: 'ride_id=eq.' + rideId }, async function (payload) {
-            var u = await getCurrentUser(); appendChatBubble(payload.new, u ? u.id : null);
-          }).subscribe();
-        }
-      }
-
-      async function loadChatMessages(rideId) {
-        var area = document.getElementById('chat-messages-area'); if (!area) return;
-        area.innerHTML = '<div style="font-size:13px;color:var(--text-secondary);text-align:center;padding:20px;">Loading messages...</div>';
-        var user = await getCurrentUser(), sb = window.supabaseClient; if (!sb) return;
-        try {
-          var res = await sb.from('messages').select('id,sender_id,content,created_at').eq('ride_id', rideId).order('created_at', { ascending: true });
-          if (res.error) throw res.error;
-          area.innerHTML = '';
-          if (!res.data || !res.data.length) { area.innerHTML = '<div style="font-size:13px;color:var(--text-secondary);text-align:center;padding:20px;">No messages yet. Start the conversation!</div>'; return; }
-          res.data.forEach(function (msg) { appendChatBubble(msg, user ? user.id : null); });
-          area.scrollTop = area.scrollHeight;
-        } catch (err) { console.error(err); area.innerHTML = '<div style="font-size:13px;color:var(--status-red-text);text-align:center;padding:20px;">Could not load messages.</div>'; }
-      }
-
-      function appendChatBubble(msg, currentUserId) {
-        var area = document.getElementById('chat-messages-area'); if (!area) return;
-        var ph = area.querySelector('[data-placeholder]'); if (ph) ph.remove();
-        var bubble = document.createElement('div');
-        bubble.className = 'chat-bubble ' + (msg.sender_id === currentUserId ? 'chat-bubble-sent' : 'chat-bubble-received');
-        bubble.textContent = msg.content;
-        area.appendChild(bubble);
-        area.scrollTop = area.scrollHeight;
-      }
-
-      document.getElementById('chat-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var input = document.getElementById('chat-input-msg'), text = (input.value || '').trim();
-        if (!text || !activeConversationRideId) return;
-        var user = await getCurrentUser(); if (!user) { showToast('Please log in to send messages.', 'error'); return; }
-        var sb = window.supabaseClient; input.value = '';
-        try {
-          var rRes = await sb.from('rides').select('driver_id').eq('id', activeConversationRideId).single();
-          var receiverId = rRes.data ? rRes.data.driver_id : null;
-          if (receiverId === user.id) {
-            var bRes = await sb.from('bookings').select('passenger_id').eq('ride_id', activeConversationRideId).limit(1).single();
-            receiverId = bRes.data ? bRes.data.passenger_id : user.id;
-          }
-          var res = await sb.from('messages').insert({ ride_id: activeConversationRideId, sender_id: user.id, receiver_id: receiverId || user.id, content: text });
-          if (res.error) throw res.error;
-          appendChatBubble({ sender_id: user.id, content: text, created_at: new Date().toISOString() }, user.id);
-        } catch (err) { console.error(err); showToast('Could not send message: ' + err.message, 'error'); input.value = text; }
-      });
-
-      // ── Home page ──
-      async function renderHome() {
-        var pop = document.getElementById('home-popular'), foot = document.getElementById('footer-routes'), personal = document.getElementById('personal-dashboard');
-        var sb = window.supabaseClient, popularRides = [];
-        if (sb) { try { var res = await sb.from('rides').select('id,source,destination,price,departure_time').eq('status', 'active').gt('seats_available', 0).gte('departure_time', new Date().toISOString()).order('departure_time', { ascending: true }).limit(8); if (!res.error) popularRides = res.data || []; } catch (e) { } }
-        if (pop) {
-          if (popularRides.length) { pop.innerHTML = popularRides.map(function (r) { var dep = new Date(r.departure_time); return '<button type="button" class="route-row" data-goto="ride-details" data-ride="' + esc(r.id) + '"><span class="route-name">' + esc(r.source) + ' \u27a4 ' + esc(r.destination) + '</span><span class="route-meta">&#8377;' + r.price + ' &middot; ' + fmtTime(dep) + '</span></button>'; }).join(''); }
-          else { pop.innerHTML = '<div style="font-size:13px;color:var(--text-secondary);padding:12px 0;">No rides available yet. Be the first to offer one!</div>'; }
-        }
-        if (foot) foot.innerHTML = popularRides.slice(0, 5).map(function (r) { return '<button type="button" class="link-btn" data-goto="ride-details" data-ride="' + esc(r.id) + '">' + esc(r.source) + ' \u27a4 ' + esc(r.destination) + '</button>'; }).join('');
-        if (!personal || !sb) { if (personal) personal.style.display = 'none'; return; }
-        try {
-          var uRes = await sb.auth.getUser(), user = uRes.data && uRes.data.user;
-          if (!user) { personal.style.display = 'none'; return; }
-          var name = (user.user_metadata && user.user_metadata.full_name) || user.email || 'Rider';
-          setText('personal-welcome', 'Welcome back, ' + name + '!');
-          setText('personal-dashboard-message', 'Your BlaBlaBikes account is ready. Explore rides or check your activity.');
-          var cnt = await Promise.all([sb.from('rides').select('id', { count: 'exact', head: true }).eq('driver_id', user.id), sb.from('bookings').select('id', { count: 'exact', head: true }).eq('passenger_id', user.id)]);
-          setText('personal-offered-count', cnt[0].count || 0);
-          setText('personal-booked-count', cnt[1].count || 0);
-          personal.style.display = 'block';
-        } catch (err) { personal.style.display = 'none'; }
-      }
-
-      // ── Alert form ──
-      document.getElementById('alert-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var from = document.getElementById('alert-from').value.trim(), to = document.getElementById('alert-to').value.trim(), msgEl = document.getElementById('alert-msg');
-        if (!from && !to) { msgEl.style.color = 'var(--status-red-text)'; msgEl.textContent = 'Enter at least one area to create an alert.'; return; }
-        var user = await getCurrentUser();
-        if (!user) { msgEl.style.color = 'var(--status-amber-text)'; msgEl.textContent = 'Please log in to save an alert.'; return; }
-        var sb = window.supabaseClient;
-        try {
-          var res = await sb.from('ride_alerts').insert({ user_id: user.id, from_area: from || null, to_area: to || null });
-          if (res.error) throw res.error;
-          msgEl.style.color = 'var(--status-green-text)'; msgEl.textContent = '\u2713 Alert saved for ' + (from || 'any area') + ' \u27a4 ' + (to || 'any area') + '. You\'ll be notified when a match appears.';
-        } catch (err) { msgEl.style.color = 'var(--status-red-text)'; msgEl.textContent = 'Could not save alert: ' + err.message; }
-      });
-
-      // ── Password eye ──
-      function setupEye(iId, bId) {
-        var inp = document.getElementById(iId), btn = document.getElementById(bId); if (!inp || !btn) return;
-        var eo = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
-        var ec = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
-        btn.innerHTML = eo;
-        btn.addEventListener('click', function (ev) { ev.preventDefault(); inp.type = inp.type === 'password' ? 'text' : 'password'; btn.innerHTML = inp.type === 'text' ? ec : eo; });
-      }
-
-      // ── Global click delegation ──
+      // ── Global Click Handler (Event Delegation) ───────────────────────
+      // All navigation uses data-goto attribute — no inline onclick needed
       document.addEventListener('click', function (e) {
         var target = e.target;
+
+        // Walk up the DOM to find the element with data-goto or data-view
         while (target && target !== document) {
-          if (target.classList && target.classList.contains('sidebar-nav-item') && target.dataset.view) { navigate(target.dataset.view); return; }
+          // Sidebar nav item
+          if (target.classList && target.classList.contains('sidebar-nav-item') && target.dataset.view) {
+            navigate(target.dataset.view);
+            return;
+          }
+          // Any button/element with data-goto
           if (target.dataset && target.dataset.goto) {
             var dest = target.dataset.goto;
-            if (target.dataset.ride) { currentRideId = target.dataset.ride; currentRideData = allLoadedRides.find(function (r) { return r.id === currentRideId; }) || null; }
-            if (target.dataset.panel) { navigate(dest).then(function () { showAuth(target.dataset.panel); }); }
-            else { navigate(dest); }
+            if (target.dataset.ride) {
+              currentRideId = target.dataset.ride;
+            }
+            navigate(dest);
+            if (target.dataset.panel) showAuth(target.dataset.panel);
             return;
           }
           target = target.parentElement;
         }
       });
 
+      // ── My Rides Tabs ─────────────────────────────────────────────────
       document.addEventListener('click', function (e) {
         if (e.target.id === 'tab-joined') renderMyRides('joined');
         if (e.target.id === 'tab-offered') renderMyRides('offered');
-        if (e.target.id === 'btn-search-filter') filterRides();
-        if (e.target.id === 'btn-reset-filter') { document.getElementById('filter-src').value = ''; document.getElementById('filter-dest').value = ''; document.getElementById('filter-date').value = ''; renderRideList(allLoadedRides); if (maps['search-map']) refreshMapMarkers(maps['search-map'], allLoadedRides); }
-        if (e.target.id === 'show-signup-btn') showAuth('signup');
-        if (e.target.id === 'show-login-btn') showAuth('login');
       });
+
+      // ── Search Buttons ────────────────────────────────────────────────
+      document.addEventListener('click', function (e) {
+        if (e.target.id === 'btn-search-filter') filterRides();
+        if (e.target.id === 'btn-reset-filter') {
+          document.getElementById('filter-src').value = '';
+          document.getElementById('filter-dest').value = '';
+          document.getElementById('filter-date').value = '';
+          renderRideList(RIDES);
+        }
+        if (e.target.id === 'show-signup-btn') {
+          document.getElementById('login-panel').style.display = 'none';
+          document.getElementById('signup-panel').style.display = 'block';
+        }
+        if (e.target.id === 'show-login-btn') {
+          document.getElementById('signup-panel').style.display = 'none';
+          document.getElementById('login-panel').style.display = 'block';
+        }
+      });
+
+      // ── Home page + user menu + helpers ───────────────────────────────
+      function showAuth(which) {
+        document.getElementById('login-panel').style.display = which === 'signup' ? 'none' : 'block';
+        document.getElementById('signup-panel').style.display = which === 'signup' ? 'block' : 'none';
+      }
+
+      var userBtn = document.getElementById('user-menu-btn');
+      var userMenu = document.getElementById('user-menu');
+      function closeUserMenu() {
+        userMenu.classList.remove('open');
+        userBtn.setAttribute('aria-expanded', 'false');
+      }
+      userBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var willOpen = !userMenu.classList.contains('open');
+        if (willOpen) closeMenu();
+        userMenu.classList.toggle('open', willOpen);
+        userBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!userMenu.contains(e.target) && !userBtn.contains(e.target)) closeUserMenu();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeUserMenu();
+        if (e.key === 'Enter' && e.target.classList &&
+          (e.target.classList.contains('ride-card') || e.target.classList.contains('topbar-brand'))) {
+          e.target.click();
+        }
+      });
+
+
+      async function renderHome() {
+        var pop = document.getElementById('home-popular');
+        var foot = document.getElementById('footer-routes');
+        var personal = document.getElementById('personal-dashboard');
+
+        var short = function (t) {
+          return String(t).split(',')[0];
+        };
+
+        if (pop) {
+          pop.innerHTML = RIDES.map(function (r) {
+            return '<button type="button" class="route-row" data-route-src="' +
+              esc(short(r.source)) + '" data-route-dest="' +
+              esc(short(r.destination)) + '">' +
+              '<span class="route-name">' +
+              esc(short(r.source)) + ' ➔ ' + esc(short(r.destination)) +
+              '</span><span class="route-meta">₹' + r.price + ' · ' +
+              esc(r.time) + '</span></button>';
+          }).join('');
+        }
+
+        if (foot) {
+          foot.innerHTML = RIDES.map(function (r) {
+            return '<button type="button" class="link-btn" data-route-src="' +
+              esc(short(r.source)) + '" data-route-dest="' +
+              esc(short(r.destination)) + '">' +
+              esc(short(r.source)) + ' ➔ ' +
+              esc(short(r.destination)) + '</button>';
+          }).join('');
+        }
+
+        if (!personal) return;
+
+        var sb = window.supabaseClient;
+
+        if (!sb) {
+          personal.style.display = 'none';
+          return;
+        }
+
+        try {
+          var result = await sb.auth.getUser();
+          var user = result.data && result.data.user;
+
+          if (result.error || !user) {
+            personal.style.display = 'none';
+            return;
+          }
+
+          var name =
+            (user.user_metadata && user.user_metadata.full_name) ||
+            (user.email ? user.email.split('@')[0] : 'Rider');
+
+          var welcome = document.getElementById('personal-welcome');
+          var message = document.getElementById('personal-dashboard-message');
+
+          if (welcome) {
+            welcome.textContent = 'Welcome back, ' + name + '!';
+          }
+
+          if (message) {
+            message.textContent =
+              'Your BlaBlaBikes account is ready. Explore rides or check your activity.';
+          }
+
+          // Counts remain at zero until we connect the actual ride tables.
+          personal.style.display = 'block';
+
+        } catch (err) {
+          console.error('Personal dashboard error:', err);
+          personal.style.display = 'none';
+        }
+      }
+
 
       document.addEventListener('click', function (e) {
-        var t = e.target.closest ? e.target.closest('[data-route-src],[data-area],[data-scroll]') : null; if (!t) return;
-        if (t.hasAttribute('data-scroll')) { navigate('home'); var el = document.getElementById(t.getAttribute('data-scroll')); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-        if (t.dataset.routeSrc || t.dataset.area) runSearch(t.dataset.routeSrc || t.dataset.area || '', t.dataset.routeDest || '', '');
+        var t = e.target.closest ? e.target.closest('[data-route-src],[data-area],[data-scroll]') : null;
+        if (!t) return;
+        if (t.hasAttribute('data-scroll')) {
+          navigate('home');
+          var el = document.getElementById(t.getAttribute('data-scroll'));
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        runSearch(t.dataset.routeSrc || t.dataset.area || '', t.dataset.routeDest || '', '');
       });
 
-      document.getElementById('hero-search').addEventListener('submit', function (e) { e.preventDefault(); runSearch(document.getElementById('hero-src').value.trim(), document.getElementById('hero-dest').value.trim(), document.getElementById('hero-date').value); });
+      document.getElementById('hero-search').addEventListener('submit', function (e) {
+        e.preventDefault();
+        runSearch(
+          document.getElementById('hero-src').value.trim(),
+          document.getElementById('hero-dest').value.trim(),
+          document.getElementById('hero-date').value
+        );
+      });
 
-      // ── Topbar user ──
+      document.getElementById('alert-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var from = document.getElementById('alert-from').value.trim();
+        var to = document.getElementById('alert-to').value.trim();
+        var msg = document.getElementById('alert-msg');
+        if (!from && !to) { msg.textContent = 'Enter at least one area to create an alert.'; return; }
+        msg.textContent = 'Alert created for ' + (from || 'any area') + ' ➔ ' + (to || 'any area') + '. Demo only: notifications are not sent yet.';
+      });
+
+      // ── Chat Send ─────────────────────────────────────────────────────
+      document.getElementById('chat-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = document.getElementById('chat-input-msg');
+        var text = (input.value || '').trim();
+        if (!text) return;
+        var bubble = document.createElement('div');
+        bubble.className = 'chat-bubble chat-bubble-sent';
+        bubble.textContent = text;
+        var area = document.getElementById('chat-messages-area');
+        area.appendChild(bubble);
+        input.value = '';
+        area.scrollTop = area.scrollHeight;
+      });
+
+      // ── Prevent form submits from reloading ───────────────────────────
+      document.querySelectorAll('form').forEach(function (f) {
+        f.addEventListener('submit', function (e) { e.preventDefault(); });
+      });
+
+      // ── Offer date default ────────────────────────────────────────────
+      var offerDate = document.getElementById('offer-date');
+      if (offerDate) offerDate.value = (function (d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); })(new Date());
+
+      // ── Password toggles ──────────────────────────────────────────────
+      setupEye('login-password', 'toggle-login-pwd');
+      setupEye('signup-password', 'toggle-signup-pwd');
+
+      // ── Supabase Authentication ───────────────────────────────────────
+
+      // ── Supabase Authentication ──────────────────────────
+      const sb = window.supabaseClient;
+
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+
+      // Login using a registered account
+      loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const email = loginForm.querySelector('input[type="email"]').value.trim();
+        const password = document.getElementById('login-password').value;
+
+        const { data, error } = await sb.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) {
+          alert('Login failed: ' + error.message);
+          return;
+        }
+
+        alert('Login successful! Welcome to BlaBlaBikes.');
+        console.log('Logged-in user:', data.user.id);
+
+        // Open the home screen after successful login
+        navigate('home');
+      });
+
+      // Create a new account
+      signupForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const textInputs = signupForm.querySelectorAll('input[type="text"]');
+        const name = textInputs[0].value.trim();
+        const email = signupForm.querySelector('input[type="email"]').value.trim();
+        const password = document.getElementById('signup-password').value;
+        const phone = textInputs[1].value.trim();
+
+        if (!name || !email || !password || !phone) {
+          alert('Please enter your name, email, password and phone number.');
+          return;
+        }
+
+        if (password.length < 6) {
+          alert('Password must be at least 6 characters.');
+          return;
+        }
+
+        const button = signupForm.querySelector('button[type="submit"]');
+        button.disabled = true;
+        button.textContent = 'Creating account...';
+
+        try {
+          const { data, error } = await sb.auth.signUp({
+            email,
+            password,
+            options: {
+              data: {
+                full_name: name,
+                phone: phone
+              }
+            }
+          });
+
+          if (error) {
+            alert('Signup failed: ' + error.message);
+            return;
+          }
+
+          console.log('Signup response:', data);
+
+          if (data.session) {
+            alert('Account created successfully! You can now log in.');
+          } else {
+            alert('Account created! Check your email to confirm your account before logging in.');
+          }
+
+          signupForm.reset();
+
+        } catch (err) {
+          console.error('Signup error:', err);
+          alert('Signup failed. Open the browser Console for details.');
+        } finally {
+          button.disabled = false;
+          button.textContent = 'Create Account';
+        }
+      });
+      // ── Dynamic logged-in user profile ─────────────────────────────
       async function updateTopbarUser(user) {
-        var li = document.getElementById('login-menu-item'), si = document.getElementById('signup-menu-item'), lo = document.getElementById('logout-menu-item');
-        if (li) li.hidden = !!user; if (si) si.hidden = !!user; if (lo) lo.hidden = !user;
-        var nameEl = document.getElementById('topbar-username'), avEl = document.getElementById('topbar-user-avatar');
-        if (!nameEl || !avEl) return;
-        if (!user) { nameEl.textContent = 'Guest'; avEl.textContent = '?'; return; }
-        var fullName = (user.user_metadata && user.user_metadata.full_name) || user.email || 'User';
-        var sb = window.supabaseClient;
-        if (sb) { try { var r = await sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(); if (!r.error && r.data && r.data.full_name) fullName = r.data.full_name; } catch (e) { } }
-        nameEl.textContent = fullName; avEl.textContent = fullName.trim().charAt(0).toUpperCase() || '?';
+        const loginItem = document.getElementById('login-menu-item');
+        const signupItem = document.getElementById('signup-menu-item');
+        const logoutItem = document.getElementById('logout-menu-item');
+
+        if (loginItem) loginItem.hidden = !!user;
+        if (signupItem) signupItem.hidden = !!user;
+        if (logoutItem) logoutItem.hidden = !user;
+        const nameElement = document.getElementById('topbar-username');
+        const avatarElement = document.getElementById('topbar-user-avatar');
+
+        if (!nameElement || !avatarElement) return;
+
+        // Never display a demo user's name when nobody is logged in.
+        if (!user) {
+          nameElement.textContent = 'Guest';
+          avatarElement.textContent = '?';
+          return;
+        }
+
+        let fullName =
+          user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          user.email ||
+          'User';
+
+        // Prefer the profile saved in the Supabase profiles table.
+        const client = window.supabaseClient;
+
+        if (client) {
+          const { data, error } = await client
+            .from('profiles')
+            .select('full_name')
+            .eq('id', user.id)
+            .maybeSingle();
+
+          if (!error && data?.full_name) {
+            fullName = data.full_name;
+          }
+        }
+
+        // Show the current user's name and first initial.
+        nameElement.textContent = fullName;
+        avatarElement.textContent =
+          fullName.trim().charAt(0).toUpperCase() || '?';
       }
 
+      // Restore the existing login session after page refresh.
       if (window.supabaseClient) {
-        window.supabaseClient.auth.getSession().then(function (res) { if (res.error) { updateTopbarUser(null); return; } updateTopbarUser(res.data.session ? res.data.session.user : null); });
-        window.supabaseClient.auth.onAuthStateChange(function (event, session) {
-          updateTopbarUser(session ? session.user : null);
-          if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') renderHome();
+        window.supabaseClient.auth.getSession().then(({ data, error }) => {
+          if (error) {
+            console.error('Could not restore session:', error.message);
+            updateTopbarUser(null);
+            return;
+          }
+
+          updateTopbarUser(data.session?.user || null);
         });
-      } else { updateTopbarUser(null); }
 
-      // ── Logout ──
-      var loBtn = document.getElementById('logout-menu-item');
-      if (loBtn) loBtn.addEventListener('click', async function () { loBtn.disabled = true; try { var r = await window.supabaseClient.auth.signOut(); if (r.error) throw r.error; showToast('You have been logged out.', 'success'); navigate('home'); } catch (err) { showToast('Logout failed: ' + err.message, 'error'); } finally { loBtn.disabled = false; } });
+        // Update the topbar whenever the login state changes.
+        window.supabaseClient.auth.onAuthStateChange(
+          (_event, session) => {
+            updateTopbarUser(session?.user || null);
+          }
+        );
+      } else {
+        updateTopbarUser(null);
+      }
+      // ── Supabase Logout ──────────────────────────────────
+      const logoutButton = document.getElementById('logout-menu-item');
 
-      // ── Login ──
-      document.getElementById('login-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var sb = window.supabaseClient, email = document.getElementById('login-email').value.trim(), pwd = document.getElementById('login-password').value;
-        var btn = document.getElementById('login-submit-btn'), errEl = document.getElementById('login-error');
-        if (!email || !pwd) { errEl.textContent = 'Please enter email and password.'; errEl.style.display = 'block'; return; }
-        errEl.style.display = 'none'; btn.disabled = true; btn.textContent = 'Logging in...';
-        try {
-          var res = await sb.auth.signInWithPassword({ email: email, password: pwd });
-          if (res.error) throw res.error;
-          showToast('Welcome back! You are now logged in.', 'success'); navigate('home');
-        } catch (err) { errEl.textContent = err.message || 'Login failed.'; errEl.style.display = 'block'; }
-        finally { btn.disabled = false; btn.textContent = 'Login'; }
-      });
+      if (logoutButton) {
+        logoutButton.addEventListener('click', async function () {
+          const client = window.supabaseClient;
 
-      // ── Signup ──
-      document.getElementById('signup-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var sb = window.supabaseClient;
-        var name = document.getElementById('signup-name').value.trim(), email = document.getElementById('signup-email').value.trim(), pwd = document.getElementById('signup-password').value, phone = document.getElementById('signup-phone').value.trim(), area = document.getElementById('signup-area').value.trim();
-        var btn = document.getElementById('signup-submit-btn'), errEl = document.getElementById('signup-error');
-        if (!name || !email || !pwd || !phone) { errEl.textContent = 'Please fill in all required fields.'; errEl.style.display = 'block'; return; }
-        if (pwd.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.style.display = 'block'; return; }
-        errEl.style.display = 'none'; btn.disabled = true; btn.textContent = 'Creating account...';
-        try {
-          var res = await sb.auth.signUp({ email: email, password: pwd, options: { data: { full_name: name, phone: phone, local_area: area } } });
-          if (res.error) throw res.error;
-          if (res.data.session) { showToast('Account created! Welcome to BlaBlaBikes.', 'success'); navigate('home'); }
-          else { showToast('Account created! Please check your email to confirm before logging in.', 'info'); showAuth('login'); }
-        } catch (err) { errEl.textContent = err.message || 'Signup failed.'; errEl.style.display = 'block'; }
-        finally { btn.disabled = false; btn.textContent = 'Create Account'; }
-      });
+          if (!client) {
+            alert('Supabase is not connected. Please refresh the page.');
+            return;
+          }
 
-      // ── Profile ──
+          logoutButton.disabled = true;
+
+          try {
+            const { error } = await client.auth.signOut();
+
+            if (error) {
+              alert('Logout failed: ' + error.message);
+              return;
+            }
+
+            // Reset the header and return to the home page.
+            await updateTopbarUser(null);
+            navigate('home');
+
+            alert('You have been logged out successfully.');
+          } catch (err) {
+            console.error('Logout error:', err);
+            alert('Something went wrong while logging out.');
+          } finally {
+            logoutButton.disabled = false;
+          }
+        });
+      }
+
+      /* ── Supabase Profile: Load and Save ─────────────── */
+
+      const profileForm = document.getElementById('profile-form');
+
       async function loadMyProfile() {
-        var sb = window.supabaseClient; if (!sb) return;
-        var sr = await sb.auth.getSession(), user = sr.data.session ? sr.data.session.user : null; if (!user) return;
-        try {
-          var res = await sb.from('profiles').select('full_name,email,phone,local_area,bike_model,bike_plate').eq('id', user.id).maybeSingle();
-          if (res.error) throw res.error;
-          var p = res.data || {};
-          function sv(id, v) { var e = document.getElementById(id); if (e) e.value = v || ''; }
-          sv('profile-name', p.full_name || (user.user_metadata && user.user_metadata.full_name) || '');
-          sv('profile-email', p.email || user.email || '');
-          sv('profile-phone', p.phone || (user.user_metadata && user.user_metadata.phone) || '');
-          sv('profile-area', p.local_area || (user.user_metadata && user.user_metadata.local_area) || '');
-          sv('profile-bike-model', p.bike_model || '');
-          sv('profile-bike-plate', p.bike_plate || '');
-          var h = document.getElementById('profile-heading-name'), d = document.getElementById('profile-heading-details'), av = document.getElementById('profile-avatar');
-          if (h) h.textContent = p.full_name || 'User';
-          if (d) d.textContent = (p.email || user.email || '') + (p.local_area ? ' \u2022 ' + p.local_area : '');
-          if (av) av.textContent = (p.full_name || 'U').trim().charAt(0).toUpperCase();
-        } catch (err) { console.error(err); }
-        // Load reviews for this user
-        await loadProfileReviews(user.id);
-        // Show the write-review button (only after login)
-        var wrBtn = document.getElementById('btn-write-review');
-        if (wrBtn) wrBtn.style.display = 'inline-flex';
+        const sb = window.supabaseClient;
+        if (!sb || !profileForm) return;
+
+        const { data: sessionData, error: sessionError } =
+          await sb.auth.getSession();
+
+        if (sessionError) {
+          console.error('Session error:', sessionError.message);
+          return;
+        }
+
+        const user = sessionData.session?.user;
+
+        if (!user) {
+          profileForm.reset();
+          return;
+        }
+
+        const { data: profile, error } = await sb
+          .from('profiles')
+          .select('full_name, email, phone, local_area')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Could not load profile:', error.message);
+          alert('Could not load your profile: ' + error.message);
+          return;
+        }
+
+        document.getElementById('profile-name').value =
+          profile?.full_name || user.user_metadata?.full_name || '';
+
+        document.getElementById('profile-email').value =
+          profile?.email || user.email || '';
+
+        document.getElementById('profile-phone').value =
+          profile?.phone || user.user_metadata?.phone || '';
+
+        document.getElementById('profile-area').value =
+          profile?.local_area || user.user_metadata?.local_area || '';
       }
 
-      // ── Load & render reviews ──
-      async function loadProfileReviews(userId) {
-        var el = document.getElementById('profile-reviews-list'); if (!el) return;
-        var sb = window.supabaseClient; if (!sb) { el.innerHTML = ''; return; }
-        try {
-          // Reviews written ABOUT this user (where reviewed_id = userId)
-          var res = await sb.from('reviews').select('rating,comment,created_at,reviewer:reviewer_id(full_name)').eq('reviewed_id', userId).order('created_at', { ascending: false });
-          if (res.error) throw res.error;
-          var reviews = res.data || [];
-          if (!reviews.length) { el.innerHTML = '<div style="font-size:13px;color:var(--text-secondary);padding:12px 0;">No reviews yet. Reviews from fellow riders and passengers will appear here.</div>'; return; }
-          el.innerHTML = reviews.map(function(rv) {
-            var name = (rv.reviewer && rv.reviewer.full_name) ? rv.reviewer.full_name : 'Anonymous';
-            var stars = '';
-            for (var i = 1; i <= 5; i++) stars += '<span style="color:' + (i <= rv.rating ? '#d4af37' : '#ddd') + ';font-size:13px;">&#9733;</span>';
-            var dt = rv.created_at ? new Date(rv.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
-            return '<div class="info-row" style="flex-direction:column;align-items:flex-start;gap:4px;">' +
-              '<div style="display:flex;justify-content:space-between;width:100%;">' +
-              '<span class="info-row-label">' + esc(name) + '</span>' +
-              '<span style="font-size:11px;color:var(--text-muted);">' + esc(dt) + '</span>' +
-              '</div>' +
-              '<div>' + stars + '</div>' +
-              '<span style="font-size:13px;color:var(--text-secondary);">' + esc(rv.comment || '') + '</span>' +
-              '</div>';
-          }).join('');
-        } catch(err) { console.error(err); el.innerHTML = '<div style="font-size:13px;color:var(--text-secondary);">Could not load reviews.</div>'; }
-      }
+      if (profileForm) {
+        profileForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
 
-      // ── Review modal ──
-      var reviewSelectedRating = 5;
-      function updateStarUI(r) {
-        reviewSelectedRating = r;
-        document.querySelectorAll('.star-btn').forEach(function(b) {
-          b.style.opacity = parseInt(b.dataset.star) <= r ? '1' : '0.3';
+          const sb = window.supabaseClient;
+
+          if (!sb) {
+            alert('Supabase is not connected.');
+            return;
+          }
+
+          const { data: sessionData, error: sessionError } =
+            await sb.auth.getSession();
+
+          if (sessionError || !sessionData.session?.user) {
+            alert('Please log in before saving your profile.');
+            return;
+          }
+
+          const user = sessionData.session.user;
+          const fullName = document.getElementById('profile-name').value.trim();
+          const phone = document.getElementById('profile-phone').value.trim();
+          const localArea = document.getElementById('profile-area').value.trim();
+
+          if (!fullName) {
+            alert('Please enter your full name.');
+            return;
+          }
+
+          const saveButton = profileForm.querySelector(
+            'button[type="submit"]'
+          );
+          saveButton.disabled = true;
+
+          try {
+            const { error: saveError } = await sb
+              .from('profiles')
+              .update({
+                full_name: fullName,
+                phone: phone,
+                local_area: localArea
+              })
+              .eq('id', user.id);
+
+            if (saveError) {
+              throw saveError;
+            }
+
+            const { error: metadataError } = await sb.auth.updateUser({
+              data: {
+                full_name: fullName,
+                phone: phone,
+                local_area: localArea
+              }
+            });
+
+            if (metadataError) {
+              console.warn(
+                'Profile saved, but auth metadata did not update:',
+                metadataError.message
+              );
+            }
+
+            if (typeof updateTopbarUser === 'function') {
+              await updateTopbarUser({
+                ...user,
+                user_metadata: {
+                  ...user.user_metadata,
+                  full_name: fullName,
+                  phone: phone,
+                  local_area: localArea
+                }
+              });
+            }
+
+            alert('Your profile has been saved successfully!');
+          } catch (err) {
+            console.error('Profile save failed:', err);
+            alert('Could not save your profile: ' + err.message);
+          } finally {
+            saveButton.disabled = false;
+          }
         });
-        var ri = document.getElementById('review-rating'); if (ri) ri.value = r;
       }
-      document.querySelectorAll('.star-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() { updateStarUI(parseInt(btn.dataset.star)); });
-        btn.addEventListener('mouseenter', function() { document.querySelectorAll('.star-btn').forEach(function(b) { b.style.opacity = parseInt(b.dataset.star) <= parseInt(btn.dataset.star) ? '1' : '0.3'; }); });
-      });
-      var reviewModal = document.getElementById('review-modal');
-      if (reviewModal) { reviewModal.addEventListener('mouseleave', function() { updateStarUI(reviewSelectedRating); }); }
-      updateStarUI(5);
 
-      var btnWriteReview = document.getElementById('btn-write-review');
-      if (btnWriteReview) btnWriteReview.addEventListener('click', function() {
-        var modal = document.getElementById('review-modal');
-        if (modal) { modal.style.display = 'flex'; }
-        var msgEl = document.getElementById('review-modal-msg'); if (msgEl) msgEl.textContent = '';
+      // Load profile whenever the current session changes.
+      if (window.supabaseClient) {
+        window.supabaseClient.auth.onAuthStateChange((event, session) => {
+          if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
+            // Delay database work until after the auth callback completes.
+            setTimeout(() => loadMyProfile(), 0);
+          }
+
+          if (event === 'SIGNED_OUT') {
+            if (profileForm) profileForm.reset();
+          }
+        });
+
+        loadMyProfile();
+      }
+      (async () => {
+        const sb = window.supabaseClient;
+
+        console.log("Supabase client exists:", !!sb);
+
+        if (!sb) return;
+
+        const { data: sessionData, error: sessionError } =
+          await sb.auth.getSession();
+
+        console.log("Session error:", sessionError);
+        console.log("Logged-in email:", sessionData.session?.user?.email);
+
+        if (!sessionData.session?.user) return;
+
+        const { data, error } = await sb
+          .from("profiles")
+          .select("full_name, email, phone, local_area")
+          .eq("id", sessionData.session.user.id)
+          .maybeSingle();
+
+        console.log("Profile data:", data);
+        console.log("Profile query error:", error);
+      })();
+      // ── Load current user's profile ──────────────────────
+      async function loadMyProfile() {
+        const sb = window.supabaseClient;
+        const user = (await sb.auth.getSession()).data.session?.user;
+
+        if (!user) return;
+
+        const { data: profile, error } = await sb
+          .from('profiles')
+          .select('full_name, email, phone, local_area')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Profile loading error:', error.message);
+          return;
+        }
+
+        if (!profile) return;
+
+        const setValue = (id, value) => {
+          const el = document.getElementById(id);
+          if (el) el.value = value || '';
+        };
+
+        setValue('profile-name', profile.full_name);
+        setValue('profile-email', profile.email || user.email);
+        setValue('profile-phone', profile.phone);
+        setValue('profile-area', profile.local_area);
+
+        const heading = document.getElementById('profile-heading-name');
+        const details = document.getElementById('profile-heading-details');
+        const avatar = document.getElementById('profile-avatar');
+
+        if (heading) heading.textContent = profile.full_name || 'User';
+        if (details) {
+          details.textContent =
+            (profile.email || user.email || '') +
+            (profile.local_area ? ' • ' + profile.local_area : '');
+        }
+        if (avatar) {
+          avatar.textContent =
+            (profile.full_name || 'U').trim().charAt(0).toUpperCase();
+        }
+      }
+
+      // Load the profile when the page is opened.
+      document.addEventListener('click', function (event) {
+        const target = event.target.closest('[data-goto]');
+        if (target && target.dataset.goto === 'profile') {
+          loadMyProfile();
+        }
       });
 
-      var btnReviewCancel = document.getElementById('btn-review-cancel');
-      if (btnReviewCancel) btnReviewCancel.addEventListener('click', function() {
-        var modal = document.getElementById('review-modal'); if (modal) modal.style.display = 'none';
-      });
+      // Also load it on initial page startup.
+      loadMyProfile();
 
-      var btnReviewSubmit = document.getElementById('btn-review-submit');
-      if (btnReviewSubmit) btnReviewSubmit.addEventListener('click', async function() {
-        var emailInput = document.getElementById('review-user-email');
-        var textInput = document.getElementById('review-text');
-        var msgEl = document.getElementById('review-modal-msg');
-        var email = (emailInput && emailInput.value.trim()) || '';
-        var comment = (textInput && textInput.value.trim()) || '';
-        var rating = reviewSelectedRating || 5;
-        if (!email) { if (msgEl) { msgEl.style.color = 'var(--status-red-text)'; msgEl.textContent = 'Please enter the email of the person you are reviewing.'; } return; }
-        var user = await getCurrentUser();
-        if (!user) { showToast('Please log in to write a review.', 'error'); return; }
-        if (email.toLowerCase() === user.email.toLowerCase()) { if (msgEl) { msgEl.style.color = 'var(--status-red-text)'; msgEl.textContent = 'You cannot review yourself.'; } return; }
-        var sb = window.supabaseClient;
-        btnReviewSubmit.disabled = true; btnReviewSubmit.textContent = 'Submitting...';
-        try {
-          // Look up reviewed user by email via profiles table
-          var pRes = await sb.from('profiles').select('id').eq('email', email).maybeSingle();
-          if (pRes.error) throw pRes.error;
-          if (!pRes.data) { if (msgEl) { msgEl.style.color = 'var(--status-red-text)'; msgEl.textContent = 'No BlaBlaBikes user found with that email.'; } return; }
-          var reviewedId = pRes.data.id;
-          var res = await sb.from('reviews').upsert({ reviewer_id: user.id, reviewed_id: reviewedId, rating: rating, comment: comment }, { onConflict: 'reviewer_id,reviewed_id' });
-          if (res.error) throw res.error;
-          showToast('Review submitted! Thank you for your feedback.', 'success');
-          var modal = document.getElementById('review-modal'); if (modal) modal.style.display = 'none';
-          if (emailInput) emailInput.value = '';
-          if (textInput) textInput.value = '';
-          updateStarUI(5);
-          // Reload current user's reviews
-          var sr2 = await sb.auth.getSession();
-          if (sr2.data.session) await loadProfileReviews(sr2.data.session.user.id);
-        } catch(err) { console.error(err); if (msgEl) { msgEl.style.color = 'var(--status-red-text)'; msgEl.textContent = 'Could not submit: ' + err.message; } }
-        finally { btnReviewSubmit.disabled = false; btnReviewSubmit.textContent = 'Submit Review'; }
-      });
-
-      var profileForm = document.getElementById('profile-form');
-      if (profileForm) profileForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var sb = window.supabaseClient; if (!sb) { showToast('Supabase not connected.', 'error'); return; }
-        var sr = await sb.auth.getSession(); if (!sr.data.session) { showToast('Please log in first.', 'error'); return; }
-        var user = sr.data.session.user;
-        var fullName = document.getElementById('profile-name').value.trim(), phone = document.getElementById('profile-phone').value.trim(), area = document.getElementById('profile-area').value.trim(), bike = document.getElementById('profile-bike-model').value.trim(), plate = document.getElementById('profile-bike-plate').value.trim();
-        if (!fullName) { showToast('Please enter your full name.', 'error'); return; }
-        var sBtn = profileForm.querySelector('button[type="submit"]'); sBtn.disabled = true; sBtn.textContent = 'Saving...';
-        try {
-          var res = await sb.from('profiles').upsert({ id: user.id, full_name: fullName, email: user.email, phone: phone, local_area: area, bike_model: bike, bike_plate: plate });
-          if (res.error) throw res.error;
-          await sb.auth.updateUser({ data: { full_name: fullName, phone: phone, local_area: area } });
-          await updateTopbarUser(Object.assign({}, user, { user_metadata: Object.assign({}, user.user_metadata, { full_name: fullName }) }));
-          showToast('Profile saved successfully!', 'success');
-        } catch (err) { showToast('Could not save profile: ' + err.message, 'error'); }
-        finally { sBtn.disabled = false; sBtn.textContent = 'Save Profile'; }
-      });
-
-      // ── Autocomplete ──
-      function setupLocationAutocomplete(input, onSelect) {
+      // ── Autocomplete Engine ───────────────────────────────────────────
+      function setupLocationAutocomplete(input, onSelectCallback) {
         if (!input) return;
         var parent = input.parentElement;
-        if (parent) { parent.classList.add('autocomplete-wrapper'); if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative'; }
-        var dd = document.createElement('div'); dd.className = 'autocomplete-dropdown'; dd.setAttribute('role', 'listbox'); parent.appendChild(dd);
-        var ai = -1, ci = [];
-        function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-        function hl(t, q) { if (!q) return esc(t); return esc(t).replace(new RegExp('(' + escRe(q) + ')', 'gi'), '<mark>$1</mark>'); }
-        function rdd(items, q, pop) {
-          ci = items; ai = -1;
-          if (!items || !items.length) { dd.innerHTML = '<div class="ac-empty">No matching Nashik locations for "' + esc(q) + '"</div>'; dd.classList.add('open'); return; }
-          var p = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg>';
-          dd.innerHTML = '<div class="ac-header">' + (pop ? 'Popular Nashik Spots' : 'Suggested Locations') + '</div>' +
-            items.map(function (l, i) { return '<div class="ac-item" data-index="' + i + '" role="option"><div class="ac-left"><div class="ac-icon">' + p + '</div><div class="ac-text-col"><div class="ac-title">' + hl(l.name, q) + '</div><div class="ac-sub">' + esc(l.area) + (l.fullName && l.fullName !== l.name ? ' \u2022 ' + esc(l.fullName) : '') + ' </div></div></div><span class="ac-badge">' + esc(l.category) + '</span></div>'; }).join('');
-          dd.classList.add('open');
+        if (parent) {
+          parent.classList.add('autocomplete-wrapper');
+          if (getComputedStyle(parent).position === 'static') {
+            parent.style.position = 'relative';
+          }
         }
-        function cdd() { dd.classList.remove('open'); dd.innerHTML = ''; ai = -1; ci = []; }
-        function sel(idx) { if (idx >= 0 && idx < ci.length) { input.value = ci[idx].name; cdd(); if (typeof onSelect === 'function') onSelect(ci[idx].name); } }
-        function uq() {
+
+        var dropdown = document.createElement('div');
+        dropdown.className = 'autocomplete-dropdown';
+        dropdown.setAttribute('role', 'listbox');
+        parent.appendChild(dropdown);
+
+        var activeIndex = -1;
+        var currentItems = [];
+
+        function escapeRegExp(str) {
+          return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function highlightMatch(text, query) {
+          if (!query) return esc(text);
+          var q = escapeRegExp(query);
+          var re = new RegExp('(' + q + ')', 'gi');
+          return esc(text).replace(re, '<mark>$1</mark>');
+        }
+
+        function renderDropdown(items, query, isPopular) {
+          currentItems = items;
+          activeIndex = -1;
+          if (!items || items.length === 0) {
+            dropdown.innerHTML = '<div class="ac-empty">No matching Nashik locations for "' + esc(query) + '"</div>';
+            dropdown.classList.add('open');
+            return;
+          }
+
+          var html = '';
+          if (isPopular) {
+            html += '<div class="ac-header">Popular Nashik Spots</div>';
+          } else {
+            html += '<div class="ac-header">Suggested Locations</div>';
+          }
+
+          items.forEach(function (loc, idx) {
+            var pinSvg = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg>';
+            html += '<div class="ac-item" data-index="' + idx + '" role="option">' +
+              '<div class="ac-left">' +
+              '<div class="ac-icon">' + pinSvg + '</div>' +
+              '<div class="ac-text-col">' +
+              '<div class="ac-title">' + highlightMatch(loc.name, query) + '</div>' +
+              '<div class="ac-sub">' + esc(loc.area) + (loc.fullName && loc.fullName !== loc.name ? ' • ' + esc(loc.fullName) : '') + '</div>' +
+              '</div>' +
+              '</div>' +
+              '<span class="ac-badge">' + esc(loc.category) + '</span>' +
+              '</div>';
+          });
+
+          dropdown.innerHTML = html;
+          dropdown.classList.add('open');
+        }
+
+        function closeDropdown() {
+          dropdown.classList.remove('open');
+          dropdown.innerHTML = '';
+          activeIndex = -1;
+          currentItems = [];
+        }
+
+        function selectItem(index) {
+          if (index >= 0 && index < currentItems.length) {
+            var selected = currentItems[index];
+            input.value = selected.name;
+            closeDropdown();
+            if (typeof onSelectCallback === 'function') {
+              onSelectCallback(selected.name);
+            }
+          }
+        }
+
+        function updateQuery() {
           var q = input.value.trim().toLowerCase();
-          if (!q) { rdd(NASHIK_LOCATIONS.slice(0, 7), '', true); return; }
-          var sc = [];
-          NASHIK_LOCATIONS.forEach(function (l) { var nl = l.name.toLowerCase(), fl = (l.fullName || '').toLowerCase(), al = (l.area || '').toLowerCase(), s = 999; if (nl.startsWith(q)) s = 1; else if (nl.split(/\s+/).some(function (w) { return w.startsWith(q); })) s = 2; else if (nl.indexOf(q) !== -1) s = 3; else if (fl.indexOf(q) !== -1) s = 4; else if (al.indexOf(q) !== -1) s = 5; if (s <= 5) sc.push({ l: l, s: s }); });
-          sc.sort(function (a, b) { return a.s !== b.s ? a.s - b.s : a.l.name.localeCompare(b.l.name); });
-          rdd(sc.slice(0, 8).map(function (x) { return x.l; }), q, false);
+          if (!q) {
+            var popular = NASHIK_LOCATIONS.slice(0, 7);
+            renderDropdown(popular, '', true);
+            return;
+          }
+
+          var scored = [];
+          NASHIK_LOCATIONS.forEach(function (loc) {
+            var nameLower = loc.name.toLowerCase();
+            var fullLower = (loc.fullName || '').toLowerCase();
+            var areaLower = (loc.area || '').toLowerCase();
+
+            var score = 999;
+            if (nameLower.startsWith(q)) {
+              score = 1;
+            } else {
+              var words = nameLower.split(/\s+/);
+              var wordMatch = words.some(function (w) { return w.startsWith(q); });
+              if (wordMatch) {
+                score = 2;
+              } else if (nameLower.indexOf(q) !== -1) {
+                score = 3;
+              } else if (fullLower.indexOf(q) !== -1) {
+                score = 4;
+              } else if (areaLower.indexOf(q) !== -1) {
+                score = 5;
+              }
+            }
+
+            if (score <= 5) {
+              scored.push({ loc: loc, score: score });
+            }
+          });
+
+          scored.sort(function (a, b) {
+            if (a.score !== b.score) return a.score - b.score;
+            return a.loc.name.localeCompare(b.loc.name);
+          });
+
+          var results = scored.slice(0, 8).map(function (s) { return s.loc; });
+          renderDropdown(results, q, false);
         }
-        function ua(els) { els.forEach(function (e, i) { if (i === ai) { e.classList.add('active'); e.scrollIntoView({ block: 'nearest' }); } else e.classList.remove('active'); }); }
-        input.addEventListener('focus', uq);
-        input.addEventListener('input', function () { uq(); if (typeof onSelect === 'function') onSelect(input.value); });
-        input.addEventListener('keydown', function (e) {
-          if (!dd.classList.contains('open')) return;
-          var els = dd.querySelectorAll('.ac-item');
-          if (e.key === 'ArrowDown') { e.preventDefault(); ai = (ai + 1) % els.length; ua(els); }
-          else if (e.key === 'ArrowUp') { e.preventDefault(); ai = (ai - 1 + els.length) % els.length; ua(els); }
-          else if (e.key === 'Enter') { e.preventDefault(); sel(ai >= 0 ? ai : 0); }
-          else if (e.key === 'Escape') cdd();
+
+        input.addEventListener('focus', function () {
+          updateQuery();
         });
-        dd.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); var it = e.target.closest('.ac-item'); if (it) sel(parseInt(it.dataset.index, 10)); });
-        document.addEventListener('click', function (e) { if (!parent.contains(e.target)) cdd(); });
+
+        input.addEventListener('input', function () {
+          updateQuery();
+          if (typeof onSelectCallback === 'function') {
+            onSelectCallback(input.value);
+          }
+        });
+
+        input.addEventListener('keydown', function (e) {
+          if (!dropdown.classList.contains('open')) return;
+
+          var itemEls = dropdown.querySelectorAll('.ac-item');
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (itemEls.length === 0) return;
+            activeIndex = (activeIndex + 1) % itemEls.length;
+            updateActiveItem(itemEls);
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (itemEls.length === 0) return;
+            activeIndex = (activeIndex - 1 + itemEls.length) % itemEls.length;
+            updateActiveItem(itemEls);
+          } else if (e.key === 'Enter') {
+            if (activeIndex >= 0) {
+              e.preventDefault();
+              selectItem(activeIndex);
+            } else if (itemEls.length > 0) {
+              e.preventDefault();
+              selectItem(0);
+            }
+          } else if (e.key === 'Escape') {
+            closeDropdown();
+          }
+        });
+
+        function updateActiveItem(itemEls) {
+          itemEls.forEach(function (el, i) {
+            if (i === activeIndex) {
+              el.classList.add('active');
+              el.scrollIntoView({ block: 'nearest' });
+            } else {
+              el.classList.remove('active');
+            }
+          });
+        }
+
+        dropdown.addEventListener('mousedown', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var itemEl = e.target.closest('.ac-item');
+          if (itemEl) {
+            var idx = parseInt(itemEl.dataset.index, 10);
+            selectItem(idx);
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!parent.contains(e.target)) {
+            closeDropdown();
+          }
+        });
       }
 
-      setupLocationAutocomplete(document.getElementById('filter-src'), function () { filterRides(); });
-      setupLocationAutocomplete(document.getElementById('filter-dest'), function () { filterRides(); });
+      // ── Attach Autocomplete to Location Inputs ─────────────────────
+      setupLocationAutocomplete(document.getElementById('filter-src'), function () {
+        filterRides();
+      });
+      setupLocationAutocomplete(document.getElementById('filter-dest'), function () {
+        filterRides();
+      });
       setupLocationAutocomplete(document.getElementById('hero-src'));
       setupLocationAutocomplete(document.getElementById('hero-dest'));
       setupLocationAutocomplete(document.getElementById('offer-start-area'));
@@ -3200,14 +3920,126 @@
       setupLocationAutocomplete(document.getElementById('offer-drop-landmark'));
       setupLocationAutocomplete(document.getElementById('alert-from'));
       setupLocationAutocomplete(document.getElementById('alert-to'));
-      setupEye('login-password', 'toggle-login-pwd');
-      setupEye('signup-password', 'toggle-signup-pwd');
-      var offerDateEl = document.getElementById('offer-date'); if (offerDateEl) offerDateEl.value = todayIso();
 
+      async function requireLogin() {
+        const sb = window.supabaseClient;
+
+        if (!sb) {
+          alert('Authentication is temporarily unavailable. Please try again.');
+          return false;
+        }
+
+        const { data, error } = await sb.auth.getSession();
+
+        if (error || !data.session) {
+          alert('Please log in or create an account to continue.');
+          // Use your existing login navigation destination here.
+          navigate('login');
+          return false;
+        }
+
+        return true;
+      }
+
+/* ── Publish Ride to Supabase ── */
+const offerForm = document.getElementById('offer-ride-form');
+
+if (offerForm && !offerForm.dataset.supabaseHandler) {
+  offerForm.dataset.supabaseHandler = 'true';
+
+  offerForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const sb = window.supabaseClient;
+    const submitButton = offerForm.querySelector(
+      'button[type="submit"]'
+    );
+
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      // Require a logged-in user
+      const { data: authData, error: authError } =
+        await sb.auth.getUser();
+
+      if (authError || !authData.user) {
+        alert('Please log in before offering a ride.');
+        navigate('login');
+        showAuth('login');
+        return;
+      }
+
+      const source = document.getElementById('offer-source').value.trim();
+      const destination = document.getElementById('offer-destination').value.trim();
+      const pickup = document.getElementById('offer-pickup').value.trim();
+      const drop = document.getElementById('offer-drop').value.trim();
+      const date = document.getElementById('offer-date').value;
+      const time = document.getElementById('offer-time').value;
+      const price = Number(document.getElementById('offer-price').value);
+      const bike = document.getElementById('offer-bike').value.trim();
+      const plate = document.getElementById('offer-plate').value.trim();
+      const notes = document.getElementById('offer-notes').value.trim();
+
+      if (!source || !destination || !date || !time) {
+        alert('Please fill in the starting area, destination, date and time.');
+        return;
+      }
+
+      if (!Number.isFinite(price) || price < 0) {
+        alert('Please enter a valid, non-negative contribution price.');
+        return;
+      }
+
+      const departure = new Date(date + 'T' + time);
+
+      if (Number.isNaN(departure.getTime()) || departure <= new Date()) {
+        alert('Please select a future departure date and time.');
+        return;
+      }
+
+      const { error } = await sb.from('rides').insert({
+        driver_id: authData.user.id,
+        source: source,
+        destination: destination,
+        pickup_location: pickup || null,
+        drop_location: drop || null,
+        departure_time: departure.toISOString(),
+        price: price,
+        seats_available: 1,
+        bike_details: bike || null,
+        vehicle_plate: plate || null,
+        notes: notes || null,
+        status: 'active'
+      });
+
+      if (error) {
+        console.error('Publish ride error:', error);
+        alert('Could not publish ride: ' + error.message);
+        return;
+      }
+
+      alert('Ride published successfully!');
+      offerForm.reset();
+
+      // Refresh the public ride list
+      navigate('search');
+
+    } catch (err) {
+      console.error('Unexpected publish error:', err);
+      alert('Something went wrong. Check the browser console.');
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+}
+
+      // ── Boot ──────────────────────────────────────────────────────────
       renderHome();
       navigate('home');
+
     })();
   </script>
+
 </body>
 
 </html>
