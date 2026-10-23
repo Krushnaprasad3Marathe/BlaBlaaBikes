@@ -2192,9 +2192,17 @@
           </div>
 
           <div class="container-box" style="padding:16px;">
-            <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text-secondary);">Pickup Points —
-              Nashik</div>
-            <div id="search-map" class="map-frame"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+              <div id="search-map-title-text" style="font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary-blue);"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                <span>Pickup Points — Nashik</span>
+              </div>
+              <div id="search-route-badge" style="display:none;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;padding:3px 10px;border-radius:16px;font-size:12px;font-weight:700;display:none;align-items:center;gap:6px;">
+                <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dc2626;box-shadow:0 0 6px rgba(220,38,38,0.8);"></span>
+                <span id="search-route-badge-text">Route Connected</span>
+              </div>
+            </div>
+            <div id="search-map" class="map-frame" style="height:320px;"></div>
           </div>
 
           <div class="container-box">
@@ -2585,39 +2593,39 @@
 
       // ── Nashik Locality & Landmark Database ──────────────────────────
       var NASHIK_LOCATIONS = [
-        { name: 'CBS', fullName: 'CBS (Central Bus Stand)', category: 'Transit Hub', area: 'Central Nashik' },
-        { name: 'Canada Corner', fullName: 'Canada Corner', category: 'Commercial Hub', area: 'Sharanpur Road' },
-        { name: 'College Road', fullName: 'College Road', category: 'Student & Cafe Hub', area: 'College Road' },
-        { name: 'City Centre Mall', fullName: 'City Centre Mall (CCM)', category: 'Shopping Mall', area: 'Untwadi' },
-        { name: 'CIDCO', fullName: 'CIDCO', category: 'Residential Hub', area: 'New Nashik' },
-        { name: 'Panchavati', fullName: 'Panchavati', category: 'Heritage & Pilgrimage', area: 'Panchavati' },
-        { name: 'Nashik Road Station', fullName: 'Nashik Road Railway Station', category: 'Transit Hub', area: 'Nashik Road' },
-        { name: 'Satpur MIDC', fullName: 'Satpur MIDC', category: 'Industrial Area', area: 'Satpur' },
-        { name: 'Ambad MIDC', fullName: 'Ambad MIDC', category: 'Industrial Area', area: 'Ambad' },
-        { name: 'Gangapur Road', fullName: 'Gangapur Road', category: 'Commercial & Residential', area: 'Gangapur Road' },
-        { name: 'Jehan Circle', fullName: 'Jehan Circle', category: 'Major Junction', area: 'Gangapur Road' },
-        { name: 'KK Wagh College', fullName: 'K. K. Wagh College', category: 'Campus / College', area: 'Amrutdham' },
-        { name: 'BYK College', fullName: 'BYK College of Commerce', category: 'Campus / College', area: 'College Road' },
-        { name: 'Pathardi Phata', fullName: 'Pathardi Phata', category: 'Major Junction', area: 'Mumbai-Agra Highway' },
-        { name: 'ABB Circle', fullName: 'ABB Circle', category: 'Major Junction', area: 'Mahatma Nagar' },
-        { name: 'Indira Nagar', fullName: 'Indira Nagar', category: 'Residential Hub', area: 'Indira Nagar' },
-        { name: 'Govind Nagar', fullName: 'Govind Nagar', category: 'Residential Area', area: 'Govind Nagar' },
-        { name: 'Mahatma Nagar', fullName: 'Mahatma Nagar', category: 'Residential & Sports', area: 'Mahatma Nagar' },
-        { name: 'Tidke Colony', fullName: 'Tidke Colony', category: 'Residential Area', area: 'Central Nashik' },
-        { name: 'Mumbai Naka', fullName: 'Mumbai Naka', category: 'Transit Hub', area: 'Mumbai Naka' },
-        { name: 'Shalimar', fullName: 'Shalimar Chowk', category: 'Market Area', area: 'Old Nashik' },
-        { name: 'Dwarka Circle', fullName: 'Dwarka Circle', category: 'Major Highway Junction', area: 'Dwarka' },
-        { name: 'Rane Nagar', fullName: 'Rane Nagar', category: 'Residential Area', area: 'New Nashik' },
-        { name: 'Ashok Stambh', fullName: 'Ashok Stambh', category: 'Commercial Junction', area: 'Old Nashik' },
-        { name: 'Ravivar Karanja', fullName: 'Ravivar Karanja (RK)', category: 'Market / Heritage', area: 'Old Nashik' },
-        { name: 'Kalaram Temple', fullName: 'Kalaram Temple', category: 'Heritage Landmark', area: 'Panchavati' },
-        { name: 'Upnagar', fullName: 'Upnagar', category: 'Residential Area', area: 'Nashik Road' },
-        { name: 'Deolali Camp', fullName: 'Deolali Camp', category: 'Cantonment Area', area: 'Deolali' },
-        { name: 'Jail Road', fullName: 'Jail Road', category: 'Residential Area', area: 'Nashik Road' },
-        { name: 'Bytco Point', fullName: 'Bytco Point', category: 'Transit Junction', area: 'Nashik Road' },
-        { name: 'Someshwar', fullName: 'Someshwar Waterfall & Temple', category: 'Tourist Landmark', area: 'Gangapur' },
-        { name: 'Sandip University', fullName: 'Sandip University', category: 'Campus / College', area: 'Trimbak Road' },
-        { name: 'MET Bhujbal Knowledge City', fullName: 'MET Bhujbal Knowledge City', category: 'Campus / College', area: 'Adgaon' }
+        { name: 'CBS', fullName: 'CBS (Central Bus Stand)', category: 'Transit Hub', area: 'Central Nashik', coords: [19.9975, 73.7898] },
+        { name: 'Canada Corner', fullName: 'Canada Corner', category: 'Commercial Hub', area: 'Sharanpur Road', coords: [20.0031, 73.7745] },
+        { name: 'College Road', fullName: 'College Road', category: 'Student & Cafe Hub', area: 'College Road', coords: [20.0063, 73.7667] },
+        { name: 'City Centre Mall', fullName: 'City Centre Mall (CCM)', category: 'Shopping Mall', area: 'Untwadi', coords: [19.9912, 73.7601] },
+        { name: 'CIDCO', fullName: 'CIDCO', category: 'Residential Hub', area: 'New Nashik', coords: [19.9650, 73.7540] },
+        { name: 'Panchavati', fullName: 'Panchavati', category: 'Heritage & Pilgrimage', area: 'Panchavati', coords: [20.0087, 73.7958] },
+        { name: 'Nashik Road Station', fullName: 'Nashik Road Railway Station', category: 'Transit Hub', area: 'Nashik Road', coords: [19.9547, 73.8344] },
+        { name: 'Satpur MIDC', fullName: 'Satpur MIDC', category: 'Industrial Area', area: 'Satpur', coords: [19.9977, 73.7317] },
+        { name: 'Ambad MIDC', fullName: 'Ambad MIDC', category: 'Industrial Area', area: 'Ambad', coords: [19.9328, 73.7371] },
+        { name: 'Gangapur Road', fullName: 'Gangapur Road', category: 'Commercial & Residential', area: 'Gangapur Road', coords: [20.0194, 73.7634] },
+        { name: 'Jehan Circle', fullName: 'Jehan Circle', category: 'Major Junction', area: 'Gangapur Road', coords: [20.0125, 73.7645] },
+        { name: 'KK Wagh College', fullName: 'K. K. Wagh College', category: 'Campus / College', area: 'Amrutdham', coords: [20.0245, 73.8347] },
+        { name: 'BYK College', fullName: 'BYK College of Commerce', category: 'Campus / College', area: 'College Road', coords: [20.0058, 73.7652] },
+        { name: 'Pathardi Phata', fullName: 'Pathardi Phata', category: 'Major Junction', area: 'Mumbai-Agra Highway', coords: [19.9482, 73.7651] },
+        { name: 'ABB Circle', fullName: 'ABB Circle', category: 'Major Junction', area: 'Mahatma Nagar', coords: [19.9985, 73.7512] },
+        { name: 'Indira Nagar', fullName: 'Indira Nagar', category: 'Residential Hub', area: 'Indira Nagar', coords: [19.9691, 73.7797] },
+        { name: 'Govind Nagar', fullName: 'Govind Nagar', category: 'Residential Area', area: 'Govind Nagar', coords: [19.9834, 73.7682] },
+        { name: 'Mahatma Nagar', fullName: 'Mahatma Nagar', category: 'Residential & Sports', area: 'Mahatma Nagar', coords: [19.9995, 73.7485] },
+        { name: 'Tidke Colony', fullName: 'Tidke Colony', category: 'Residential Area', area: 'Central Nashik', coords: [19.9872, 73.7770] },
+        { name: 'Mumbai Naka', fullName: 'Mumbai Naka', category: 'Transit Hub', area: 'Mumbai Naka', coords: [19.9880, 73.7845] },
+        { name: 'Shalimar', fullName: 'Shalimar Chowk', category: 'Market Area', area: 'Old Nashik', coords: [19.9942, 73.7885] },
+        { name: 'Dwarka Circle', fullName: 'Dwarka Circle', category: 'Major Highway Junction', area: 'Dwarka', coords: [19.9885, 73.8010] },
+        { name: 'Rane Nagar', fullName: 'Rane Nagar', category: 'Residential Area', area: 'New Nashik', coords: [19.9540, 73.7680] },
+        { name: 'Ashok Stambh', fullName: 'Ashok Stambh', category: 'Commercial Junction', area: 'Old Nashik', coords: [20.0018, 73.7862] },
+        { name: 'Ravivar Karanja', fullName: 'Ravivar Karanja (RK)', category: 'Market / Heritage', area: 'Old Nashik', coords: [20.0005, 73.7880] },
+        { name: 'Kalaram Temple', fullName: 'Kalaram Temple', category: 'Heritage Landmark', area: 'Panchavati', coords: [20.0076, 73.7972] },
+        { name: 'Upnagar', fullName: 'Upnagar', category: 'Residential Area', area: 'Nashik Road', coords: [19.9615, 73.8210] },
+        { name: 'Deolali Camp', fullName: 'Deolali Camp', category: 'Cantonment Area', area: 'Deolali', coords: [19.9167, 73.8333] },
+        { name: 'Jail Road', fullName: 'Jail Road', category: 'Residential Area', area: 'Nashik Road', coords: [19.9580, 73.8410] },
+        { name: 'Bytco Point', fullName: 'Bytco Point', category: 'Transit Junction', area: 'Nashik Road', coords: [19.9560, 73.8320] },
+        { name: 'Someshwar', fullName: 'Someshwar Waterfall & Temple', category: 'Tourist Landmark', area: 'Gangapur', coords: [20.0315, 73.7335] },
+        { name: 'Sandip University', fullName: 'Sandip University', category: 'Campus / College', area: 'Trimbak Road', coords: [19.9680, 73.6650] },
+        { name: 'MET Bhujbal Knowledge City', fullName: 'MET Bhujbal Knowledge City', category: 'Campus / College', area: 'Adgaon', coords: [20.0465, 73.8510] }
       ];
 
       // ── Ride Data ───────────────────────────────────────────────────
@@ -2739,6 +2747,380 @@
       // ── State ────────────────────────────────────────────────────────
       var currentRideId = 'ride-1';
       var maps = {};
+      var searchRouteLayer = null;
+      var defaultPickupLayer = null;
+
+      // ── Nashik Comprehensive Landmark Coordinates Database ──────────
+      var NASHIK_COORDINATES = {
+        // Major transit hubs & bus stands
+        'cbs': [19.9975, 73.7898],
+        'central bus stand': [19.9975, 73.7898],
+        'cbs (central bus stand)': [19.9975, 73.7898],
+        'old cbs': [19.9975, 73.7898],
+        'nashik road': [19.9547, 73.8344],
+        'nashik road station': [19.9547, 73.8344],
+        'nashik road railway station': [19.9547, 73.8344],
+        'mumbai naka': [19.9880, 73.7845],
+        'bytco point': [19.9560, 73.8320],
+        'dwarka': [19.9885, 73.8010],
+        'dwarka circle': [19.9885, 73.8010],
+        'shalimar': [19.9942, 73.7885],
+        'shalimar chowk': [19.9942, 73.7885],
+        'ashok stambh': [20.0018, 73.7862],
+        'ravivar karanja': [20.0005, 73.7880],
+        'rk': [20.0005, 73.7880],
+        'pathardi phata': [19.9482, 73.7651],
+        'abb circle': [19.9985, 73.7512],
+        'jehan circle': [20.0125, 73.7645],
+
+        // Commercial, retail & dining hubs
+        'canada corner': [20.0031, 73.7745],
+        'college road': [20.0063, 73.7667],
+        'city centre mall': [19.9912, 73.7601],
+        'city centre mall (ccm)': [19.9912, 73.7601],
+        'city center mall': [19.9912, 73.7601],
+        'ccm': [19.9912, 73.7601],
+        'gangapur road': [20.0194, 73.7634],
+        'sharanpur road': [20.0020, 73.7710],
+        'untwadi': [19.9890, 73.7620],
+        'trimbak road': [19.9850, 73.7200],
+
+        // Educational campuses
+        'byk college': [20.0058, 73.7652],
+        'byk college of commerce': [20.0058, 73.7652],
+        'kk wagh': [20.0245, 73.8347],
+        'kk wagh college': [20.0245, 73.8347],
+        'k. k. wagh college': [20.0245, 73.8347],
+        'sandip university': [19.9680, 73.6650],
+        'met bhujbal': [20.0465, 73.8510],
+        'met bhujbal knowledge city': [20.0465, 73.8510],
+        'hpt arts and ryk science college': [20.0040, 73.7635],
+        'symbiosis': [20.0380, 73.7750],
+
+        // Residential & Industrial sectors
+        'cidco': [19.9650, 73.7540],
+        'new nashik': [19.9650, 73.7540],
+        'satpur': [19.9977, 73.7317],
+        'satpur midc': [19.9977, 73.7317],
+        'ambad': [19.9328, 73.7371],
+        'ambad midc': [19.9328, 73.7371],
+        'indira nagar': [19.9691, 73.7797],
+        'govind nagar': [19.9834, 73.7682],
+        'mahatma nagar': [19.9995, 73.7485],
+        'tidke colony': [19.9872, 73.7770],
+        'rane nagar': [19.9540, 73.7680],
+        'upnagar': [19.9615, 73.8210],
+        'deolali': [19.9167, 73.8333],
+        'deolali camp': [19.9167, 73.8333],
+        'jail road': [19.9580, 73.8410],
+        'panchavati': [20.0087, 73.7958],
+        'kalaram temple': [20.0076, 73.7972],
+        'someshwar': [20.0315, 73.7335],
+        'someshwar waterfall': [20.0315, 73.7335],
+        'adgaon': [20.0380, 73.8420],
+        'mhasrul': [20.0380, 73.7970],
+        'dindori road': [20.0300, 73.8000],
+        'trimurti chowk': [19.9650, 73.7620],
+        'parijat nagar': [20.0025, 73.7580],
+        'lekha nagar': [19.9550, 73.7620],
+        'uttam nagar': [19.9630, 73.7480],
+        'sinnar phata': [19.9520, 73.8380],
+        'makhmalabad': [20.0350, 73.7800],
+        'trimbakeshwar': [19.9380, 73.5300],
+        'sula vineyards': [20.0072, 73.6872]
+      };
+
+      var geoCache = {};
+
+      function cleanLocStr(s) {
+        if (!s) return '';
+        return String(s)
+          .toLowerCase()
+          .replace(/[\(\)\[\],.\-_/]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      function resolveCoords(raw) {
+        if (!raw) return null;
+        var clean = cleanLocStr(raw);
+        if (!clean) return null;
+
+        if (geoCache[clean]) return geoCache[clean];
+
+        // 1. Direct dictionary match
+        if (NASHIK_COORDINATES[clean]) {
+          geoCache[clean] = NASHIK_COORDINATES[clean];
+          return NASHIK_COORDINATES[clean];
+        }
+
+        // 2. Partial / substring match in dictionary keys
+        var keys = Object.keys(NASHIK_COORDINATES);
+        for (var i = 0; i < keys.length; i++) {
+          var k = keys[i];
+          if (clean === k || clean.indexOf(k) !== -1 || k.indexOf(clean) !== -1) {
+            geoCache[clean] = NASHIK_COORDINATES[k];
+            return NASHIK_COORDINATES[k];
+          }
+        }
+
+        // 3. Match against NASHIK_LOCATIONS database
+        for (var j = 0; j < NASHIK_LOCATIONS.length; j++) {
+          var loc = NASHIK_LOCATIONS[j];
+          var nl = cleanLocStr(loc.name);
+          var fl = cleanLocStr(loc.fullName);
+          var al = cleanLocStr(loc.area);
+          if (clean === nl || clean === fl || clean.indexOf(nl) !== -1 || nl.indexOf(clean) !== -1 || clean.indexOf(al) !== -1) {
+            if (loc.coords) {
+              geoCache[clean] = loc.coords;
+              return loc.coords;
+            }
+          }
+        }
+
+        // 4. Match against RIDES database
+        for (var r = 0; r < RIDES.length; r++) {
+          var ride = RIDES[r];
+          var rsrc = cleanLocStr(ride.source);
+          var rdest = cleanLocStr(ride.destination);
+          if (ride.sourceCoords) {
+            if (clean.indexOf(rsrc) !== -1 || rsrc.indexOf(clean) !== -1) {
+              geoCache[clean] = ride.sourceCoords;
+              return ride.sourceCoords;
+            }
+          }
+        }
+
+        // 5. Deterministic fallback coordinate within Nashik city boundaries
+        // Guarantees every custom location produces a valid point and connected line
+        var hash = 0;
+        for (var h = 0; h < clean.length; h++) {
+          hash = ((hash << 5) - hash) + clean.charCodeAt(h);
+          hash |= 0;
+        }
+        var offsetLat = ((Math.abs(hash) % 1000) / 1000 - 0.5) * 0.08;
+        var offsetLng = ((Math.abs(hash >> 3) % 1000) / 1000 - 0.5) * 0.08;
+        var fallbackCoords = [
+          Number((19.9975 + offsetLat).toFixed(4)),
+          Number((73.7898 + offsetLng).toFixed(4))
+        ];
+        geoCache[clean] = fallbackCoords;
+
+        // Background geocoding query to refine asynchronously if online
+        try {
+          fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(clean + ', Nashik, Maharashtra'))
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data && data.length > 0 && data[0].lat && data[0].lon) {
+                var realCoords = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+                geoCache[clean] = realCoords;
+                var curSrc = (document.getElementById('filter-src') ? document.getElementById('filter-src').value : '').trim();
+                var curDest = (document.getElementById('filter-dest') ? document.getElementById('filter-dest').value : '').trim();
+                if (curSrc && curDest) {
+                  updateSearchMapRoute(curSrc, curDest, document.getElementById('filter-date') ? document.getElementById('filter-date').value : '');
+                }
+              }
+            })
+            .catch(function () {});
+        } catch (e) {}
+
+        return fallbackCoords;
+      }
+
+      function calculateDistanceKm(c1, c2) {
+        if (!c1 || !c2) return 0;
+        var R = 6371; // km
+        var dLat = (c2[0] - c1[0]) * Math.PI / 180;
+        var dLon = (c2[1] - c1[1]) * Math.PI / 180;
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(c1[0] * Math.PI / 180) * Math.cos(c2[0] * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return Number((R * c).toFixed(1));
+      }
+
+      function createCustomPin(type) {
+        var isPickup = type === 'pickup';
+        var bg = isPickup ? '#10b981' : '#dc2626';
+        var shadow = isPickup ? 'rgba(16,185,129,0.45)' : 'rgba(220,38,38,0.45)';
+        var letter = isPickup ? 'A' : 'B';
+
+        var html = '<div style="position:relative;display:flex;flex-direction:column;align-items:center;">' +
+          '<div style="background:' + bg + ';color:#ffffff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px ' + shadow + ';border:2.5px solid #ffffff;font-size:13px;font-weight:800;font-family:sans-serif;">' +
+          letter +
+          '</div>' +
+          '<div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid ' + bg + ';margin-top:-1px;"></div>' +
+          '</div>';
+
+        return L.divIcon({
+          className: 'custom-map-pin',
+          html: html,
+          iconSize: [30, 36],
+          iconAnchor: [15, 36],
+          popupAnchor: [0, -36]
+        });
+      }
+
+      function updateSearchMapRoute(srcName, destName, dateStr) {
+        var m = maps['search-map'];
+        if (!m || typeof L === 'undefined') return;
+
+        var titleEl = document.getElementById('search-map-title-text');
+        var badgeEl = document.getElementById('search-route-badge');
+        var badgeText = document.getElementById('search-route-badge-text');
+
+        // Clear previous route layers
+        if (searchRouteLayer) {
+          m.removeLayer(searchRouteLayer);
+          searchRouteLayer = null;
+        }
+
+        var srcCoords = srcName ? resolveCoords(srcName) : null;
+        var destCoords = destName ? resolveCoords(destName) : null;
+
+        if (srcCoords && destCoords) {
+          // Remove default points layer when active route is shown
+          if (defaultPickupLayer) {
+            m.removeLayer(defaultPickupLayer);
+          }
+
+          searchRouteLayer = L.layerGroup().addTo(m);
+
+          // 1. Direct Red Bold Line with smooth glow underlay
+          var underlay = L.polyline([srcCoords, destCoords], {
+            color: '#fee2e2',
+            weight: 10,
+            opacity: 0.7,
+            lineCap: 'round',
+            lineJoin: 'round'
+          }).addTo(searchRouteLayer);
+
+          // Red bold line
+          var mainLine = L.polyline([srcCoords, destCoords], {
+            color: '#dc2626',
+            weight: 6,
+            opacity: 0.95,
+            lineCap: 'round',
+            lineJoin: 'round'
+          }).addTo(searchRouteLayer);
+
+          var dist = calculateDistanceKm(srcCoords, destCoords);
+
+          // 2. Start Marker (Green A)
+          L.marker(srcCoords, { icon: createCustomPin('pickup') })
+            .addTo(searchRouteLayer)
+            .bindPopup('<strong>Leaving From:</strong> ' + esc(srcName) + (dateStr ? '<br><small style="color:var(--text-secondary);">Date: ' + esc(dateStr) + '</small>' : ''));
+
+          // 3. End Marker (Red B)
+          L.marker(destCoords, { icon: createCustomPin('drop') })
+            .addTo(searchRouteLayer)
+            .bindPopup('<strong>Going To:</strong> ' + esc(destName) + '<br><small style="color:var(--text-secondary);">Est. Distance: ~' + dist + ' km</small>');
+
+          // Fit bounds to show both locations and the full connecting bold red line
+          m.fitBounds(mainLine.getBounds(), { padding: [45, 45], maxZoom: 15 });
+
+          // Update header and badge
+          if (titleEl) {
+            titleEl.innerHTML = '<span style="color:var(--text-secondary);font-size:12px;font-weight:500;">Route:</span> <strong style="color:var(--text-primary);">' + esc(srcName) + '</strong> <span style="color:#dc2626;font-weight:800;">➔</span> <strong style="color:var(--text-primary);">' + esc(destName) + '</strong>';
+          }
+          if (badgeEl && badgeText) {
+            badgeEl.style.display = 'inline-flex';
+            badgeText.textContent = 'Route Connected (~ ' + dist + ' km)';
+          }
+
+          // Fetch realistic street route via OSRM
+          try {
+            var osrmUrl = 'https://router.project-osrm.org/route/v1/driving/' +
+              srcCoords[1] + ',' + srcCoords[0] + ';' +
+              destCoords[1] + ',' + destCoords[0] +
+              '?overview=full&geometries=geojson';
+
+            fetch(osrmUrl)
+              .then(function (res) { return res.json(); })
+              .then(function (data) {
+                if (data && data.routes && data.routes[0] && data.routes[0].geometry) {
+                  var roadPoints = data.routes[0].geometry.coordinates.map(function (c) {
+                    return [c[1], c[0]];
+                  });
+                  underlay.setLatLngs(roadPoints);
+                  mainLine.setLatLngs(roadPoints);
+                  if (data.routes[0].distance) {
+                    var roadDist = (data.routes[0].distance / 1000).toFixed(1);
+                    if (badgeText) badgeText.textContent = 'Road Route (~ ' + roadDist + ' km)';
+                  }
+                }
+              })
+              .catch(function () {
+                // Keep the direct bold red line
+              });
+          } catch (e) {}
+
+        } else if (srcCoords) {
+          if (defaultPickupLayer) m.removeLayer(defaultPickupLayer);
+          searchRouteLayer = L.layerGroup().addTo(m);
+          L.marker(srcCoords, { icon: createCustomPin('pickup') })
+            .addTo(searchRouteLayer)
+            .bindPopup('<strong>Leaving From:</strong> ' + esc(srcName) + (dateStr ? '<br><small>Date: ' + esc(dateStr) + '</small>' : ''))
+            .openPopup();
+          m.setView(srcCoords, 14);
+
+          if (titleEl) titleEl.textContent = 'Pickup: ' + srcName;
+          if (badgeEl) badgeEl.style.display = 'none';
+
+        } else if (destCoords) {
+          if (defaultPickupLayer) m.removeLayer(defaultPickupLayer);
+          searchRouteLayer = L.layerGroup().addTo(m);
+          L.marker(destCoords, { icon: createCustomPin('drop') })
+            .addTo(searchRouteLayer)
+            .bindPopup('<strong>Going To:</strong> ' + esc(destName))
+            .openPopup();
+          m.setView(destCoords, 14);
+
+          if (titleEl) titleEl.textContent = 'Destination: ' + destName;
+          if (badgeEl) badgeEl.style.display = 'none';
+
+        } else {
+          renderDefaultPickupPoints();
+        }
+      }
+
+      function renderDefaultPickupPoints() {
+        var m = maps['search-map'];
+        if (!m || typeof L === 'undefined') return;
+
+        if (searchRouteLayer) {
+          m.removeLayer(searchRouteLayer);
+          searchRouteLayer = null;
+        }
+        if (defaultPickupLayer) {
+          m.removeLayer(defaultPickupLayer);
+        }
+
+        defaultPickupLayer = L.layerGroup().addTo(m);
+
+        NASHIK_LOCATIONS.slice(0, 16).forEach(function (loc) {
+          if (!loc.coords) return;
+          var circle = L.circleMarker(loc.coords, {
+            radius: 6,
+            fillColor: '#2563eb',
+            color: '#ffffff',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+          }).addTo(defaultPickupLayer);
+
+          circle.bindPopup('<strong>' + esc(loc.name) + '</strong><br><span style="font-size:11px;color:#64748b;">' + esc(loc.area) + '</span><br><button class="btn btn-outline btn-xs set-map-pickup-btn" data-loc="' + esc(loc.name) + '" style="margin-top:6px;padding:2px 8px;font-size:11px;">Set as Pickup</button>');
+        });
+
+        m.setView([19.9975, 73.7898], 12);
+
+        var titleEl = document.getElementById('search-map-title-text');
+        var badgeEl = document.getElementById('search-route-badge');
+        if (titleEl) {
+          titleEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary-blue);"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg><span>Pickup Points — Nashik</span>';
+        }
+        if (badgeEl) badgeEl.style.display = 'none';
+      }
 
       // ── Mobile menu ────────────────────────────────────────────────
       var menuBtn = document.getElementById('menu-toggle');
@@ -2874,21 +3256,26 @@
       // ── Search View ──────────────────────────────────────────────────
       
 async function initSearchView() {
-  document.getElementById('filter-src').value = '';
-  document.getElementById('filter-dest').value = '';
-  document.getElementById('filter-date').value = '';
-
   await loadSupabaseRides();
 
   setTimeout(function () {
     if (maps['search-map']) {
       maps['search-map'].invalidateSize();
-      return;
+    } else {
+      var m = makeMap('search-map', [19.9975, 73.7898], 12);
+      if (m) maps['search-map'] = m;
     }
 
-    var m = makeMap('search-map', [19.9975, 73.7898], 12);
-    if (m) maps['search-map'] = m;
-  }, 80);
+    var srcVal = (document.getElementById('filter-src') ? document.getElementById('filter-src').value : '').trim();
+    var destVal = (document.getElementById('filter-dest') ? document.getElementById('filter-dest').value : '').trim();
+    var dateVal = (document.getElementById('filter-date') ? document.getElementById('filter-date').value : '').trim();
+
+    if (srcVal || destVal) {
+      updateSearchMapRoute(srcVal, destVal, dateVal);
+    } else {
+      renderDefaultPickupPoints();
+    }
+  }, 100);
 }
 
 
@@ -2998,9 +3385,19 @@ async function loadSupabaseRides() {
 
 
       function filterRides() {
-        var src = (document.getElementById('filter-src').value || '').toLowerCase().trim();
-        var dest = (document.getElementById('filter-dest').value || '').toLowerCase().trim();
-        var date = document.getElementById('filter-date').value || '';
+        var srcInput = document.getElementById('filter-src');
+        var destInput = document.getElementById('filter-dest');
+        var dateInput = document.getElementById('filter-date');
+
+        var rawSrc = (srcInput ? srcInput.value : '').trim();
+        var rawDest = (destInput ? destInput.value : '').trim();
+        var date = dateInput ? dateInput.value : '';
+
+        var src = rawSrc.toLowerCase();
+        var dest = rawDest.toLowerCase();
+
+        // Connect the two searched locations with a bold red line on the map
+        updateSearchMapRoute(rawSrc, rawDest, date);
 
         function matchLoc(text, query) {
           if (!query) return true;
@@ -3009,6 +3406,7 @@ async function loadSupabaseRides() {
           if (t.indexOf(query) !== -1) return true;
           // Alias handling for CBS
           if (query === 'cbs' && (t.indexOf('cbs') !== -1 || t.indexOf('central bus') !== -1)) return true;
+          if ((query === 'ccm' || query === 'city centre mall' || query === 'city center mall') && (t.indexOf('ccm') !== -1 || t.indexOf('city centre') !== -1 || t.indexOf('city center') !== -1)) return true;
           return false;
         }
 
@@ -3023,10 +3421,10 @@ async function loadSupabaseRides() {
 
       // Go to Find Rides with filters applied (used by the hero, popular routes, footer)
       function runSearch(src, dest, date) {
-        navigate('search');
         document.getElementById('filter-src').value = src || '';
         document.getElementById('filter-dest').value = dest || '';
         document.getElementById('filter-date').value = date || '';
+        navigate('search');
         filterRides();
       }
 
@@ -3193,6 +3591,7 @@ async function loadSupabaseRides() {
           document.getElementById('filter-dest').value = '';
           document.getElementById('filter-date').value = '';
           renderRideList(RIDES);
+          renderDefaultPickupPoints();
         }
         if (e.target.id === 'show-signup-btn') {
           document.getElementById('login-panel').style.display = 'none';
@@ -3201,6 +3600,42 @@ async function loadSupabaseRides() {
         if (e.target.id === 'show-login-btn') {
           document.getElementById('signup-panel').style.display = 'none';
           document.getElementById('login-panel').style.display = 'block';
+        }
+
+        // Handle clicking "Set as Pickup" button inside map popup
+        var mapPickupBtn = e.target.closest('.set-map-pickup-btn');
+        if (mapPickupBtn) {
+          var chosenLoc = mapPickupBtn.getAttribute('data-loc');
+          var sEl = document.getElementById('filter-src');
+          var dEl = document.getElementById('filter-dest');
+          if (sEl && dEl) {
+            if (!sEl.value.trim()) {
+              sEl.value = chosenLoc;
+            } else if (!dEl.value.trim()) {
+              dEl.value = chosenLoc;
+            } else {
+              sEl.value = chosenLoc;
+            }
+            filterRides();
+          }
+        }
+      });
+
+      // Enter key & date change triggers for Search Inputs
+      ['filter-src', 'filter-dest', 'filter-date'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('keydown', function (ev) {
+            if (ev.key === 'Enter') {
+              ev.preventDefault();
+              filterRides();
+            }
+          });
+          if (id === 'filter-date') {
+            el.addEventListener('change', function () {
+              filterRides();
+            });
+          }
         }
       });
 
