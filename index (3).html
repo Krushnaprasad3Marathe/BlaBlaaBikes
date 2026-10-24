@@ -1172,6 +1172,33 @@
       margin: 6px 0;
     }
 
+    .user-menu [hidden],
+    .user-menu button[hidden],
+    .user-menu hr[hidden],
+    [hidden] {
+      display: none !important;
+    }
+
+    body:not(.is-logged-in) .auth-only-item {
+      display: none !important;
+    }
+
+    body:not(.is-logged-in) .guest-only-item {
+      display: block !important;
+    }
+
+    body.is-logged-in .guest-only-item {
+      display: none !important;
+    }
+
+    body.is-logged-in .auth-only-item {
+      display: block !important;
+    }
+
+    body.is-logged-in hr.auth-only-item {
+      display: block !important;
+    }
+
     .home-wrap {
       max-width: 1060px;
       margin: 0 auto;
@@ -2034,19 +2061,17 @@
             </svg>
           </button>
           <div class="user-menu" id="user-menu" role="menu">
-            <button type="button" role="menuitem" data-goto="profile">Profile</button>
-            <button type="button" role="menuitem" data-goto="my-rides">Your rides</button>
-            <button type="button" role="menuitem" data-goto="chat">Messages</button>
-            <hr>
-            <button type="button" id="login-menu-item" role="menuitem" data-goto="login" data-panel="login">
+            <button type="button" id="profile-menu-item" class="auth-only-item" role="menuitem" data-goto="profile">Profile</button>
+            <button type="button" id="rides-menu-item" class="auth-only-item" role="menuitem" data-goto="my-rides">Your rides</button>
+            <button type="button" id="chat-menu-item" class="auth-only-item" role="menuitem" data-goto="chat">Messages</button>
+            <hr class="auth-only-item">
+            <button type="button" id="login-menu-item" class="guest-only-item" role="menuitem" data-goto="login" data-panel="login">
               Log in
             </button>
-
-            <button type="button" id="signup-menu-item" role="menuitem" data-goto="login" data-panel="signup">
+            <button type="button" id="signup-menu-item" class="guest-only-item" role="menuitem" data-goto="login" data-panel="signup">
               Sign up
             </button>
-
-            <button type="button" id="logout-menu-item" role="menuitem" hidden>
+            <button type="button" id="logout-menu-item" class="auth-only-item" role="menuitem">
               Log out
             </button>
           </div>
@@ -2123,13 +2148,21 @@
 
         <span class="sidebar-section-label" style="margin-top:8px;">Account</span>
         <ul class="sidebar-nav">
-          <li class="sidebar-nav-item" data-view="login">
+          <li class="sidebar-nav-item guest-only-item" data-view="login" id="sidebar-account-login">
             <svg viewBox="0 0 24 24">
               <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
               <polyline points="10 17 15 12 10 7" />
               <line x1="15" y1="12" x2="3" y2="12" />
             </svg>
             Login / Sign Up
+          </li>
+          <li class="sidebar-nav-item auth-only-item" id="sidebar-account-logout" style="display:none;">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Log out
           </li>
         </ul>
       </nav>
@@ -4199,13 +4232,19 @@ async function loadSupabaseRides() {
         document.body.classList.toggle('is-logged-in', !!user);
         updateDashboardUser(user);
 
-        const loginItem = document.getElementById('login-menu-item');
-        const signupItem = document.getElementById('signup-menu-item');
-        const logoutItem = document.getElementById('logout-menu-item');
+        const authItems = document.querySelectorAll('.auth-only-item');
+        const guestItems = document.querySelectorAll('.guest-only-item');
 
-        if (loginItem) loginItem.hidden = !!user;
-        if (signupItem) signupItem.hidden = !!user;
-        if (logoutItem) logoutItem.hidden = !user;
+        authItems.forEach(function (el) {
+          el.hidden = !user;
+          el.style.display = user ? '' : 'none';
+        });
+
+        guestItems.forEach(function (el) {
+          el.hidden = !!user;
+          el.style.display = user ? 'none' : '';
+        });
+
         const nameElement = document.getElementById('topbar-username');
         const avatarElement = document.getElementById('topbar-user-avatar');
 
@@ -4302,6 +4341,13 @@ async function loadSupabaseRides() {
           } finally {
             logoutButton.disabled = false;
           }
+        });
+      }
+
+      const sidebarLogout = document.getElementById('sidebar-account-logout');
+      if (sidebarLogout) {
+        sidebarLogout.addEventListener('click', function () {
+          if (logoutButton) logoutButton.click();
         });
       }
 
