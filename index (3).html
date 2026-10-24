@@ -18,11 +18,26 @@
    ========================================================================== */
 
     :root {
+      /* Blue Gradient Design Tokens */
+      --blue-800: #1E3A8A;
+      --blue-700: #1E40AF;
+      --blue-600: #2563EB;
+      --blue-500: #3B82F6;
+      --blue-400: #60A5FA;
+      --blue-100: #DBEAFE;
+      --blue-50: #EFF6FF;
+
+      --grad-primary: linear-gradient(135deg, #1E40AF 0%, #2563EB 55%, #3B82F6 100%);
+      --grad-primary-hover: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 55%, #2563EB 100%);
+      --grad-soft: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      --grad-accent-line: linear-gradient(90deg, #1E40AF, #3B82F6, #60A5FA);
+      --shadow-blue: 0 8px 20px -6px rgba(37, 99, 235, 0.45);
+
       --bg-main: #ffffff;
       --bg-secondary: #f5f9fc;
       --bg-sidebar: #ffffff;
-      --primary-blue: #2d7ff9;
-      --light-blue: #eaf3ff;
+      --primary-blue: var(--blue-600);
+      --light-blue: var(--blue-50);
       --border-color: #e2eaf2;
 
       --text-main: #202b38;
@@ -133,14 +148,15 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background-color: var(--light-blue);
-      border: 1px solid var(--border-color);
+      background-image: var(--grad-primary);
+      border: 1.5px solid var(--blue-100);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 13px;
       font-weight: 700;
-      color: var(--primary-blue);
+      color: var(--text-white);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
     }
 
     .topbar-username {
@@ -191,14 +207,36 @@
       font-weight: 500;
       color: var(--text-secondary);
       cursor: pointer;
+      position: relative;
       border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-nav-item:hover {
+      background-color: var(--blue-50);
+      color: var(--blue-700);
     }
 
     .sidebar-nav-item.active {
-      color: var(--primary-blue);
-      background-color: var(--light-blue);
-      border-left-color: var(--primary-blue);
+      color: var(--blue-700);
+      background: var(--grad-soft);
+      border-left: none;
       font-weight: 600;
+    }
+
+    .sidebar-nav-item.active::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #1E40AF, #3B82F6, #60A5FA);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .sidebar-nav-item.active svg {
+      stroke: var(--blue-600);
     }
 
     .sidebar-nav-item svg {
@@ -351,24 +389,94 @@
       font-weight: 600;
       cursor: pointer;
       border: 1px solid transparent;
+      transition: background-position 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--blue-400);
+      outline-offset: 2px;
+    }
+
+    .btn:disabled,
+    .btn[disabled] {
+      background: #e2e8f0 !important;
+      color: #94a3b8 !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      cursor: not-allowed !important;
+      opacity: 0.7;
+    }
+
+    .btn:disabled::before,
+    .btn[disabled]::before {
+      display: none !important;
     }
 
     .btn-primary {
-      background-color: var(--primary-blue);
+      position: relative;
+      background-image: var(--grad-primary);
+      background-size: 200% 100%;
+      background-position: left center;
       color: var(--text-white);
-      border-color: var(--primary-blue);
+      border-color: transparent;
+      box-shadow: var(--shadow-blue);
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: var(--grad-primary-hover);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+      border-radius: inherit;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px -6px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-primary:hover:not(:disabled)::before {
+      opacity: 1;
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-blue);
     }
 
     .btn-secondary {
-      background-color: var(--light-blue);
-      color: var(--primary-blue);
-      border-color: var(--light-blue);
+      background-color: var(--blue-50);
+      color: var(--blue-700);
+      border-color: var(--blue-100);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--blue-100);
+      color: var(--blue-800);
+      transform: translateY(-1px);
     }
 
     .btn-outline {
       background-color: transparent;
       color: var(--text-main);
       border-color: var(--border-color);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: var(--blue-50);
+      border-color: var(--blue-400);
+      color: var(--blue-700);
+      transform: translateY(-1px);
     }
 
     .btn-danger {
@@ -400,9 +508,11 @@
       color: var(--status-green-text);
     }
 
-    .badge-blue {
-      background-color: var(--light-blue);
-      color: var(--primary-blue);
+    .badge-blue,
+    .badge-soft {
+      background: var(--grad-soft);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-100);
     }
 
     .badge-amber {
@@ -965,7 +1075,40 @@
     }
 
     .top-link-accent {
-      color: var(--primary-blue);
+      position: relative;
+      background: var(--bg-main);
+      border: 1.5px solid transparent;
+      border-radius: 999px;
+      background-image: linear-gradient(var(--bg-main), var(--bg-main)), var(--grad-primary);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      color: var(--blue-600);
+      font-weight: 600;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .top-link-accent svg {
+      stroke: var(--blue-600);
+      transition: stroke 0.25s ease;
+    }
+
+    .top-link-accent:hover {
+      background-image: var(--grad-primary);
+      background-origin: padding-box;
+      background-clip: border-box;
+      border-color: transparent;
+      color: var(--text-white);
+      box-shadow: var(--shadow-blue);
+      transform: translateY(-1px);
+    }
+
+    .top-link-accent:hover svg {
+      stroke: var(--text-white);
+    }
+
+    .top-link-accent:active {
+      transform: translateY(0);
     }
 
     .user-menu-wrap {
@@ -1274,33 +1417,80 @@
       margin-bottom: 20px;
     }
 
-    .value-card {
+    .home-values .value-card {
+      position: relative;
       background: var(--bg-main);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 24px 22px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
     }
 
-    .value-card svg {
-      width: 28px;
-      height: 28px;
-      stroke: var(--primary-blue);
+    /* 3px top border using var(--grad-accent-line) */
+    .home-values .value-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad-accent-line);
+    }
+
+    .home-values .value-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-blue);
+    }
+
+    /* 44px rounded badge with var(--grad-primary) and white icon */
+    .home-values .value-card svg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border-radius: 12px;
+      background-image: var(--grad-primary);
+      stroke: var(--text-white);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
       fill: none;
-      stroke-width: 1.8;
+      stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
-    .value-card h3 {
+    .home-values .value-card h3 {
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 6px;
+      color: var(--text-main);
     }
 
-    .value-card p {
+    .home-values .value-card p {
       font-size: 13.5px;
       color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Section heading underline bar */
+    .popular-heading {
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+
+    .popular-heading::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--grad-accent-line);
+      border-radius: 2px;
     }
 
     .route-row {
@@ -1313,13 +1503,19 @@
       border: none;
       border-bottom: 1px solid var(--border-color);
       cursor: pointer;
-      padding: 14px 2px;
+      padding: 14px 10px;
+      border-radius: var(--radius-sm);
       text-align: left;
       color: var(--text-main);
+      transition: background 0.2s ease, transform 0.15s ease;
     }
 
     .route-row:last-child {
       border-bottom: none;
+    }
+
+    .route-row:hover {
+      background: var(--grad-soft);
     }
 
     .route-name {
@@ -1331,12 +1527,27 @@
       font-size: 13px;
       color: var(--text-secondary);
       white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .route-price {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--blue-600); /* Fallback */
+      background-image: var(--grad-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .route-meta::after {
-      content: "  ›";
+      content: " ›";
       font-size: 18px;
-      color: var(--primary-blue);
+      font-weight: 700;
+      color: var(--blue-600);
+      margin-left: 4px;
     }
 
     .split-box {
@@ -1393,11 +1604,47 @@
     }
 
     .cta-btn {
-      background: var(--primary-blue);
-      color: #fff;
-      border-color: var(--primary-blue);
+      position: relative;
+      background-image: var(--grad-primary);
+      background-size: 200% 100%;
+      background-position: left center;
+      color: var(--text-white);
+      border: 1px solid transparent;
       padding: 12px 24px;
       white-space: nowrap;
+      box-shadow: var(--shadow-blue);
+      z-index: 1;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+      transition: background-position 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: var(--grad-primary-hover);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+      border-radius: inherit;
+    }
+
+    .cta-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px -6px rgba(37, 99, 235, 0.55);
+    }
+
+    .cta-btn:hover:not(:disabled)::before {
+      opacity: 1;
+    }
+
+    .cta-btn:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-blue);
     }
 
     .quote-grid {
@@ -1713,6 +1960,17 @@
     .hs-field input {
       height: 24px;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transform: none !important;
+      }
+    }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1958,7 +2216,7 @@
             </div>
 
             <div class="container-box">
-              <div class="box-title">Popular rides in Nashik</div>
+              <div class="box-title popular-heading">Popular rides in Nashik</div>
               <div id="home-popular"></div>
               <div style="margin-top:14px;">
                 <button type="button" class="btn btn-outline btn-sm" data-goto="search">More rides</button>
@@ -3686,7 +3944,7 @@ async function loadSupabaseRides() {
               esc(short(r.destination)) + '">' +
               '<span class="route-name">' +
               esc(short(r.source)) + ' ➔ ' + esc(short(r.destination)) +
-              '</span><span class="route-meta">₹' + r.price + ' · ' +
+              '</span><span class="route-meta"><span class="route-price">₹' + r.price + '</span> · ' +
               esc(r.time) + '</span></button>';
           }).join('');
         }
